@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Watcher8</string>
+    <string name="tab_text_owned">Owned</string>
+    <string name="tab_text_watch">Watch</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_other">OtherAction</string>
+    <string name="action_third">ThirdItem</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+</resources>
