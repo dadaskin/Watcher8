@@ -23,23 +23,25 @@
             android:layout_height="?attr/actionBarSize"
             android:layout_weight="1"
             android:layout_gravity="end"
-            android:background="@android:color/darker_gray"
+            android:background="@android:color/white"
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:title="@string/app_name">
-
-        </android.support.v7.widget.Toolbar>
+            app:title="@string/app_name" />
 
         <android.support.design.widget.TabLayout
             android:id="@+id/tabs"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:tabBackground="@android:color/darker_gray"
+            app:tabSelectedTextColor="@android:color/black"
+            app:tabIndicatorHeight="10dp"
+            >
 
             <android.support.design.widget.TabItem
                 android:id="@+id/tabItem_owned"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/tab_text_owned" />
+                android:text="@string/tab_text_owned"/>
 
             <android.support.design.widget.TabItem
                 android:id="@+id/tabItem_watch"
@@ -49,14 +51,6 @@
 
         </android.support.design.widget.TabLayout>
     </android.support.design.widget.AppBarLayout>
-
-    <!--<android.support.v4.view.ViewPager-->
-        <!--android:id="@+id/container"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--app:layout_behavior="@string/appbar_scrolling_view_behavior" />-->
-
-
 
     <com.adaskin.android.watcher8.adapters.NonSwipableViewPager
         android:id="@+id/pager"
