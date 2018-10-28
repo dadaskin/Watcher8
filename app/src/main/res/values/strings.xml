@@ -6,4 +6,9 @@
     <string name="action_other">OtherAction</string>
     <string name="action_third">ThirdItem</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="add_button">Add a new Stock Symbol</string>
+    <string name="refresh_button_moving">Refresh Stock Quotes</string>
+    <string name="refresh_button_stationary">Refresh Stock Quotes</string>
+    <string name="defaultTimeText">Default Time Text</string>
+    <string name="defaultDateText">Default Date Text</string>
 </resources>

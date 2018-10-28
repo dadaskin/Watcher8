@@ -52,15 +52,31 @@
         </android.support.design.widget.TabLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <com.adaskin.android.watcher8.adapters.NonSwipableViewPager
-        android:id="@+id/pager"
+    <!--<include layout="@layout/fragment_footer" />-->
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/fragment_footer"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context=".MainActivity" />
+        android:layout_height="match_parent" >
 
-    <include layout="@layout/fragment_footer" />
+        <fragment
+            android:id="@+id/fragment_footer"
+            android:name="com.adaskin.android.watcher8.fragments.FooterFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_centerVertical="true"
+            tools:layout="@layout/fragment_footer"
+            />
+
+        <com.adaskin.android.watcher8.adapters.NonSwipableViewPager
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/fragment_footer"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:context=".MainActivity" />
+
+    </RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout>
