@@ -33,8 +33,8 @@ public class DbAdapter {
     private static final String ST_SOLD = "SOLD";
 
     // Database constants
-    public static final String DATABASE_NAME = "stockwatcher4";
-    public static final int DATABASE_VERSION = 2;
+    public static final String DATABASE_NAME = "watcher8";
+    public static final int DATABASE_VERSION = 1;
     public static final String DB_VIEW_NAME = "db_view";
     public static final String DB_TRIGGER_NAME = "db_trigger";
 
