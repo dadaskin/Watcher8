@@ -1,6 +1,7 @@
 package com.adaskin.android.watcher8;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.multidex.MultiDex;
 import android.support.v7.app.ActionBar;
@@ -16,8 +17,9 @@ import android.view.View;
 
 import com.adaskin.android.watcher8.adapters.NonSwipableViewPager;
 import com.adaskin.android.watcher8.adapters.SectionsPagerAdapter;
+import com.adaskin.android.watcher8.fragments.ListFragmentBase;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ListFragmentBase.ListFragmentListener {
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
@@ -69,9 +71,23 @@ public class MainActivity extends AppCompatActivity {
             public void onTabReselected(TabLayout.Tab tab) {
             }
         });
-
-
     }
+
+    @Override
+    public void quoteAddedOrMoved() {
+        for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
+            ListFragmentBase fragment = mSectionsPagerAdapter.getItem(i);
+            fragment.redisplayList();
+        }
+    }
+
+    @Override
+    public void moveToOwned(Intent data) {
+        mSectionsPagerAdapter.moveToOwned(data);
+        mViewPager.setCurrentItem(0);
+    }
+
+
 
 
     @Override

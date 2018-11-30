@@ -10,8 +10,10 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
@@ -35,35 +37,20 @@ import java.util.Locale;
 
 public class OwnedFragment extends ListFragmentBase {
 
-    private ListFragmentListener activityCallback;
-    private int mTopVisiblePosition = -1;
-    private int mTopPadding = -1;
-
     public OwnedFragment() {
-    }
-
-    @NonNull
-    private String getSymbolFromRow(View v) {
-        LinearLayout ll = (LinearLayout)v;
-        TextView tv = (TextView)ll.getChildAt(Constants.SYMBOL_VIEW_IN_QUOTE);
-        return tv.getText().toString();
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-
-        try {
-            activityCallback = (ListFragmentListener)context.getApplicationContext();
-        } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString() + " must implement ListFragmentListener");
-        }
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         registerForContextMenu(getListView());
+
+        // 2018-11-27:  This would normally be done in the FooterFragment.  May have to move it there later.
+        //      This should be done before the first call to fillData()
+        DbAdapter dbAdapter = new DbAdapter(getActivity());
+        dbAdapter.open();
+        new DataModel(dbAdapter);
+        /////////////
 
         fillData();
     }
@@ -131,20 +118,7 @@ public class OwnedFragment extends ListFragmentBase {
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
 
-        ListView lv = getListView();
-        mTopVisiblePosition = lv.getFirstVisiblePosition();
-        View firstChildView = lv.getChildAt(0);
-        mTopPadding = (firstChildView == null)? 0 : firstChildView.getTop() - lv.getPaddingTop();
-
-        DbAdapter dbAdapter = new DbAdapter(getActivity());
-        dbAdapter.open();
-
-        DataModel model = new DataModel(dbAdapter);
-
-        String symbol = getSymbolFromRow(v);
-
-        StockQuote quote = model.findStockQuoteBySymbol(symbol);
-
+        StockQuote quote = getQuoteFromRow(v);
         if (quote != null)
         {
             String msg = "Start OwnedDetailsActivity for: " + quote.mSymbol;
@@ -155,8 +129,6 @@ public class OwnedFragment extends ListFragmentBase {
 //            intent.putExtras(bundle);
 //            startActivityForResult(intent, Constants.OWNED_DETAIL_ACTIVITY);
         }
-
-        dbAdapter.close();
     }
 
     private void fillData() {
@@ -248,11 +220,6 @@ public class OwnedFragment extends ListFragmentBase {
     public void moveToOwned(Intent data) {
         grabNewQuoteInfoAndStore(data);
         activityCallback.quoteAddedOrMoved();
-    }
-
-    @Override
-    public ListAdapter getListAdapter() {
-        return super.getListAdapter();
     }
 
 }

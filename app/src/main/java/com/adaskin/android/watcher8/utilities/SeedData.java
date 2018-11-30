@@ -16,44 +16,44 @@ public class SeedData {
 
         // OWNED
         dba.createQuoteRecord(createASeed());
-        dba.createQuoteRecord(createACASSeed());
-        // dba.createQuoteRecord(createAZNSeed());
+        //dba.createQuoteRecord(createACASSeed());
+        dba.createQuoteRecord(createAZNSeed());
         dba.createQuoteRecord(createBTISeed());
         //dba.createQuoteRecord(createCMISeed());
         //dba.createQuoteRecord(createDALSeed());
-        //dba.createQuoteRecord(createDUKSeed());
+        dba.createQuoteRecord(createDUKSeed());
         // dba.createQuoteRecord(createECOLSeed());
         dba.createQuoteRecord(createFSeed());
         dba.createQuoteRecord(createLSRCXSeed());
 
         dba.createQuoteRecord(createGESeed());
-        //  dba.createQuoteRecord(createMOSeed());
-        //  dba.createQuoteRecord(createRGRSeed());
+        dba.createQuoteRecord(createMOSeed());
+        dba.createQuoteRecord(createRGRSeed());
         //dba.createQuoteRecord(createSWHCSeed());
-        // dba.createQuoteRecord(createVVCSeed());
+        dba.createQuoteRecord(createVVCSeed());
         // dba.createQuoteRecord(createUALSeed());
         // dba.createQuoteRecord(createHISeed());
         // dba.createQuoteRecord(createMSFTSeed());
-        //  dba.createQuoteRecord(createOSeed());
+        dba.createQuoteRecord(createOSeed());
         // dba.createQuoteRecord(createPHKSeed());
         //  dba.createQuoteRecord(createPMSeed());
 //	       mDbAdapter.createQuoteRecord(createSESeed());
-//	       mDbAdapter.createQuoteRecord(createTSeed());
+        dba.createQuoteRecord(createTSeed());
 //	       mDbAdapter.createQuoteRecord(createTEGSeed());
 //	       mDbAdapter.createQuoteRecord(createFCXSeed());
 //	       mDbAdapter.createQuoteRecord(createDOVSeed());
 //	       mDbAdapter.createQuoteRecord(createDDSeed());
-//	       mDbAdapter.createQuoteRecord(createFAXSeed());
+        dba.createQuoteRecord(createFAXSeed());
 //	       mDbAdapter.createQuoteRecord(createJNKSeed());
 //	       mDbAdapter.createQuoteRecord(createMMMSeed());
 //	       mDbAdapter.createQuoteRecord(createOLNSeed());
 //	       mDbAdapter.createQuoteRecord(createPBISeed());
-//	       mDbAdapter.createQuoteRecord(createPPLSeed());
+        dba.createQuoteRecord(createPPLSeed());
 //	       mDbAdapter.createQuoteRecord(createPSECSeed());
 //	       mDbAdapter.createQuoteRecord(createRGCSeed());
 //	       mDbAdapter.createQuoteRecord(createRRDSeed());
 //	       mDbAdapter.createQuoteRecord(createUTXSeed());
-//	       mDbAdapter.createQuoteRecord(createVZSeed());
+        dba.createQuoteRecord(createVZSeed());
 //	       mDbAdapter.createQuoteRecord(createMRKSeed());
 //	       mDbAdapter.createQuoteRecord(createHSCSeed());
 //	       mDbAdapter.createQuoteRecord(createWMSeed());
@@ -246,6 +246,14 @@ public class SeedData {
 //			return q;
 //		}
 
+    private StockQuote createFAXSeed() {
+    Date date0 = new Date(110,  5, 10);  // Actually: 2010,  6, 10
+    BuyBlock bb0 = new BuyBlock(date0, 1000.0f, 5.31f, 0.08f, 0f, Constants.ACCOUNT_IRA);
+    StockQuote q = new StockQuote("FAX", 0f, 0f, 25f);
+    q.mBuyBlockList.add(bb0);
+    return q;
+}
+
     private StockQuote createDUKSeed() {
         float pps = 62.00f;
         float divPS = 3.06f;
@@ -292,14 +300,6 @@ public class SeedData {
         return q;
     }
 
-//		private StockQuote createFAXSeed() {
-//			Date date0 = new Date(110,  5, 10);  // Actually: 2010,  6, 10
-//	    	BuyBlock bb0 = new BuyBlock(date0, 1000.0f, 5.31f, 0.08f, 0f, 0f);
-//	    	StockQuote q = new StockQuote("FAX", 0f, 0f, 25f);
-//	    	q.mBuyBlockList.add(bb0);
-//	    	return q;
-//		}
-
 //		private StockQuote createFCXSeed() {
 //			Date date0 = new Date(112,  2, 14);  // Actually: 2012,  3, 14
 //			Date date1 = new Date(112, 11,  5);  // Actually: 2012, 12,  5
@@ -312,7 +312,6 @@ public class SeedData {
 //			q.mBuyBlockList.add(bb1);
 //			return q;
 //		}
-
 
     private StockQuote createGESeed() {
         Date date0 = (new GregorianCalendar(2011, 7, 3)).getTime();  // Actually 2011,  8,  3
@@ -519,13 +518,13 @@ public class SeedData {
         return q;
     }
 
-//		private StockQuote createPPLSeed() {
-//			Date date0 = new Date(111,  8, 22);  // Actually: 2011,  9, 22
-//			BuyBlock bb0 = new BuyBlock(date0, 300f, 28.33f, 0.08f, 0f, 0f);
-//			StockQuote q = new StockQuote("PPL", 0f, 0f, 100f);
-//			q.mBuyBlockList.add(bb0);
-//			return q;
-//		}
+		private StockQuote createPPLSeed() {
+			Date date0 = new Date(111,  8, 22);  // Actually: 2011,  9, 22
+			BuyBlock bb0 = new BuyBlock(date0, 300f, 28.33f, 0.08f, 0f, Constants.ACCOUNT_ESPP);
+			StockQuote q = new StockQuote("PPL", 0f, 0f, 100f);
+			q.mBuyBlockList.add(bb0);
+			return q;
+		}
 
 //		private StockQuote createPSECSeed() {
 //			Date date0 = new Date(110,  4,  7);  // Actually: 2010,  5, 10
@@ -601,18 +600,18 @@ public class SeedData {
         return q;
     }
 
-//		private StockQuote createTSeed() {
-//			Date date0 = new Date(108,  1, 20);  // Actually: 2008,  2, 20
-//			Date date1 = new Date(110,  3, 16);  // Actually: 2010,  4, 16
-//
-//			BuyBlock bb0 = new BuyBlock(date0, 100f, 34.39f, 0.07f, 0f, 0f);
-//			BuyBlock bb1 = new BuyBlock(date1, 500f, 25.99f, 0.07f, 0f, 0f);
-//
-//			StockQuote q = new StockQuote("T", 0f, 0f, 30f);
-//			q.mBuyBlockList.add(bb0);
-//			q.mBuyBlockList.add(bb1);
-//			return q;
-//		}
+		private StockQuote createTSeed() {
+			Date date0 = new Date(108,  1, 20);  // Actually: 2008,  2, 20
+			Date date1 = new Date(110,  3, 16);  // Actually: 2010,  4, 16
+
+			BuyBlock bb0 = new BuyBlock(date0, 100f, 34.39f, 0.07f, 0f, Constants.ACCOUNT_UNKNOWN);
+			BuyBlock bb1 = new BuyBlock(date1, 500f, 25.99f, 0.07f, 0f, Constants.ACCOUNT_JOINT);
+
+			StockQuote q = new StockQuote("T", 0f, 0f, 30f);
+			q.mBuyBlockList.add(bb0);
+			q.mBuyBlockList.add(bb1);
+			return q;
+		}
 
 //		private StockQuote createTEGSeed() {
 //			Date date0 = new Date(108,  5, 24);  // Actually: 2008,  6, 24
@@ -665,13 +664,13 @@ public class SeedData {
         return q;
     }
 
-//		private StockQuote createVZSeed() {
-//			Date date0 = new Date(111,  2, 30);  // Actually: 2011,  3, 30
-//			BuyBlock bb0 = new BuyBlock(date0, 700f, 38.82f, 0.08f, 0f, 0f);
-//			StockQuote q = new StockQuote("VZ", 0f, 0f, 25f);
-//			q.mBuyBlockList.add(bb0);
-//			return q;
-//		}
+		private StockQuote createVZSeed() {
+			Date date0 = new Date(111,  2, 30);  // Actually: 2011,  3, 30
+			BuyBlock bb0 = new BuyBlock(date0, 700f, 38.82f, 0.08f, 0f, Constants.ACCOUNT_ROTH);
+			StockQuote q = new StockQuote("VZ", 0f, 0f, 25f);
+			q.mBuyBlockList.add(bb0);
+			return q;
+		}
 
 //		private StockQuote createWMSeed() {
 //			Date date0 = new Date(112,  6, 11);  // Actually: 2012,  7, 11
