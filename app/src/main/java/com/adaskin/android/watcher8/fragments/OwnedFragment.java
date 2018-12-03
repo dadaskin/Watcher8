@@ -111,7 +111,7 @@ public class OwnedFragment extends ListFragmentBase {
 
         dbAdapter.close();
 
-        activityCallback.quoteAddedOrMoved();
+        ((ListFragmentListener)getActivity()).quoteAddedOrMoved();
     }
 
     @Override
@@ -185,7 +185,7 @@ public class OwnedFragment extends ListFragmentBase {
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == Constants.OWNED_ADD_ACTIVITY) {
                 grabNewQuoteInfoAndStore(data);
-                activityCallback.quoteAddedOrMoved();
+                ((ListFragmentListener)getActivity()).quoteAddedOrMoved();
             }
         }
     }
@@ -219,7 +219,7 @@ public class OwnedFragment extends ListFragmentBase {
 
     public void moveToOwned(Intent data) {
         grabNewQuoteInfoAndStore(data);
-        activityCallback.quoteAddedOrMoved();
+        ((ListFragmentListener)getActivity()).quoteAddedOrMoved();
     }
 
 }

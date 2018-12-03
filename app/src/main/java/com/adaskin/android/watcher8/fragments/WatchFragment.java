@@ -28,7 +28,6 @@ import com.adaskin.android.watcher8.utilities.QuoteStatus;
 
 public class WatchFragment extends ListFragmentBase {
 
-    private ListFragmentListener activityCallback;
     private int mSelectedPosition = -1;
 
     public WatchFragment() {
@@ -172,10 +171,10 @@ public class WatchFragment extends ListFragmentBase {
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == Constants.WATCH_ADD_ACTIVITY) {
                 grabNewQuoteInfoAndStore(data);
-                activityCallback.quoteAddedOrMoved();
+                ((ListFragmentListener)getActivity()).quoteAddedOrMoved();
             }
             if (requestCode == Constants.OWNED_ADD_ACTIVITY) {
-                activityCallback.moveToOwned(data);
+                ((ListFragmentListener)getActivity()).moveToOwned(data);
             }
         }
     }

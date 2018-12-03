@@ -26,22 +26,10 @@ abstract public class ListFragmentBase extends ListFragment {
 
     protected int mTopVisiblePosition = -1;
     protected int mTopPadding = -1;
-    protected ListFragmentListener activityCallback;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return  inflater.inflate(R.layout.fragment_list, container, false);
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-
-        try {
-            activityCallback = (ListFragmentListener)context.getApplicationContext();
-        } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString() + " must implement ListFragmentListener");
-        }
     }
 
     public abstract void addAQuote();
