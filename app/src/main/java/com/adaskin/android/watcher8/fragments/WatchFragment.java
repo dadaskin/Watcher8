@@ -24,6 +24,7 @@ import com.adaskin.android.watcher8.models.DataModel;
 import com.adaskin.android.watcher8.models.StockQuote;
 import com.adaskin.android.watcher8.utilities.Constants;
 import com.adaskin.android.watcher8.utilities.QuoteStatus;
+import com.adaskin.android.watcher8.views.WatchDetailsActivity;
 
 
 public class WatchFragment extends ListFragmentBase {
@@ -109,13 +110,13 @@ public class WatchFragment extends ListFragmentBase {
         StockQuote quote = getQuoteFromRow(v);
         if (quote != null)
         {
-            String msg = "Start WatchDetailsActivity for: " + quote.mSymbol;
-            Toast.makeText(getContext(), msg, Toast.LENGTH_LONG).show();
-//            Bundle bundle = new Bundle();
-//            bundle.putString(Constants.SYMBOL_BUNDLE_KEY, quote.mSymbol);
-//            Intent intent = new Intent(getActivity(), WatchDetailsActivity.class);
-//            intent.putExtras(bundle);
-//            startActivityForResult(intent, Constants.WATCH_DETAIL_ACTIVITY);
+//            String msg = "Start WatchDetailsActivity for: " + quote.mSymbol;
+//            Toast.makeText(getContext(), msg, Toast.LENGTH_LONG).show();
+            Bundle bundle = new Bundle();
+            bundle.putString(Constants.SYMBOL_BUNDLE_KEY, quote.mSymbol);
+            Intent intent = new Intent(getActivity(), WatchDetailsActivity.class);
+            intent.putExtras(bundle);
+            startActivityForResult(intent, Constants.WATCH_DETAIL_ACTIVITY);
         }
     }
 

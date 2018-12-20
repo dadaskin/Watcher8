@@ -5,12 +5,17 @@
     <corners android:radius="24dp" />
     <gradient android:angle="090"
               android:centerX="50%"
-              android:centerColor="#008000"
-              android:startColor="#008000"
-              android:endColor="#00FF00"
+              android:centerColor="@android:color/holo_green_dark"
+              android:startColor="@android:color/holo_green_dark"
+              android:endColor="@android:color/holo_green_light"
               android:type="linear"
               />
     <size android:width="48dp"
           android:height="48dp"
           />
 </shape>
+
+
+    <!--android:centerColor="#008000"-->
+    <!--android:startColor="#008000"-->
+    <!--android:endColor="#00FF00"-->

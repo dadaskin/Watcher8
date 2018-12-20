@@ -15,30 +15,33 @@ public class SeedData {
         dba.createLastUpdateRecord("Aug 31, 2012", "12:22 PM PDT");
 
         // OWNED
-        dba.createQuoteRecord(createASeed());
+        dba.createQuoteRecord(createBADSeed());
+        dba.createQuoteRecord(createAAPLSeed());
+        dba.createQuoteRecord(createAMZNSeed());
+//        dba.createQuoteRecord(createASeed());
         //dba.createQuoteRecord(createACASSeed());
-        dba.createQuoteRecord(createAZNSeed());
+//        dba.createQuoteRecord(createAZNSeed());
         dba.createQuoteRecord(createBTISeed());
         //dba.createQuoteRecord(createCMISeed());
         //dba.createQuoteRecord(createDALSeed());
-        dba.createQuoteRecord(createDUKSeed());
+//        dba.createQuoteRecord(createDUKSeed());
         // dba.createQuoteRecord(createECOLSeed());
-        dba.createQuoteRecord(createFSeed());
+//        dba.createQuoteRecord(createFSeed());
         dba.createQuoteRecord(createLSRCXSeed());
 
-        dba.createQuoteRecord(createGESeed());
-        dba.createQuoteRecord(createMOSeed());
-        dba.createQuoteRecord(createRGRSeed());
+//        dba.createQuoteRecord(createGESeed());
+//        dba.createQuoteRecord(createMOSeed());
+//        dba.createQuoteRecord(createRGRSeed());
         //dba.createQuoteRecord(createSWHCSeed());
-        dba.createQuoteRecord(createVVCSeed());
+ //       dba.createQuoteRecord(createVVCSeed());
         // dba.createQuoteRecord(createUALSeed());
         // dba.createQuoteRecord(createHISeed());
         // dba.createQuoteRecord(createMSFTSeed());
-        dba.createQuoteRecord(createOSeed());
+//        dba.createQuoteRecord(createOSeed());
         // dba.createQuoteRecord(createPHKSeed());
         //  dba.createQuoteRecord(createPMSeed());
 //	       mDbAdapter.createQuoteRecord(createSESeed());
-        dba.createQuoteRecord(createTSeed());
+//        dba.createQuoteRecord(createTSeed());
 //	       mDbAdapter.createQuoteRecord(createTEGSeed());
 //	       mDbAdapter.createQuoteRecord(createFCXSeed());
 //	       mDbAdapter.createQuoteRecord(createDOVSeed());
@@ -48,12 +51,12 @@ public class SeedData {
 //	       mDbAdapter.createQuoteRecord(createMMMSeed());
 //	       mDbAdapter.createQuoteRecord(createOLNSeed());
 //	       mDbAdapter.createQuoteRecord(createPBISeed());
-        dba.createQuoteRecord(createPPLSeed());
+//        dba.createQuoteRecord(createPPLSeed());
 //	       mDbAdapter.createQuoteRecord(createPSECSeed());
 //	       mDbAdapter.createQuoteRecord(createRGCSeed());
 //	       mDbAdapter.createQuoteRecord(createRRDSeed());
 //	       mDbAdapter.createQuoteRecord(createUTXSeed());
-        dba.createQuoteRecord(createVZSeed());
+//        dba.createQuoteRecord(createVZSeed());
 //	       mDbAdapter.createQuoteRecord(createMRKSeed());
 //	       mDbAdapter.createQuoteRecord(createHSCSeed());
 //	       mDbAdapter.createQuoteRecord(createWMSeed());
@@ -64,10 +67,45 @@ public class SeedData {
 
         // WATCH
         dba.createQuoteRecord(createNLYSeed());
-        dba.createQuoteRecord(createABTSeed());
+//        dba.createQuoteRecord(createABTSeed());
     }
 
 
+    private StockQuote createBADSeed() {
+        float pps = 10.0f;
+        float divPS = 1.0f;
+
+        Date date0 = (new GregorianCalendar(2015, 1, 10)).getTime();
+        BuyBlock bb0 = new BuyBlock(date0,100.0f, 50.0f, 0.05f, divPS, Constants.ACCOUNT_ESPP);
+        StockQuote q = new StockQuote("BAD", pps, divPS,100f);
+        q.mFullName = "Bad Symbol & Sons";
+        q.mBuyBlockList.add(bb0);
+        return q;
+    }
+
+    private StockQuote createAAPLSeed() {
+        float pps = 100.1f;
+        float divPS = 1.01f;
+
+        Date date0 = (new GregorianCalendar(2016, 1, 10)).getTime();
+        BuyBlock bb0 = new BuyBlock(date0, 100.0f, 98.25f, 0.05f, divPS, Constants.ACCOUNT_IRA);
+        StockQuote q = new StockQuote("AAPL", pps, divPS, 200f);
+        q.mFullName = "Fruit and Nut Co.";
+        q.mBuyBlockList.add(bb0);
+        return q;
+    }
+
+    private StockQuote createAMZNSeed() {
+        float pps = 987.1f;
+        float divPS = 0f;
+
+        Date date0 = (new GregorianCalendar(2017, 1, 10)).getTime();
+        BuyBlock bb0 = new BuyBlock(date0, 10.0f, 594.25f, 0.05f, divPS, Constants.ACCOUNT_JOINT);
+        StockQuote q = new StockQuote("AMZN", pps, divPS, 200f);
+        q.mFullName = "South American River Co.";
+        q.mBuyBlockList.add(bb0);
+        return q;
+    }
 
 
     private StockQuote createASeed() {

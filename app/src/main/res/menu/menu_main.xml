@@ -5,16 +5,18 @@
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="@string/build_string"
         app:showAsAction="never" />
     <item
-        android:id="@+id/action_other"
+        android:id="@+id/action_export"
         android:orderInCategory="200"
-        android:title="@string/action_other"
+        android:title="@string/action_export"
+        android:onClick="ExportCommand"
         app:showAsAction="never" />
     <item
-        android:id="@+id/action_third"
+        android:id="@+id/action_import"
         android:orderInCategory="300"
-        android:title="@string/action_third"
+        android:title="@string/action_import"
+        android:onClick="ImportCommand"
         app:showAsAction="never" />
 </menu>

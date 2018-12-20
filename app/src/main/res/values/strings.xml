@@ -2,13 +2,25 @@
     <string name="app_name">Watcher8</string>
     <string name="tab_text_owned">Owned</string>
     <string name="tab_text_watch">Watch</string>
-    <string name="action_settings">Settings</string>
-    <string name="action_other">OtherAction</string>
-    <string name="action_third">ThirdItem</string>
+    <string name="build_string">Build 0.1.0 \u0020\u0020\u0020 15 Dec 2018</string>
+    <string name="action_export">Export DB</string>
+    <string name="action_import">Import DB</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="add_button">Add a new Stock Symbol</string>
     <string name="refresh_button_moving">Refresh Stock Quotes</string>
     <string name="refresh_button_stationary">Refresh Stock Quotes</string>
     <string name="defaultTimeText">Default Time Text</string>
     <string name="defaultDateText">Default Date Text</string>
+
+    <!-- Owned/Watch Detail -->
+    <string name="detail">\u0020Detail</string>
+    <string name="pps_label">PPS: </string>
+    <string name="div_label">Div/Share: </string>
+    <string name="range_label">Yearly Range: </string>
+    <string name="range_separator">\u0020-\u0020</string>
+    <string name="anal_label">Analysts\' Opinion: </string>
+    <string name="strike_price_label">Strike\nPrice:</string>
+    <string name="gain_target_label">Gain\nTarget:</string>
+    <string name="total_investment_label">Total Invesment: </string>
+    <string name="add_block_label">Add Another Block</string>
 </resources>

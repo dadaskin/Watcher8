@@ -29,6 +29,7 @@ import com.adaskin.android.watcher8.models.DataModel;
 import com.adaskin.android.watcher8.models.StockQuote;
 import com.adaskin.android.watcher8.utilities.Constants;
 import com.adaskin.android.watcher8.utilities.QuoteStatus;
+import com.adaskin.android.watcher8.views.OwnedDetailsActivity;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -121,13 +122,11 @@ public class OwnedFragment extends ListFragmentBase {
         StockQuote quote = getQuoteFromRow(v);
         if (quote != null)
         {
-            String msg = "Start OwnedDetailsActivity for: " + quote.mSymbol;
-            Toast.makeText(getContext(), msg, Toast.LENGTH_LONG).show();
-//            Bundle bundle = new Bundle();
-//            bundle.putString(Constants.SYMBOL_BUNDLE_KEY, quote.mSymbol);
-//            Intent intent = new Intent(getActivity(), OwnedDetailsActivity.class);
-//            intent.putExtras(bundle);
-//            startActivityForResult(intent, Constants.OWNED_DETAIL_ACTIVITY);
+            Bundle bundle = new Bundle();
+            bundle.putString(Constants.SYMBOL_BUNDLE_KEY, quote.mSymbol);
+            Intent intent = new Intent(getActivity(), OwnedDetailsActivity.class);
+            intent.putExtras(bundle);
+            startActivityForResult(intent, Constants.OWNED_DETAIL_ACTIVITY);
         }
     }
 

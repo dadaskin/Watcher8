@@ -528,8 +528,8 @@ public class DbAdapter {
     {
         boolean result = false;
         try  {
-            String srcFileName = Environment.getExternalStorageDirectory() + "/stockwatcher4_backup.db";
-            File srcFile = new File(srcFileName);
+            File root = mContext.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
+            File srcFile = new File(root.getAbsolutePath() + "/watcher8_backup.db");
             File dstFile = mContext.getDatabasePath(DbAdapter.DATABASE_NAME);
 
             FileChannel src = new FileInputStream(srcFile).getChannel();
@@ -552,8 +552,8 @@ public class DbAdapter {
     {
         boolean result = false;
         try {
-            String dstFileName = Environment.getExternalStorageDirectory() + "/stockwatcher4_backup.db";
-            File dstFile = new File(dstFileName);
+            File root = mContext.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
+            File dstFile = new File(root.getAbsolutePath() + "/watcher8_backup.db");
             File srcFile = mContext.getDatabasePath(DbAdapter.DATABASE_NAME);
 
             FileChannel src = new FileInputStream(srcFile).getChannel();
