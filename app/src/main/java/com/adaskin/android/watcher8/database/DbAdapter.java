@@ -410,7 +410,6 @@ public class DbAdapter {
 // --Commented out by Inspection STOP (5/3/2017 11:03 AM)
 
     // Delete methods
-
     public void removeLastUpdateRecord() {
         Cursor cursor = fetchLastUpdateRecord();
         long id = cursor.getLong(cursor.getColumnIndex(U_ROW_ID));
@@ -522,6 +521,18 @@ public class DbAdapter {
         else { status = QuoteStatus.SOLD; }
 
         return status;
+    }
+
+    public void  replaceQuoteTable(List<StockQuote> newList) {
+        removeAllQuotesAndBlocks();
+        for (StockQuote quote : newList) {
+            createQuoteRecord(quote);
+        }
+    }
+
+    private void removeAllQuotesAndBlocks() {
+        mDb.execSQL("DELETE FROM " + QUOTE_TABLE);
+        mDb.execSQL("DELETE FROM " + BUY_BLOCK_TABLE);
     }
 
     public boolean importDB()

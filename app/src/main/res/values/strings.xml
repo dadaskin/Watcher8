@@ -4,7 +4,9 @@
     <string name="tab_text_watch">Watch</string>
     <string name="build_string">Build 0.1.0 \u0020\u0020\u0020 15 Dec 2018</string>
     <string name="action_export">Export DB</string>
+    <string name="action_export_JSON">Export JSON</string>
     <string name="action_import">Import DB</string>
+    <string name="action_import_JSON">Import JSON</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="add_button">Add a new Stock Symbol</string>
     <string name="refresh_button_moving">Refresh Stock Quotes</string>

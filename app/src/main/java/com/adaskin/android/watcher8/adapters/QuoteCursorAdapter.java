@@ -1,8 +1,8 @@
 package com.adaskin.android.watcher8.adapters;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.database.Cursor;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,21 +25,21 @@ public class QuoteCursorAdapter extends SimpleCursorAdapter {
         TextView lastQView;
     }
 
-    private final LayoutInflater mInflater;
-    private final int mOverallAccountIdx;
-    private final int mSymbolIdx;
-    private final int mPPSIdx;
-    private final int mChngVsCloseIdx;
-    private final int mStrikeIdx;
-    private final int mGainTargetIdx;
+    private LayoutInflater mInflater;
+    private int mOverallAccountIdx;
+    private int mSymbolIdx;
+    private int mPPSIdx;
+    private int mChngVsCloseIdx;
+    private int mStrikeIdx;
+    private int mGainTargetIdx;
 
-    private final int mNormalBackgroundColor;
-    private final int mBuyBackgroundColor;
-    private final int mSellBackgroundColor;
+    private int mNormalBackgroundColor;
+    private int mBuyBackgroundColor;
+    private int mSellBackgroundColor;
 
-    private final int mNeutralTextColor;
-    private final int mPositiveDayChangeTextColor;
-    private final int mNegativeTextColor;
+    private int mNeutralTextColor;
+    private int mPositiveDayChangeTextColor;
+    private int mNegativeTextColor;
 
     public QuoteCursorAdapter(Context context,
                               Cursor cursor,
@@ -55,25 +55,24 @@ public class QuoteCursorAdapter extends SimpleCursorAdapter {
         mStrikeIdx = cursor.getColumnIndex(DbAdapter.Q_STRIKE);
         mGainTargetIdx = cursor.getColumnIndex(DbAdapter.Q_GAIN_TARGET);
 
-        Resources resources = context.getResources();
-        mNormalBackgroundColor = resources.getColor(R.color.list_background_color);
-        mSellBackgroundColor = resources.getColor(R.color.over_gain_target_color);
-        mBuyBackgroundColor = resources.getColor(R.color.under_strike_price_color);
+        mNormalBackgroundColor = ContextCompat.getColor(mContext, R.color.list_background_color);
+        mSellBackgroundColor = ContextCompat.getColor(mContext, R.color.over_gain_target_color);
+        mBuyBackgroundColor = ContextCompat.getColor(mContext, R.color.under_strike_price_color);
 
-        mNeutralTextColor = resources.getColor(R.color.neutral_text_color);
-        mPositiveDayChangeTextColor = resources.getColor(R.color.positive_text_color);
-        mNegativeTextColor = resources.getColor(R.color.negative_text_color);
+        mNeutralTextColor = ContextCompat.getColor(mContext, R.color.neutral_text_color);
+        mPositiveDayChangeTextColor = ContextCompat.getColor(mContext, R.color.positive_text_color);
+        mNegativeTextColor = ContextCompat.getColor(mContext, R.color.negative_text_color);
     }
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
         View view = mInflater.inflate(R.layout.quote_row, parent, false);
         ViewHolder holder = new ViewHolder();
-        holder.accountView = (TextView)view.findViewById(R.id.overall_account_color_field_id);
-        holder.symbolView = (TextView)view.findViewById(R.id.symbol_field_id);
-        holder.ppsView = (TextView)view.findViewById(R.id.pps_field_id);
-        holder.pctChangeSinceLastCloseView = (TextView)view.findViewById(R.id.chng_close_field_id);
-        holder.lastQView = (TextView)view.findViewById(R.id.last_q_field_id);
+        holder.accountView = view.findViewById(R.id.overall_account_color_field_id);
+        holder.symbolView = view.findViewById(R.id.symbol_field_id);
+        holder.ppsView = view.findViewById(R.id.pps_field_id);
+        holder.pctChangeSinceLastCloseView = view.findViewById(R.id.chng_close_field_id);
+        holder.lastQView = view.findViewById(R.id.last_q_field_id);
         view.setTag(holder);
         return view;
     }

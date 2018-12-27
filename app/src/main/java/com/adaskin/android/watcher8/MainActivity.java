@@ -1,9 +1,15 @@
 package com.adaskin.android.watcher8;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.multidex.MultiDex;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -32,9 +38,22 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.Reader;
+import java.io.Writer;
+import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -48,7 +67,6 @@ public class MainActivity extends AppCompatActivity implements ListFragmentBase.
     private List<String> mInvalidSymbols = new ArrayList<>();
     private int mUnansweredRequests;
     private FooterFragment mFooterFragment;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,47 +117,193 @@ public class MainActivity extends AppCompatActivity implements ListFragmentBase.
         });
     }
 
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
+    // JSON Import/Export methods
+    static final int PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 11;  // Arbitrary value
+    static final int PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 12;   // Different arbitrary value
 
-    // Import/Export methods
-    public void ExportCommand(MenuItem item) {
-        DbAdapter dbAdapter = new DbAdapter(this);
-        dbAdapter.open();
-        boolean isSuccessful = dbAdapter.exportDB();
-        dbAdapter.close();
-        sendEmail();
-
-        CharSequence msg = "Database exported";
-        if (!isSuccessful)
-            msg = "Export error.";
-        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+    public void ExportJsonCommand(MenuItem item) {
+        int isOk = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        // If user has not previous granted permission, pop up the dialog asking for it.
+        //      Once the user has responded to the dialog, execution resumes at onRequestPermissionsResult()
+        //           Do the write there.
+        // Else just do the write.
+        if (isOk != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{ Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
+        } else {
+            doPublicWrite();
+        }
     }
 
-    public void ImportCommand(MenuItem item) {
-        DbAdapter dbAdapter = new DbAdapter(this);
-        dbAdapter.open();
-        boolean isSuccessful = dbAdapter.importDB();
-        dbAdapter.close();
-
-        CharSequence msg = "Database imported";
-        if (!isSuccessful)
-            msg = "Import error.";
-        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
-
-        if (isSuccessful)
-            quoteAddedOrMoved();
+    public void ImportJsonCommand(MenuItem item) {
+        int isOk = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
+        // If user has not previous granted permission, pop up the dialog asking for it.
+        //      Once the user has responded to the dialog, execution resumes at onRequestPermissionsResult()
+        //           Do the write there.
+        // Else just do the write.
+        if (isOk != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{ Manifest.permission.READ_EXTERNAL_STORAGE},
+                    PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+        } else {
+            doPublicRead();
+        }
     }
 
-    private void sendEmail() {
-        Toast.makeText(this, "Do email here", Toast.LENGTH_LONG).show();
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE) {
+            if ((grantResults.length > 0) && grantResults[0]== PackageManager.PERMISSION_GRANTED) {
+                doPublicWrite();
+            } else {
+                Toast.makeText(this, "Writing a public file is not permitted.", Toast.LENGTH_LONG).show();
+            }
+        } else if (requestCode == PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE) {
+            if ((grantResults.length > 0) && grantResults[0]== PackageManager.PERMISSION_GRANTED) {
+                doPublicRead();
+            } else {
+                Toast.makeText(this, "Reading a public  file is not permitted.", Toast.LENGTH_LONG).show();
+            }
+        } else {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
     }
+
+    private String createBackupFilename() {
+        return "Watcher8_timestamp.json";
+    }
+
+    private String findBestBackupFilename() {
+        return "Watcher8_timestamp.json";
+    }
+
+    private void doPublicWrite() {
+        File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_RINGTONES), createBackupFilename());
+        try {
+            DbAdapter dbAdapter = new DbAdapter(this);
+            dbAdapter.open();
+            List<StockQuote> quoteList = dbAdapter.fetchStockQuoteList();
+            dbAdapter.close();
+
+            FileOutputStream fos = new FileOutputStream(file);
+            Writer osWriter = new OutputStreamWriter(fos);
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            gson.toJson(quoteList, osWriter);
+            osWriter.close();
+            Toast.makeText(this, "Exported to JSON", Toast.LENGTH_LONG).show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void doPublicRead() {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_RINGTONES), findBestBackupFilename());
+        try {
+            FileInputStream fis = new FileInputStream(file);
+            Reader isReader = new InputStreamReader(fis);
+            Type quoteListType = new TypeToken<List<StockQuote>>(){}.getType();
+            List<StockQuote> quoteList = Collections.synchronizedList((List<StockQuote>)gson.fromJson(isReader, quoteListType));
+            isReader.close();
+
+            String msg = "Imported " + quoteList.size() + " items from JSON.";
+            Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+
+            DbAdapter dbAdapter = new DbAdapter(this);
+            dbAdapter.open();
+            dbAdapter.replaceQuoteTable(quoteList);
+            dbAdapter.close();
+
+            // Redisplay everything
+            updateFragments();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+//    // Old Import/Export methods
+//    public void ExportCommand(MenuItem item) {
+//        DbAdapter dbAdapter = new DbAdapter(this);
+//        dbAdapter.open();
+//        boolean isSuccessful = dbAdapter.exportDB();
+//        dbAdapter.close();
+//        sendEmail();
+//
+//        CharSequence msg = "Database exported";
+//        if (!isSuccessful)
+//            msg = "Export error.";
+//        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+//    }
+//
+//    public void ImportCommand(MenuItem item) {
+//        DbAdapter dbAdapter = new DbAdapter(this);
+//        dbAdapter.open();
+//        boolean isSuccessful = dbAdapter.importDB();
+//        dbAdapter.close();
+//
+//        CharSequence msg = "Database imported";
+//        if (!isSuccessful)
+//            msg = "Import error.";
+//        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+//
+//        if (isSuccessful)
+//            quoteAddedOrMoved();
+//    }
+//
+//    public void EmailTest(MenuItem item) {
+////        Toast.makeText(this, "TBD: Email Test", Toast.LENGTH_LONG).show();
+//        sendEmail();
+//    }
+//
+//    private void sendEmail() {
+//        String[] emailParameters = new String[] {"Foo", "Bar"};
+////        String attachmentFileName = Environment.getExternalStorageDirectory() + "/stockwatcher4_backup.db";
+////        String message = Build.MODEL + "  "  + Build.SERIAL;
+////        String[] emailParameters = new String[] {attachmentFileName, message};
+//        new SendEmailTask().execute(emailParameters);
+//    }
+//
+//    private class SendEmailTask extends AsyncTask<String,Void,String> {
+//        @Override
+//        protected String doInBackground(String... inputStrings) {
+//            String senderUsername = "executive@adaskin.com";
+//            String senderPassword = "~.^voA^ZVsMD";
+//            Mail m = new Mail(senderUsername, senderPassword);
+//            String[] recipientArray = {"dave@adaskin.com"};
+//            m.sendTo(recipientArray);
+//            m.sendFrom(senderUsername);
+//            m.setSubject("Stockwatcher4 DB update from: " + inputStrings[1]);
+//            m.setBody("<See attachment>");
+//
+//            String result = "Email: ";
+//            try {
+//                m.addAttachment(inputStrings[0]);
+//                if (m.send()) {
+//                    result += "sent";
+//                } else {
+//                    result += "not sent";
+//                }
+//            } catch (Exception e) {
+//                result +=  e.toString();
+//            }
+//            return result;
+//        }
+//
+//        @Override
+//        protected void onPostExecute(String result) {
+//            Toast.makeText(MainActivity.this, result, Toast.LENGTH_LONG).show();
+//        }
+//    }
+//
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -228,6 +392,9 @@ public class MainActivity extends AppCompatActivity implements ListFragmentBase.
         mUnansweredRequests--;
         if (!isValidSymbol)
             mInvalidSymbols.add(quote.mSymbol);
+
+        String msg = quote.mSymbol + " Response received.  " + mUnansweredRequests + " remaining.";
+        Log.d("foo", msg);
     }
 
     private void handleWebError(String symbol, VolleyError error) {
