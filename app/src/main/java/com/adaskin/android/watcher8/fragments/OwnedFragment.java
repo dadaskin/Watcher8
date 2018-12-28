@@ -45,14 +45,6 @@ public class OwnedFragment extends ListFragmentBase {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         registerForContextMenu(getListView());
-
-        // 2018-11-27:  This would normally be done in the FooterFragment.  May have to move it there later.
-        //      This should be done before the first call to fillData()
-        DbAdapter dbAdapter = new DbAdapter(getActivity());
-        dbAdapter.open();
-        new DataModel(dbAdapter);
-        /////////////
-
         fillData();
     }
 

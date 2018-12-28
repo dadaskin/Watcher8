@@ -14,6 +14,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.adaskin.android.watcher8.R;
+import com.adaskin.android.watcher8.database.DbAdapter;
+import com.adaskin.android.watcher8.models.DataModel;
 
 import java.util.Objects;
 
@@ -37,6 +39,11 @@ public class FooterFragment extends Fragment {
         final ImageButton addButton = view.findViewById(R.id.add_button);
         mDateTextView = view.findViewById(R.id.last_update_date_text);
         mTimeTextView = view.findViewById(R.id.last_update_time_text);
+
+        DbAdapter dbAdapter = new DbAdapter(getActivity());
+        dbAdapter.open();
+        new DataModel(dbAdapter);
+        dbAdapter.close();
 
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
