@@ -177,7 +177,7 @@
                 android:textColor="@color/normal_text_color"
                 android:paddingStart="@dimen/details_padding_left"
                 android:layout_gravity="center_vertical"
-                />
+                tools:ignore="RtlSymmetry" />
         </LinearLayout>
 
         <!-- Total Investment -->

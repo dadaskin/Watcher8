@@ -65,7 +65,8 @@
             >
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                 android:textColor="@color/normal_text_color"
-                android:text="@string/range_label" />
+                android:text="@string/range_label"
+                />
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                 android:id="@+id/watch_yr_min_field"
                 android:textColor="@color/normal_text_color"
@@ -84,10 +85,12 @@
         <LinearLayout android:layout_row="3" android:layout_column="0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            >
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                 android:textColor="@color/normal_text_color"
-                android:text="@string/anal_label"/>
+                android:text="@string/anal_label"
+                />
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                 android:id="@+id/watch_anal_op_field"
                 android:textColor="@color/normal_text_color"
@@ -135,6 +138,7 @@
             android:background="@color/button_background_color"
             android:textColor="@color/button_text_color"
             android:textSize="11sp"
+            android:textAllCaps="false"
             android:layout_marginStart="5sp"
             android:onClick="changeButtonClicked"
             tools:ignore="SmallSp"/>
