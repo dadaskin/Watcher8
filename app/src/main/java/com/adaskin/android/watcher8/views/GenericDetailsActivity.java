@@ -2,6 +2,7 @@ package com.adaskin.android.watcher8.views;
 
 
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -29,6 +30,9 @@ public abstract class GenericDetailsActivity extends AppCompatActivity {
     public void setTitleString(String symbol) {
         ActionBar actionBar = getSupportActionBar();
         Objects.requireNonNull(actionBar).setDisplayShowHomeEnabled(false);
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setBackgroundDrawable(new ColorDrawable(getColor(android.R.color.white))); // Makes background of whole actionBar white
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View customTitleView = inflater.inflate(R.layout.custom_main_titlebar, null);
         TextView tv = customTitleView.findViewById(R.id.custom_main_titlebar_text);

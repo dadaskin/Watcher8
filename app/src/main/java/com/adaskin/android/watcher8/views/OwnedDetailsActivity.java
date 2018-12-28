@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.adaskin.android.watcher8.R;
+import com.adaskin.android.watcher8.adapters.BuyBlockCursorAdapter;
 import com.adaskin.android.watcher8.database.DbAdapter;
 import com.adaskin.android.watcher8.fragments.AccountSelectionFragment;
 import com.adaskin.android.watcher8.models.AccountModel;
@@ -81,25 +82,25 @@ public class OwnedDetailsActivity extends GenericDetailsActivity implements Acco
 
         displayTotalInvestment(cursor, mQuote);
 
-//        ListView blockListView = findViewById(android.R.id.list);
-//        String[] fields = new String[] {DbAdapter.B_ACCOUNT,
-//                DbAdapter.B_DATE,
-//                DbAdapter.B_NUM_SHARES,
-//                DbAdapter.B_PPS,
-//                DbAdapter.B_CHANGE_VS_BUY,
-//                DbAdapter.B_EFF_YIELD};
-//
-//        int[] ids = new int[] { R.id.account_color_field_id,
-//                R.id.date_field_id,
-//                R.id.num_shares_field_id,
-//                R.id.buy_pps_field_id,
-//                R.id.chng_buy_field_id,
-//                R.id.eff_div_field_id};
-//
-//        BuyBlockCursorAdapter bbca
-//                = new BuyBlockCursorAdapter(this, cursor, mQuote.mPctGainTarget, fields, ids);
-//
-//        blockListView.setAdapter(bbca);
+        ListView blockListView = findViewById(android.R.id.list);
+        String[] fields = new String[] {DbAdapter.B_ACCOUNT,
+                DbAdapter.B_DATE,
+                DbAdapter.B_NUM_SHARES,
+                DbAdapter.B_PPS,
+                DbAdapter.B_CHANGE_VS_BUY,
+                DbAdapter.B_EFF_YIELD};
+
+        int[] ids = new int[] { R.id.account_color_field_id,
+                R.id.date_field_id,
+                R.id.num_shares_field_id,
+                R.id.buy_pps_field_id,
+                R.id.chng_buy_field_id,
+                R.id.eff_div_field_id};
+
+        BuyBlockCursorAdapter bbca
+                = new BuyBlockCursorAdapter(this, cursor, mQuote.mPctGainTarget, fields, ids);
+
+        blockListView.setAdapter(bbca);
     }
 
 //   // Create context menu and dispatch selections

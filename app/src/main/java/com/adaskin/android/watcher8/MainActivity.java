@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
@@ -22,6 +23,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.adaskin.android.watcher8.adapters.NonSwipableViewPager;
@@ -82,8 +84,11 @@ public class MainActivity extends AppCompatActivity implements ListFragmentBase.
         Objects.requireNonNull(actionBar).setDisplayShowHomeEnabled(false);
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setBackgroundDrawable(new ColorDrawable(getColor(android.R.color.white)));
         LayoutInflater inflater = (LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View customTitleView = Objects.requireNonNull(inflater).inflate(R.layout.custom_main_titlebar, null);
+        TextView tv = customTitleView.findViewById(R.id.custom_main_titlebar_text);
+        tv.setText(getString(R.string.app_name));
         actionBar.setCustomView(customTitleView);
 
         // Create the adapter that will return a fragment for each of the
@@ -460,8 +465,7 @@ public class MainActivity extends AppCompatActivity implements ListFragmentBase.
         quoteAddedOrMoved();
     }
 
-    private void updateDateStrings(FooterFragment footerFragment)
-    {
+    private void updateDateStrings(FooterFragment footerFragment) {
         Date now = new Date();
 
         SimpleDateFormat sdf = new SimpleDateFormat(Constants.UPDATE_DATE_FORMAT, Locale.US);

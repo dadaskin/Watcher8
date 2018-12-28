@@ -67,6 +67,7 @@ public class WatchFragment extends ListFragmentBase {
     }
 
     private void buyBlockOfThisStock(String symbol) {
+        Toast.makeText(getActivity(), "TBD: Buy a block", Toast.LENGTH_LONG).show();
 //        Intent intent = new Intent(getActivity(), OwnedAddActivity.class);
 //        intent.putExtra(Constants.BUY_BLOCK_SYMBOL_KEY, symbol);
 //        startActivityForResult(intent, Constants.OWNED_ADD_ACTIVITY);
@@ -110,8 +111,6 @@ public class WatchFragment extends ListFragmentBase {
         StockQuote quote = getQuoteFromRow(v);
         if (quote != null)
         {
-//            String msg = "Start WatchDetailsActivity for: " + quote.mSymbol;
-//            Toast.makeText(getContext(), msg, Toast.LENGTH_LONG).show();
             Bundle bundle = new Bundle();
             bundle.putString(Constants.SYMBOL_BUNDLE_KEY, quote.mSymbol);
             Intent intent = new Intent(getActivity(), WatchDetailsActivity.class);

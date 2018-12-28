@@ -13,6 +13,7 @@
     <string name="refresh_button_stationary">Refresh Stock Quotes</string>
     <string name="defaultTimeText">Default Time Text</string>
     <string name="defaultDateText">Default Date Text</string>
+    <string name="icon_description">Bull Icon</string>
 
     <!-- Owned/Watch Detail -->
     <string name="detail">\u0020Detail</string>
