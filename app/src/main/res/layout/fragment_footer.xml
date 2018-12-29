@@ -9,7 +9,6 @@
     android:gravity="bottom"
     tools:context=".fragments.FooterFragment" >
 
-    <!--suppress AndroidMissingOnClickHandler -->
     <ImageButton
         android:id="@+id/add_button"
         android:layout_width="48dip"
@@ -20,7 +19,6 @@
         android:layout_marginBottom="3dip"
         android:src="@drawable/plus_icon"
         android:contentDescription="@string/add_button"
-        android:onClick="addButtonClicked"
         />
 
     <LinearLayout
@@ -50,32 +48,47 @@
 
     </LinearLayout>
 
-    <ImageButton
-        android:id="@+id/refresh_button_stationary"
+    <Button
+        android:id="@+id/detail_refresh_btn"
         android:layout_width="48dip"
         android:layout_height="48dip"
-        android:background="@android:color/transparent"
+        android:background="@color/toolbarBackground"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="5dip"
         android:layout_marginTop="2dip"
         android:layout_marginBottom="3dip"
-        android:src="@drawable/gradient_shape"
-        android:contentDescription="@string/refresh_button_stationary"
-    />
-
-    <!--suppress AndroidMissingOnClickHandler -->
-    <ImageButton
-        android:id="@+id/refresh_button_moving"
-        android:layout_width="48dip"
-        android:layout_height="48dip"
-        android:background="@android:color/transparent"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="5dip"
-        android:layout_marginTop="2dip"
-        android:layout_marginBottom="3dip"
-        android:src="@drawable/refresh_arrows"
-        android:contentDescription="@string/refresh_button_moving"
-        android:onClick="refreshButtonClicked"
+        android:drawableLeft="@drawable/progress"
+        tools:ignore="RtlHardcoded"
         />
+
+    <!--android:drawableLeft="@drawable/progress"-->
+
+    <!--<ImageButton-->
+        <!--android:id="@+id/refresh_button_stationary"-->
+        <!--android:layout_width="48dip"-->
+        <!--android:layout_height="48dip"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:layout_marginEnd="5dip"-->
+        <!--android:layout_marginTop="2dip"-->
+        <!--android:layout_marginBottom="3dip"-->
+        <!--android:background="@drawable/rectangle_shape"-->
+        <!--android:src="@drawable/circle_shape"-->
+        <!--android:contentDescription="@string/refresh_button_stationary"-->
+    <!--/>-->
+
+
+
+    <!--<ProgressBar-->
+        <!--style="?android:attr/progressBarStyleLarge"-->
+        <!--android:layout_width="40dip"-->
+        <!--android:layout_height="40dip"-->
+        <!--android:id="@+id/progressBar"-->
+        <!--android:foreground="@android:color/transparent"-->
+        <!--android:indeterminateDrawable="@drawable/circular_progress_bar"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:layout_marginEnd="10dip"-->
+        <!--android:layout_marginTop="7dip"-->
+        <!--android:layout_marginBottom="3dip"-->
+        <!--/>-->
 
 </RelativeLayout>

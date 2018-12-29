@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements ListFragmentBase.
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
     private RequestQueue mRequestQueue;
-    private List<String> mInvalidSymbols = new ArrayList<>();
+    private final List<String> mInvalidSymbols = new ArrayList<>();
     private int mUnansweredRequests;
     private FooterFragment mFooterFragment;
 
@@ -128,9 +128,10 @@ public class MainActivity extends AppCompatActivity implements ListFragmentBase.
         return true;
     }
 
+
     // JSON Import/Export methods
-    static final int PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 11;  // Arbitrary value
-    static final int PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 12;   // Different arbitrary value
+    private static final int PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 11;  // Arbitrary value
+    private static final int PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 12;   // Different arbitrary value
 
     public void ExportJsonCommand(MenuItem item) {
         int isOk = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
@@ -353,6 +354,7 @@ public class MainActivity extends AppCompatActivity implements ListFragmentBase.
 
         Log.d("foo", "Starting web requests.");
         mInvalidSymbols.clear();
+        mUnansweredRequests = quoteList.size();
         mRequestQueue = Volley.newRequestQueue(this);
         mRequestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<StringRequest>() {
             @Override
@@ -369,7 +371,6 @@ public class MainActivity extends AppCompatActivity implements ListFragmentBase.
                 }
             }});
 
-        mUnansweredRequests = quoteList.size();
         for (StockQuote q : quoteList) {
             doSingleWebRequest(q);
         }

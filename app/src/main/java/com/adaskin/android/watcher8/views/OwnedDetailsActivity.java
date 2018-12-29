@@ -1,12 +1,18 @@
 package com.adaskin.android.watcher8.views;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AlertDialog;
 import android.view.ContextMenu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,7 +33,7 @@ import java.util.Locale;
 public class OwnedDetailsActivity extends GenericDetailsActivity implements AccountSelectionFragment.AlertOkListener {
 
     private BuyBlock mChangingBlock;
-    //private AccountSelectionFragment mAccountsFragment;
+    private AccountSelectionFragment mAccountsFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,16 +109,7 @@ public class OwnedDetailsActivity extends GenericDetailsActivity implements Acco
         blockListView.setAdapter(bbca);
     }
 
-//   // Create context menu and dispatch selections
-//    @Override
-//    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-//        super.onCreateContextMenu(menu, v, menuInfo);
-//        MenuInflater mi = getMenuInflater();
-//        mi.inflate(R.menu.longpress_buyblock, menu);
-//    }
-
-    private void displayTotalInvestment(Cursor cursor, StockQuote quote)
-    {
+    private void displayTotalInvestment(Cursor cursor, StockQuote quote) {
         TextView amountView = findViewById(R.id.owned_total_investment_amount);
         TextView gainView = findViewById(R.id.owned_total_investment_gain);
         TextView divyView = findViewById(R.id.owned_total_investment_divy);
@@ -142,11 +139,121 @@ public class OwnedDetailsActivity extends GenericDetailsActivity implements Acco
             divyView.setText("--");
     }
 
+
+
+    // Create context menu and dispatch selections
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater mi = getMenuInflater();
+        mi.inflate(R.menu.longpress_block, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        String dateString = getDateStringFromRow(info.targetView);
+
+        switch(item.getItemId()) {
+            case R.id.menu_block_change:
+                changeNumShares(info.targetView);
+                return true;
+            case R.id.menu_account_change:
+                changeAccount(info.targetView);
+                return true;
+            case R.id.menu_block_delete:
+                createAndShowConfirmDialog(dateString);
+                return true;
+        }
+        return super.onContextItemSelected(item);
+    }
+
+    private String getDateStringFromRow(View v) {
+        LinearLayout ll = (LinearLayout)v;
+        TextView tv = (TextView)ll.getChildAt(Constants.DATE_VIEW_IN_BLOCK);
+        return tv.getText().toString();
+    }
+
+    // Handle block delete
+    private void createAndShowConfirmDialog(String dateString) {
+        String msg = "Delete block acquired on:\n" + dateString + "?";
+        final String finalDateString = dateString;
+
+        new AlertDialog.Builder(this)
+                .setTitle("Confirm Delete")
+                .setMessage(msg)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        doDelete(finalDateString);
+                    }
+
+                })
+                .show();
+    }
+
+    private void doDelete(String dateString) {
+        DbAdapter dbAdapter = new DbAdapter(this);
+        dbAdapter.open();
+
+        dbAdapter.removeBuyBlockRecord(mQuote.mSymbol, dateString);
+
+        long parentId = dbAdapter.fetchQuoteIdFromSymbol(mQuote.mSymbol);
+        mQuote = dbAdapter.fetchQuoteObjectFromId(parentId);
+
+        dbAdapter.close();
+
+        fillData();
+    }
+
+    // Handle Change Number of Shares
+    private void changeNumShares(View v) {
+        String dateString = getDateStringFromRow(v);
+
+        mChangingBlock = mQuote.findBuyBlockByDateString(dateString);
+
+        TextView numSharesView = (TextView)((LinearLayout)v).getChildAt(Constants.NUM_SHARES_VIEW_IN_BLOCK);
+        String numSharesString = numSharesView.getText().toString();
+        float oldValue = 1543f;
+        try {
+            oldValue = Float.parseFloat(numSharesString);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+
+        Toast.makeText(this, "TBD: ChangeParameter for NumShares", Toast.LENGTH_LONG).show();
+//        Intent intent = new Intent(this, ChangeParameterActivity.class);
+//        intent.putExtra(Constants.SYMBOL_BUNDLE_KEY, mQuote.mSymbol);
+//        intent.putExtra(Constants.PARAM_NAME_BUNDLE_KEY, "Number of Shares");
+//        intent.putExtra(Constants.OLD_VALUE_BUNDLE_KEY, oldValue);
+//        startActivityForResult(intent, Constants.PARAMETER_CHANGE_ACTIVITY);
+    }
+
+    // Display Change Account dialog and handle response
+    private void changeAccount(View v) {
+        FragmentManager manager = getSupportFragmentManager();
+        mAccountsFragment = new AccountSelectionFragment();
+
+        // Use current AccountColor as default
+        String dateString = getDateStringFromRow(v);
+        mChangingBlock = mQuote.findBuyBlockByDateString(dateString);
+        int color = mChangingBlock.mAccountColor;
+
+        Bundle args = new Bundle();
+        args.putInt("color", color);
+
+        mAccountsFragment.setArguments(args);
+        mAccountsFragment.show(manager, "Account Selection Dialog");
+    }
+
+
     @Override
     public void onOkClick(int position) {
         List<Integer> colorList = AccountModel.getBlockAccountColorList();
         int accountColor = colorList.get(position);
-     //   mAccountsFragment.dismiss();
+        mAccountsFragment.dismiss();
 
         DbAdapter dbAdapter = new DbAdapter(this);
         dbAdapter.open();
