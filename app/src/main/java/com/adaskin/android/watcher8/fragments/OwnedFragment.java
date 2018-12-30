@@ -19,7 +19,6 @@ import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.adaskin.android.watcher8.R;
 import com.adaskin.android.watcher8.adapters.QuoteCursorAdapter;
@@ -29,6 +28,7 @@ import com.adaskin.android.watcher8.models.DataModel;
 import com.adaskin.android.watcher8.models.StockQuote;
 import com.adaskin.android.watcher8.utilities.Constants;
 import com.adaskin.android.watcher8.utilities.QuoteStatus;
+import com.adaskin.android.watcher8.views.OwnedAddActivity;
 import com.adaskin.android.watcher8.views.OwnedDetailsActivity;
 
 import java.text.ParseException;
@@ -150,10 +150,10 @@ public class OwnedFragment extends ListFragmentBase {
 
     @Override
     public void addAQuote() {
-        String msg = "Start OwnedAddActivity";
-        Toast.makeText(getContext(), msg, Toast.LENGTH_LONG).show();
-//        Intent intent = new Intent(getActivity(), OwnedAddActivity.class);
-//        startActivityForResult(intent, Constants.OWNED_ADD_ACTIVITY);
+//        String msg = "Start OwnedAddActivity";
+//        Toast.makeText(getContext(), msg, Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(getActivity(), OwnedAddActivity.class);
+        startActivityForResult(intent, Constants.OWNED_ADD_ACTIVITY);
     }
 
     @Override

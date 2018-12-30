@@ -42,7 +42,9 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/done_button_label"
+        android:background="@color/button_background_color"
         android:textColor="@color/button_text_color"
+        android:textAllCaps="false"
         android:onClick="doneButtonClicked"
         android:layout_marginTop="30sp"
         />

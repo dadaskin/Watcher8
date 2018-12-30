@@ -39,6 +39,7 @@
     <string name="new_gain_target_label">Gain Target(%):</string>
     <string name="first_block_button_label">Add Information for First Block of Shares</string>
     <string name="add_buy_block">: Buy Block of\u0020</string>
+    <string name="add_watch">Add to Watch List</string>
 
     <!-- Change Parameters -->
     <string name="new_value_label">New value:</string>

@@ -74,12 +74,12 @@ public class FooterFragment extends Fragment {
     }
 
     public void addButtonClicked(View v) {
-        Toast.makeText(this.getContext(), "Add button clicked in FooterFragment", Toast.LENGTH_LONG).show();
+//        Toast.makeText(this.getContext(), "Add button clicked in FooterFragment", Toast.LENGTH_LONG).show();
         ((FooterListener) Objects.requireNonNull(getActivity())).addButtonClicked();
     }
 
     public void refreshButtonClicked(View view) {
-        Toast.makeText(this.getContext(), "Refresh button clicked in FooterFragment", Toast.LENGTH_LONG).show();
+//        Toast.makeText(this.getContext(), "Refresh button clicked in FooterFragment", Toast.LENGTH_LONG).show();
         mRefreshButtonView = view;
         beginButtonAnimation(view);
         ((FooterListener) Objects.requireNonNull(getActivity())).refreshButtonClicked(this, view);

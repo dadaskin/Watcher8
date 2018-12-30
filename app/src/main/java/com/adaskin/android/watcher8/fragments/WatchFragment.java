@@ -15,7 +15,6 @@ import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.adaskin.android.watcher8.R;
 import com.adaskin.android.watcher8.adapters.QuoteCursorAdapter;
@@ -24,7 +23,11 @@ import com.adaskin.android.watcher8.models.DataModel;
 import com.adaskin.android.watcher8.models.StockQuote;
 import com.adaskin.android.watcher8.utilities.Constants;
 import com.adaskin.android.watcher8.utilities.QuoteStatus;
+import com.adaskin.android.watcher8.views.OwnedAddActivity;
+import com.adaskin.android.watcher8.views.WatchAddActivity;
 import com.adaskin.android.watcher8.views.WatchDetailsActivity;
+
+import java.util.Objects;
 
 
 public class WatchFragment extends ListFragmentBase {
@@ -67,10 +70,10 @@ public class WatchFragment extends ListFragmentBase {
     }
 
     private void buyBlockOfThisStock(String symbol) {
-        Toast.makeText(getActivity(), "TBD: Buy a block", Toast.LENGTH_LONG).show();
-//        Intent intent = new Intent(getActivity(), OwnedAddActivity.class);
-//        intent.putExtra(Constants.BUY_BLOCK_SYMBOL_KEY, symbol);
-//        startActivityForResult(intent, Constants.OWNED_ADD_ACTIVITY);
+//        Toast.makeText(getActivity(), "TBD: Buy a block", Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(getActivity(), OwnedAddActivity.class);
+        intent.putExtra(Constants.BUY_BLOCK_SYMBOL_KEY, symbol);
+        startActivityForResult(intent, Constants.OWNED_ADD_ACTIVITY);
     }
 
     private void createAndShowConfirmDialog(String symbol) {
@@ -145,10 +148,10 @@ public class WatchFragment extends ListFragmentBase {
 
     @Override
     public void addAQuote() {
-        String msg = "Start WatchAddActivity";
-        Toast.makeText(getContext(), msg, Toast.LENGTH_LONG).show();
-//        Intent intent = new Intent(getActivity(), WatchAddActivity.class);
-//        startActivityForResult(intent, Constants.WATCH_ADD_ACTIVITY);
+//        String msg = "Start WatchAddActivity";
+//        Toast.makeText(getContext(), msg, Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(getActivity(),WatchAddActivity.class);
+        startActivityForResult(intent, Constants.WATCH_ADD_ACTIVITY);
     }
 
     @Override
@@ -171,7 +174,7 @@ public class WatchFragment extends ListFragmentBase {
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == Constants.WATCH_ADD_ACTIVITY) {
                 grabNewQuoteInfoAndStore(data);
-                ((ListFragmentListener)getActivity()).quoteAddedOrMoved();
+                ((ListFragmentListener) Objects.requireNonNull(getActivity())).quoteAddedOrMoved();
             }
             if (requestCode == Constants.OWNED_ADD_ACTIVITY) {
                 ((ListFragmentListener)getActivity()).moveToOwned(data);
