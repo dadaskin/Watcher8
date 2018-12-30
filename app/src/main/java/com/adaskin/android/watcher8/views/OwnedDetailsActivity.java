@@ -27,6 +27,9 @@ import com.adaskin.android.watcher8.models.StockQuote;
 import com.adaskin.android.watcher8.utilities.Constants;
 import com.adaskin.android.watcher8.utilities.Themes;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -223,12 +226,12 @@ public class OwnedDetailsActivity extends GenericDetailsActivity implements Acco
             e.printStackTrace();
         }
 
-        Toast.makeText(this, "TBD: ChangeParameter for NumShares", Toast.LENGTH_LONG).show();
-//        Intent intent = new Intent(this, ChangeParameterActivity.class);
-//        intent.putExtra(Constants.SYMBOL_BUNDLE_KEY, mQuote.mSymbol);
-//        intent.putExtra(Constants.PARAM_NAME_BUNDLE_KEY, "Number of Shares");
-//        intent.putExtra(Constants.OLD_VALUE_BUNDLE_KEY, oldValue);
-//        startActivityForResult(intent, Constants.PARAMETER_CHANGE_ACTIVITY);
+//        Toast.makeText(this, "TBD: ChangeParameter for NumShares", Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(this, ChangeParameterActivity.class);
+        intent.putExtra(Constants.SYMBOL_BUNDLE_KEY, mQuote.mSymbol);
+        intent.putExtra(Constants.PARAM_NAME_BUNDLE_KEY, "Number of Shares");
+        intent.putExtra(Constants.OLD_VALUE_BUNDLE_KEY, oldValue);
+        startActivityForResult(intent, Constants.PARAMETER_CHANGE_ACTIVITY);
     }
 
     // Display Change Account dialog and handle response
@@ -275,58 +278,76 @@ public class OwnedDetailsActivity extends GenericDetailsActivity implements Acco
 //        startActivityForResult(intent, Constants.BUY_BLOCK_ADD_ACTIVITY);
     }
 
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-//        super.onActivityResult(requestCode, resultCode, intent);
-//
-//        if (resultCode == Activity.RESULT_OK) {
-//            DbAdapter dbAdapter = new DbAdapter(this);
-//            dbAdapter.open();
-//            dbAdapter.removeQuoteRecord(mQuote.mSymbol);
-//            switch(requestCode) {
-//                case Constants.BUY_BLOCK_ADD_ACTIVITY:
-//                    BuyBlock newBB = grabBuyBlockInfo(intent.getExtras());
-//                    mQuote.mBuyBlockList.add(newBB);
-//                    break;
-//                case Constants.PARAMETER_CHANGE_ACTIVITY:
-//                    String paramName = intent.getStringExtra(Constants.PARAM_NAME_BUNDLE_KEY);
-//                    float newValue =  intent.getFloatExtra(Constants.PARAM_NEW_VALUE_BUNDLE_KEY, 0.0f);
-//                    if (paramName.contains("Strike Price")) {
-//                        mQuote.mStrikePrice = newValue;
-//                    } else if (paramName.contains("Gain Target")) {
-//                        mQuote.mPctGainTarget = newValue;
-//                    } else {
-//                        mQuote.mBuyBlockList.remove(mChangingBlock);
-//                        mChangingBlock.mNumShares = newValue;
-//                        mQuote.mBuyBlockList.add(mChangingBlock);
-//                    }
-//                    break;
-//            }
-//            dbAdapter.createQuoteRecord(mQuote);
-//            dbAdapter.close();
-//            fillData();
-//        }
-//    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+
+        if (resultCode == Activity.RESULT_OK) {
+            DbAdapter dbAdapter = new DbAdapter(this);
+            dbAdapter.open();
+            dbAdapter.removeQuoteRecord(mQuote.mSymbol);
+            switch(requestCode) {
+                case Constants.BUY_BLOCK_ADD_ACTIVITY:
+                    BuyBlock newBB = grabBuyBlockInfo(intent.getExtras());
+                    mQuote.mBuyBlockList.add(newBB);
+                    break;
+                case Constants.PARAMETER_CHANGE_ACTIVITY:
+                    String paramName = intent.getStringExtra(Constants.PARAM_NAME_BUNDLE_KEY);
+                    float newValue =  intent.getFloatExtra(Constants.PARAM_NEW_VALUE_BUNDLE_KEY, 0.0f);
+                    if (paramName.contains("Strike Price")) {
+                        mQuote.mStrikePrice = newValue;
+                    } else if (paramName.contains("Gain Target")) {
+                        mQuote.mPctGainTarget = newValue;
+                    } else {
+                        mQuote.mBuyBlockList.remove(mChangingBlock);
+                        mChangingBlock.mNumShares = newValue;
+                        mQuote.mBuyBlockList.add(mChangingBlock);
+                    }
+                    break;
+            }
+            dbAdapter.createQuoteRecord(mQuote);
+            dbAdapter.close();
+            fillData();
+        }
+    }
+
+    private BuyBlock grabBuyBlockInfo(Bundle bundle) {
+        String buyDateString = bundle.getString(Constants.BUY_BLOCK_DATE_KEY);
+        float buyPrice = bundle.getFloat(Constants.BUY_BLOCK_PRICE_KEY);
+        float numShares = bundle.getFloat(Constants.BUY_BLOCK_NUM_KEY);
+        float commissionPS = bundle.getFloat(Constants.BUY_BLOCK_COMMISSION_KEY);
+        int accountColor = bundle.getInt(Constants.BUY_BLOCK_ACCOUNT_COLOR_KEY);
+
+        SimpleDateFormat sdf = new SimpleDateFormat(Constants.DATE_FORMAT, Locale.US);
+        Date buyDate = new Date();
+        try {
+            buyDate = sdf.parse(buyDateString);
+        } catch(ParseException e) {
+            e.printStackTrace();
+        }
+
+        return new BuyBlock(buyDate, numShares, buyPrice, commissionPS, 0.0f, accountColor);
+    }
 
     // Handle parameter change buttons
     @SuppressWarnings("UnusedParameters")
     public void changeButtonClicked_StrikePrice(View v) {
-        Toast.makeText(this, "TBD: Call ChangeParameterActivity for Strike Price", Toast.LENGTH_LONG).show();
-//        Intent intent = new Intent(this, ChangeParameterActivity.class);
-//        intent.putExtra(Constants.SYMBOL_BUNDLE_KEY, mQuote.mSymbol);
-//        intent.putExtra(Constants.PARAM_NAME_BUNDLE_KEY, "Strike Price");
-//        intent.putExtra(Constants.OLD_VALUE_BUNDLE_KEY, mQuote.mStrikePrice);
-//        startActivityForResult(intent, Constants.PARAMETER_CHANGE_ACTIVITY);
+//        Toast.makeText(this, "TBD: Call ChangeParameterActivity for Strike Price", Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(this, ChangeParameterActivity.class);
+        intent.putExtra(Constants.SYMBOL_BUNDLE_KEY, mQuote.mSymbol);
+        intent.putExtra(Constants.PARAM_NAME_BUNDLE_KEY, "Strike Price");
+        intent.putExtra(Constants.OLD_VALUE_BUNDLE_KEY, mQuote.mStrikePrice);
+        startActivityForResult(intent, Constants.PARAMETER_CHANGE_ACTIVITY);
     }
 
     @SuppressWarnings("UnusedParameters")
     public void changeButtonClicked_GainTarget(View v) {
-        Toast.makeText(this, "TBD Call ChangeParameterActivity for Gain Target", Toast.LENGTH_LONG).show();
-//        Intent intent = new Intent(this, ChangeParameterActivity.class);
-//        intent.putExtra(Constants.SYMBOL_BUNDLE_KEY, mQuote.mSymbol);
-//        intent.putExtra(Constants.PARAM_NAME_BUNDLE_KEY, "Gain Target");
-//        intent.putExtra(Constants.OLD_VALUE_BUNDLE_KEY, mQuote.mPctGainTarget);
-//        startActivityForResult(intent, Constants.PARAMETER_CHANGE_ACTIVITY);
+//        Toast.makeText(this, "TBD Call ChangeParameterActivity for Gain Target", Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(this, ChangeParameterActivity.class);
+        intent.putExtra(Constants.SYMBOL_BUNDLE_KEY, mQuote.mSymbol);
+        intent.putExtra(Constants.PARAM_NAME_BUNDLE_KEY, "Gain Target");
+        intent.putExtra(Constants.OLD_VALUE_BUNDLE_KEY, mQuote.mPctGainTarget);
+        startActivityForResult(intent, Constants.PARAMETER_CHANGE_ACTIVITY);
     }
 
     @Override

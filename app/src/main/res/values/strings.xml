@@ -26,4 +26,20 @@
     <string name="gain_target_label">Gain\nTarget:</string>
     <string name="total_investment_label">Total Invesment: </string>
     <string name="add_block_label">Add Another Block</string>
+
+    <!-- Add Buy Block -->
+    <string name="buy_date_label">Buy Date:</string>
+    <string name="buy_price_label">Buy Price:</string>
+    <string name="num_shares_label"># of Shares:</string>
+    <string name="done_button_label">Done</string>
+    <string name="change_account_button_label">Change Account</string>
+
+    <!-- Add Owned/Watch -->
+    <string name="symbol_label">Symbol:</string>
+    <string name="new_gain_target_label">Gain Target(%):</string>
+    <string name="first_block_button_label">Add Information for First Block of Shares</string>
+
+    <!-- Change Parameters -->
+    <string name="new_value_label">New value:</string>
+    <string name="change_parameter_title">Change Parameter</string>
 </resources>

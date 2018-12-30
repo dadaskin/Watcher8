@@ -61,12 +61,12 @@ public class WatchDetailsActivity extends GenericDetailsActivity {
 
     @SuppressWarnings("UnusedParameters")
     public void changeButtonClicked(View v) {
-        Toast.makeText(this, "TBD: ChangeButtonClicked", Toast.LENGTH_LONG).show();
-//        Intent intent = new Intent(this, ChangeParameterActivity.class);
-//        intent.putExtra(Constants.SYMBOL_BUNDLE_KEY, mQuote.mSymbol);
-//        intent.putExtra(Constants.PARAM_NAME_BUNDLE_KEY, "Strike Price");
-//        intent.putExtra(Constants.OLD_VALUE_BUNDLE_KEY, mQuote.mStrikePrice);
-//        startActivityForResult(intent, Constants.PARAMETER_CHANGE_ACTIVITY);
+//        Toast.makeText(this, "TBD: ChangeButtonClicked", Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(this, ChangeParameterActivity.class);
+        intent.putExtra(Constants.SYMBOL_BUNDLE_KEY, mQuote.mSymbol);
+        intent.putExtra(Constants.PARAM_NAME_BUNDLE_KEY, "Strike Price");
+        intent.putExtra(Constants.OLD_VALUE_BUNDLE_KEY, mQuote.mStrikePrice);
+        startActivityForResult(intent, Constants.PARAMETER_CHANGE_ACTIVITY);
     }
 
 //    @Override
