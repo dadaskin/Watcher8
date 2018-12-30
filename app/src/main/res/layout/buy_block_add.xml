@@ -25,7 +25,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10sp"
+            android:background="@color/button_background_color"
             android:textColor="@color/button_text_color"
+            android:textAllCaps="false"
             />
     </LinearLayout>
 
@@ -111,8 +113,12 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:text="@string/change_account_button_label"
+            android:background="@color/button_background_color"
             android:textColor="@color/button_text_color"
+            android:textAllCaps="false"
             android:layout_marginStart="10sp"
+            android:paddingLeft="10sp"
+            android:paddingRight="10sp"
             />
 
     </LinearLayout>
@@ -123,7 +129,9 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/done_button_label"
+        android:background="@color/button_background_color"
         android:textColor="@color/button_text_color"
+        android:textAllCaps="false"
         android:onClick="doneButtonClicked"
         android:layout_marginTop="50sp"
         />

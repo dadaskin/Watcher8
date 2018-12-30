@@ -1,5 +1,6 @@
 package com.adaskin.android.watcher8.views;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -69,19 +70,19 @@ public class WatchDetailsActivity extends GenericDetailsActivity {
         startActivityForResult(intent, Constants.PARAMETER_CHANGE_ACTIVITY);
     }
 
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-//        super.onActivityResult(requestCode, resultCode, intent);
-//        if (resultCode == Activity.RESULT_OK) {
-//            DbAdapter dbAdapter = new DbAdapter(this);
-//            dbAdapter.open();
-//            dbAdapter.removeQuoteRecord(mQuote.mSymbol);
-//            mQuote.mStrikePrice = intent.getFloatExtra(Constants.PARAM_NEW_VALUE_BUNDLE_KEY, 0.0f);
-//            dbAdapter.createQuoteRecord(mQuote);
-//            dbAdapter.close();
-//            fillData();
-//        }
-//    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        if (resultCode == Activity.RESULT_OK) {
+            DbAdapter dbAdapter = new DbAdapter(this);
+            dbAdapter.open();
+            dbAdapter.removeQuoteRecord(mQuote.mSymbol);
+            mQuote.mStrikePrice = intent.getFloatExtra(Constants.PARAM_NEW_VALUE_BUNDLE_KEY, 0.0f);
+            dbAdapter.createQuoteRecord(mQuote);
+            dbAdapter.close();
+            fillData();
+        }
+    }
 
     @Override
     protected void singleSymbolUpdateCompleted(StockQuote updatedQuote) {

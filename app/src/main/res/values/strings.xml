@@ -34,12 +34,16 @@
     <string name="done_button_label">Done</string>
     <string name="change_account_button_label">Change Account</string>
 
-    <!-- Add Owned/Watch -->
+    <!-- Add Owned/Watch/Block -->
     <string name="symbol_label">Symbol:</string>
     <string name="new_gain_target_label">Gain Target(%):</string>
     <string name="first_block_button_label">Add Information for First Block of Shares</string>
+    <string name="add_buy_block">: Buy Block of\u0020</string>
 
     <!-- Change Parameters -->
     <string name="new_value_label">New value:</string>
     <string name="change_parameter_title">Change Parameter</string>
+
+    <!-- Accounts -->
+    <string name="unknown_account">Unknown</string>
 </resources>

@@ -133,13 +133,15 @@
         android:orientation="horizontal"
         android:layout_marginTop="5dp"
         >
-        <Button android:layout_width="60dp"  android:layout_height="35dp"
+        <Button android:layout_width="wrap_content"  android:layout_height="wrap_content"
             android:text="@string/strike_price_label"
             android:background="@color/button_background_color"
             android:textColor="@color/button_text_color"
             android:textSize="11sp"
             android:textAllCaps="false"
             android:layout_marginStart="5sp"
+            android:paddingStart="@dimen/details_padding_left"
+            android:paddingEnd="@dimen/details_padding_right"
             android:onClick="changeButtonClicked"
             tools:ignore="SmallSp"/>
 

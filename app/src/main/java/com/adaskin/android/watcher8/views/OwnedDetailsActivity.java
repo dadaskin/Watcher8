@@ -272,10 +272,10 @@ public class OwnedDetailsActivity extends GenericDetailsActivity implements Acco
     // Handle Add Another Block button
     @SuppressWarnings("UnusedParameters")
     public void addAnotherBlockButtonClicked(View v) {
-        Toast.makeText(this, "TBD: Start BuyBlockAddActivity", Toast.LENGTH_LONG).show();
-//        Intent intent = new Intent(this, BuyBlockAddActivity.class);
-//        intent.putExtra(Constants.BUY_BLOCK_SYMBOL_KEY, mQuote.mSymbol);
-//        startActivityForResult(intent, Constants.BUY_BLOCK_ADD_ACTIVITY);
+//        Toast.makeText(this, "TBD: Start BuyBlockAddActivity", Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(this, BuyBlockActivity.class);
+        intent.putExtra(Constants.BUY_BLOCK_SYMBOL_KEY, mQuote.mSymbol);
+        startActivityForResult(intent, Constants.BUY_BLOCK_ADD_ACTIVITY);
     }
 
     @Override

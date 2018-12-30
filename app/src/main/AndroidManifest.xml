@@ -25,6 +25,8 @@
         <activity android:name=".views.OwnedDetailsActivity" android:label="@string/app_name"/>
         <activity android:name=".views.WatchDetailsActivity" android:label="@string/app_name"/>
         <activity android:name=".views.ChangeParameterActivity" android:label="@string/app_name"/>
+        <activity android:name=".views.BuyBlockActivity" android:label="@string/app_name"/>
+
     </application>
 
 </manifest>

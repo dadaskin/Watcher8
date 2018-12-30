@@ -145,13 +145,15 @@
             android:orientation="horizontal"
             android:layout_marginTop="5dp"
             >
-            <Button android:layout_width="60dp"  android:layout_height="35dp"
+            <Button android:layout_width="wrap_content"  android:layout_height="wrap_content"
                 android:text="@string/strike_price_label"
                 android:background="@color/button_background_color"
                 android:textColor="@color/button_text_color"
                 android:textSize="11sp"
                 android:textAllCaps="false"
                 android:layout_marginStart="5dp"
+                android:paddingStart="@dimen/details_padding_left"
+                android:paddingEnd="@dimen/details_padding_right"
                 android:onClick="changeButtonClicked_StrikePrice"
                 tools:ignore="SmallSp" />
 
@@ -162,13 +164,15 @@
                 android:layout_gravity="center_vertical"
                 tools:ignore="RtlSymmetry" />
 
-            <Button android:layout_width="60dp"  android:layout_height="35dp"
+            <Button android:layout_width="wrap_content"  android:layout_height="wrap_content"
                 android:text="@string/gain_target_label"
                 android:background="@color/button_background_color"
                 android:textColor="@color/button_text_color"
                 android:textSize="11sp"
                 android:textAllCaps="false"
                 android:layout_marginStart="60dp"
+                android:paddingStart="@dimen/details_padding_left"
+                android:paddingEnd="@dimen/details_padding_right"
                 android:onClick="changeButtonClicked_GainTarget"
                 tools:ignore="SmallSp" />
 
@@ -234,6 +238,8 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10sp"
+        android:paddingStart="@dimen/details_padding_left"
+        android:paddingEnd="@dimen/details_padding_right"
         />
 
     <!-- List of BuyBlocks -->
