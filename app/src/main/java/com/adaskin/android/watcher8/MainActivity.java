@@ -12,13 +12,11 @@ import android.support.multidex.MultiDex;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -32,14 +30,7 @@ import com.adaskin.android.watcher8.database.DbAdapter;
 import com.adaskin.android.watcher8.fragments.FooterFragment;
 import com.adaskin.android.watcher8.fragments.ListFragmentBase;
 import com.adaskin.android.watcher8.models.StockQuote;
-import com.adaskin.android.watcher8.utilities.Constants;
-import com.adaskin.android.watcher8.utilities.Parsers;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
+import com.adaskin.android.watcher8.utilities.Refresher;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -53,22 +44,14 @@ import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.io.Writer;
 import java.lang.reflect.Type;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements ListFragmentBase.ListFragmentListener, FooterFragment.FooterListener {
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
-    private RequestQueue mRequestQueue;
-    private final List<String> mInvalidSymbols = new ArrayList<>();
-    private int mUnansweredRequests;
-    private FooterFragment mFooterFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -228,88 +211,12 @@ public class MainActivity extends AppCompatActivity implements ListFragmentBase.
             dbAdapter.close();
 
             // Redisplay everything
-            updateFragments();
+            quoteAddedOrMoved();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-
-//    // Old Import/Export methods
-//    public void ExportCommand(MenuItem item) {
-//        DbAdapter dbAdapter = new DbAdapter(this);
-//        dbAdapter.open();
-//        boolean isSuccessful = dbAdapter.exportDB();
-//        dbAdapter.close();
-//        sendEmail();
-//
-//        CharSequence msg = "Database exported";
-//        if (!isSuccessful)
-//            msg = "Export error.";
-//        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
-//    }
-//
-//    public void ImportCommand(MenuItem item) {
-//        DbAdapter dbAdapter = new DbAdapter(this);
-//        dbAdapter.open();
-//        boolean isSuccessful = dbAdapter.importDB();
-//        dbAdapter.close();
-//
-//        CharSequence msg = "Database imported";
-//        if (!isSuccessful)
-//            msg = "Import error.";
-//        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
-//
-//        if (isSuccessful)
-//            quoteAddedOrMoved();
-//    }
-//
-//    public void EmailTest(MenuItem item) {
-////        Toast.makeText(this, "TBD: Email Test", Toast.LENGTH_LONG).show();
-//        sendEmail();
-//    }
-//
-//    private void sendEmail() {
-//        String[] emailParameters = new String[] {"Foo", "Bar"};
-////        String attachmentFileName = Environment.getExternalStorageDirectory() + "/stockwatcher4_backup.db";
-////        String message = Build.MODEL + "  "  + Build.SERIAL;
-////        String[] emailParameters = new String[] {attachmentFileName, message};
-//        new SendEmailTask().execute(emailParameters);
-//    }
-//
-//    private class SendEmailTask extends AsyncTask<String,Void,String> {
-//        @Override
-//        protected String doInBackground(String... inputStrings) {
-//            String senderUsername = "executive@adaskin.com";
-//            String senderPassword = "~.^voA^ZVsMD";
-//            Mail m = new Mail(senderUsername, senderPassword);
-//            String[] recipientArray = {"dave@adaskin.com"};
-//            m.sendTo(recipientArray);
-//            m.sendFrom(senderUsername);
-//            m.setSubject("Stockwatcher4 DB update from: " + inputStrings[1]);
-//            m.setBody("<See attachment>");
-//
-//            String result = "Email: ";
-//            try {
-//                m.addAttachment(inputStrings[0]);
-//                if (m.send()) {
-//                    result += "sent";
-//                } else {
-//                    result += "not sent";
-//                }
-//            } catch (Exception e) {
-//                result +=  e.toString();
-//            }
-//            return result;
-//        }
-//
-//        @Override
-//        protected void onPostExecute(String result) {
-//            Toast.makeText(MainActivity.this, result, Toast.LENGTH_LONG).show();
-//        }
-//    }
-//
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -344,144 +251,7 @@ public class MainActivity extends AppCompatActivity implements ListFragmentBase.
 
     @Override
     public void refreshButtonClicked(final FooterFragment footerFragment, View buttonView) {
-        mFooterFragment = footerFragment;
-
-        DbAdapter dbAdapter = new DbAdapter(this);
-        dbAdapter.open();
-
-        final List<StockQuote> quoteList = dbAdapter.fetchStockQuoteList();
-        dbAdapter.close();
-
-        Log.d("foo", "Starting web requests.");
-        mInvalidSymbols.clear();
-        mUnansweredRequests = quoteList.size();
-        mRequestQueue = Volley.newRequestQueue(this);
-        mRequestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<StringRequest>() {
-            @Override
-            public void onRequestFinished(Request<StringRequest> request) {
-                Log.d("foo", "RequestFinishedListener.");
-
-                if (mUnansweredRequests == 0) {
-                    Log.d("foo", " All requests have been responded to.");
-                    handleInvalidSymbols(mInvalidSymbols, quoteList);
-                    updateDb(quoteList);
-                    updateFragments();
-                    updateDateStrings(footerFragment);
-                    footerFragment.endButtonAnimation();
-                }
-            }});
-
-        for (StockQuote q : quoteList) {
-            doSingleWebRequest(q);
-        }
+        Refresher refresher = new Refresher(this, footerFragment);
+        refresher.refreshAll();
     }
-
-    private void doSingleWebRequest(final StockQuote quote){
-        String url = "https://finance.yahoo.com/quote/" + quote.mSymbol;
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                handleWebResponse(quote, response);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                handleWebError(quote.mSymbol, error);
-            }
-        });
-        Log.d("foo","Request: " + quote.mSymbol);
-        mRequestQueue.add(stringRequest);
-    }
-
-    private void handleWebResponse(StockQuote quote, String response) {
-        boolean isValidSymbol = Parsers.parseYAHOOResponse(quote, response);
-        mUnansweredRequests--;
-        if (!isValidSymbol)
-            mInvalidSymbols.add(quote.mSymbol);
-
-        String msg = quote.mSymbol + " Response received.  " + mUnansweredRequests + " remaining.";
-        Log.d("foo", msg);
-    }
-
-    private void handleWebError(String symbol, VolleyError error) {
-        Log.d("foo", "Volley Response.ErrorListener for " + symbol + ": "+ error.getMessage());
-        mFooterFragment.endButtonAnimation();
-    }
-
-    private void handleInvalidSymbols(List<String> symbolList, List<StockQuote> quoteList) {
-        int length = symbolList.size();
-        if (length == 0)
-            return;
-
-        // Set up message for dialog
-        StringBuilder msg = new StringBuilder();
-        String lastSymbol = symbolList.get(length-1);
-        if (symbolList.size() == 1)	 {
-            msg.append("The symbol: ");
-            msg.append(symbolList.get(0));
-            msg.append(" is invalid.\nDeleting.");
-        } else {
-            msg.append("The symbols: ");
-            for (String s : symbolList) {
-                msg.append(s);
-                if (!s.equals(lastSymbol)) {
-                    msg.append(",");
-                }
-            }
-            msg.append(" are invalid.\n Deleting.");
-        }
-
-        // Remove invalid symbols from DB
-        DbAdapter dbAdapter = new DbAdapter(this);
-        dbAdapter.open();
-
-        for(String symbol : symbolList) {
-            StockQuote badQuote = dbAdapter.fetchQuoteObjectFromSymbol(symbol);
-            quoteList.remove(badQuote);
-            dbAdapter.removeQuoteRecord(symbol);
-        }
-
-        dbAdapter.close();
-
-        // Buld and display dialog
-        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-        builder.setIcon(android.R.drawable.ic_dialog_alert)
-                .setTitle("Invalid Symbol(s)")
-                .setMessage(msg.toString())
-                .setPositiveButton("OK",null)
-                .setCancelable(false)
-                .show();
-    }
-
-    private void updateDb(List<StockQuote> quoteList) {
-        DbAdapter dbAdapter = new DbAdapter(this);
-        dbAdapter.open();
-        for (StockQuote quote: quoteList) {
-            dbAdapter.changeQuoteRecord(dbAdapter.fetchQuoteIdFromSymbol(quote.mSymbol), quote);
-        }
-        dbAdapter.close();
-    }
-
-    private void updateFragments() {
-        quoteAddedOrMoved();
-    }
-
-    private void updateDateStrings(FooterFragment footerFragment) {
-        Date now = new Date();
-
-        SimpleDateFormat sdf = new SimpleDateFormat(Constants.UPDATE_DATE_FORMAT, Locale.US);
-        SimpleDateFormat stf = new SimpleDateFormat(Constants.UPDATE_TIME_FORMAT, Locale.US);
-
-        String dateString = sdf.format(now);
-        String timeString = stf.format(now);
-
-        DbAdapter dbAdapter = new DbAdapter(this);
-        dbAdapter.open();
-        dbAdapter.removeLastUpdateRecord();
-        dbAdapter.createLastUpdateRecord(dateString, timeString);
-        dbAdapter.close();
-
-        footerFragment.refreshUpdateDateTime(dateString, timeString);
-    }
-
 }

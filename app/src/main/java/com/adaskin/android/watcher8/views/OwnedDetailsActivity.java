@@ -12,10 +12,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.adaskin.android.watcher8.R;
 import com.adaskin.android.watcher8.adapters.BuyBlockCursorAdapter;
@@ -37,29 +37,36 @@ public class OwnedDetailsActivity extends GenericDetailsActivity implements Acco
 
     private BuyBlock mChangingBlock;
     private AccountSelectionFragment mAccountsFragment;
+    private Button mRefreshButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.owned_details);
 
-        Bundle bundle = getIntent().getExtras();
-        String symbol = bundle.getString(Constants.SYMBOL_BUNDLE_KEY);
+        String symbol = getIntent().getExtras().getString(Constants.SYMBOL_BUNDLE_KEY);
         setTitleString(symbol);
 
         DbAdapter dbAdapter = new DbAdapter(this);
         dbAdapter.open();
-
-        long parentId = dbAdapter.fetchQuoteIdFromSymbol(symbol);
-        mQuote = dbAdapter.fetchQuoteObjectFromId(parentId);
+        mQuote = dbAdapter.fetchQuoteObjectFromSymbol(symbol);
         dbAdapter.close();
 
         registerForContextMenu(findViewById(android.R.id.list));
 
+        mRefreshButton = findViewById(R.id.owned_detail_refresh_btn);
+        mRefreshButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                detailRefreshButtonClicked(view);
+        }
+        });
+
         fillData();
     }
 
-    private void fillData() {
+    @Override
+    public void fillData() {
         TextView nameField = findViewById(R.id.owned_full_name_field);
         TextView ppsField = findViewById(R.id.owned_pps_field);
         TextView divPSField = findViewById(R.id.owned_divps_field);
@@ -82,7 +89,6 @@ public class OwnedDetailsActivity extends GenericDetailsActivity implements Acco
         yrMaxField.setText(String.format(Locale.US,Constants.CURRENCY_FORMAT, mQuote.mYrMax));
         strikeField.setText(String.format(Locale.US,Constants.CURRENCY_FORMAT, mQuote.mStrikePrice));
         gainField.setText(String.format(Locale.US,Constants.PERCENTAGE_FORMAT, mQuote.mPctGainTarget));
-
 
         DbAdapter dbAdapter = new DbAdapter(this);
         dbAdapter.open();
@@ -141,8 +147,6 @@ public class OwnedDetailsActivity extends GenericDetailsActivity implements Acco
         else
             divyView.setText("--");
     }
-
-
 
     // Create context menu and dispatch selections
     @Override
@@ -251,7 +255,6 @@ public class OwnedDetailsActivity extends GenericDetailsActivity implements Acco
         mAccountsFragment.show(manager, "Account Selection Dialog");
     }
 
-
     @Override
     public void onOkClick(int position) {
         List<Integer> colorList = AccountModel.getBlockAccountColorList();
@@ -350,13 +353,8 @@ public class OwnedDetailsActivity extends GenericDetailsActivity implements Acco
         startActivityForResult(intent, Constants.PARAMETER_CHANGE_ACTIVITY);
     }
 
-    @Override
-    protected void singleSymbolUpdateCompleted(StockQuote updatedQuote) {
-//		String msg = mQuote.mPPS + "\t" + mQuote.mDivPerShare + "\t" + mQuote.mAnalystsOpinion;
-//		Log.d("myTag", msg);
-
-        Toast.makeText(this, "TBD: OwnedDetailsActivity.singleSymbolUpdateComleted()", Toast.LENGTH_LONG).show();
-//        updateQuoteInDB(updatedQuote);
-//        fillData();
+    public Button getRefreshButton() {
+        return mRefreshButton;
     }
+
 }

@@ -49,7 +49,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/detail_refresh_btn"
+        android:id="@+id/refresh_all_btn"
         android:layout_width="48dip"
         android:layout_height="48dip"
         android:background="@color/toolbarBackground"

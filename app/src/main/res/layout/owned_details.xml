@@ -112,31 +112,44 @@
             </LinearLayout>
 
             <!-- Refresh Button -->
-            <RelativeLayout android:layout_row="0" android:layout_column="1" android:layout_rowSpan="4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                >
-                <ImageButton android:id="@+id/detail_refresh_button_stationary"
-                    android:layout_width="48dip"
-                    android:layout_height="48dip"
-                    android:background="@android:color/transparent"
-                    android:layout_centerInParent="true"
-                    android:src="@drawable/gradient_shape"
-                    android:contentDescription="@string/refresh_button_stationary"
-                    />
+            <!--<RelativeLayout android:layout_row="0" android:layout_column="1" android:layout_rowSpan="4"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--&gt;-->
+                <!--<ImageButton android:id="@+id/detail_refresh_button_stationary"-->
+                    <!--android:layout_width="48dip"-->
+                    <!--android:layout_height="48dip"-->
+                    <!--android:background="@android:color/transparent"-->
+                    <!--android:layout_centerInParent="true"-->
+                    <!--android:src="@drawable/gradient_shape"-->
+                    <!--android:contentDescription="@string/refresh_button_stationary"-->
+                    <!--/>-->
 
-                <!--suppress AndroidMissingOnClickHandler -->
-                <ImageButton android:id="@+id/detail_refresh_button_moving"
-                    android:layout_width="48dip"
-                    android:layout_height="48dip"
-                    android:background="@android:color/transparent"
-                    android:layout_centerInParent="true"
-                    android:src="@drawable/refresh_arrows"
-                    android:contentDescription="@string/refresh_button_moving"
-                    android:onClick="detailRefreshButtonClicked"
-                    />
-            </RelativeLayout>
+                <!--&lt;!&ndash;suppress AndroidMissingOnClickHandler &ndash;&gt;-->
+                <!--<ImageButton android:id="@+id/detail_refresh_button_moving"-->
+                    <!--android:layout_width="48dip"-->
+                    <!--android:layout_height="48dip"-->
+                    <!--android:background="@android:color/transparent"-->
+                    <!--android:layout_centerInParent="true"-->
+                    <!--android:src="@drawable/refresh_arrows"-->
+                    <!--android:contentDescription="@string/refresh_button_moving"-->
+                    <!--android:onClick="detailRefreshButtonClicked"-->
+                    <!--/>-->
+            <!--</RelativeLayout>-->
+            <Button
+                android:layout_row="0"
+                android:layout_column="1"
+                android:layout_rowSpan="4"
+                android:id="@+id/owned_detail_refresh_btn"
+                android:layout_width="48dip"
+                android:layout_height="48dip"
+                android:layout_marginLeft="50dip"
+                android:background="@color/view_background_color"
+                android:drawableLeft="@drawable/progress"
+                tools:ignore="RtlHardcoded"
+                android:onClick="detailRefreshButtonClicked"
+                />
 
         </GridLayout>
 

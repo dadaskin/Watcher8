@@ -3,19 +3,19 @@ package com.adaskin.android.watcher8.views;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.adaskin.android.watcher8.R;
 import com.adaskin.android.watcher8.database.DbAdapter;
-import com.adaskin.android.watcher8.models.StockQuote;
 import com.adaskin.android.watcher8.utilities.Constants;
 
 import java.util.Locale;
 
 public class WatchDetailsActivity extends GenericDetailsActivity {
+
+    private Button mRefreshButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -27,17 +27,22 @@ public class WatchDetailsActivity extends GenericDetailsActivity {
 
         DbAdapter dbAdapter = new DbAdapter(this);
         dbAdapter.open();
-
-        long id = dbAdapter.fetchQuoteIdFromSymbol(symbol);
-        mQuote = dbAdapter.fetchQuoteObjectFromId(id);
+        mQuote = dbAdapter.fetchQuoteObjectFromSymbol(symbol);
         dbAdapter.close();
 
-        Log.d("myTag", "WatchDetailsActivity started.");
+        mRefreshButton = findViewById(R.id.watch_detail_refresh_btn);
+        mRefreshButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                detailRefreshButtonClicked(view);
+            }
+        });
 
         fillData();
     }
 
-    private void fillData() {
+    @Override
+    public void fillData() {
         TextView nameField = findViewById(R.id.watch_full_name_field);
         TextView ppsField = findViewById(R.id.watch_pps_field);
         TextView divPSField = findViewById(R.id.watch_divps_field);
@@ -60,9 +65,9 @@ public class WatchDetailsActivity extends GenericDetailsActivity {
         strikeField.setText(String.format(Locale.US,Constants.CURRENCY_FORMAT, mQuote.mStrikePrice));
     }
 
+
     @SuppressWarnings("UnusedParameters")
     public void changeButtonClicked(View v) {
-//        Toast.makeText(this, "TBD: ChangeButtonClicked", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(this, ChangeParameterActivity.class);
         intent.putExtra(Constants.SYMBOL_BUNDLE_KEY, mQuote.mSymbol);
         intent.putExtra(Constants.PARAM_NAME_BUNDLE_KEY, "Strike Price");
@@ -84,16 +89,8 @@ public class WatchDetailsActivity extends GenericDetailsActivity {
         }
     }
 
-    @Override
-    protected void singleSymbolUpdateCompleted(StockQuote updatedQuote) {
-//        String msg = mQuote.mPPS + "\t" + mQuote.mDivPerShare + "\t" + mQuote.mAnalystsOpinion;
-//        Log.d("myTag", msg);
-
-        Toast.makeText(this, "TBD: WatchDetailsActivity.singleSymbolUpdateComleted()", Toast.LENGTH_LONG).show();
-
-//        updateQuoteInDB(updatedQuote);
-//        fillData();
+    public Button getRefreshButton() {
+        return mRefreshButton;
     }
-
 
 }
