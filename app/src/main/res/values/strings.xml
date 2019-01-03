@@ -22,7 +22,7 @@
     <string name="range_label">Yearly Range: </string>
     <string name="range_separator">\u0020-\u0020</string>
     <string name="anal_label">Analysts\' Opinion: </string>
-    <string name="strike_price_label">Strike\nPrice:</string>
+    <string name="strike_price_button">Strike\nPrice:</string>
     <string name="gain_target_label">Gain\nTarget:</string>
     <string name="total_investment_label">Total Invesment: </string>
     <string name="add_block_label">Add Another Block</string>
@@ -37,6 +37,7 @@
     <!-- Add Owned/Watch/Block -->
     <string name="symbol_label">Symbol:</string>
     <string name="new_gain_target_label">Gain Target(%):</string>
+    <string name="strike_price_label">Strike Price:</string>
     <string name="first_block_button_label">Add Information for First Block of Shares</string>
     <string name="add_buy_block">: Buy Block of\u0020</string>
     <string name="add_watch">Add to Watch List</string>

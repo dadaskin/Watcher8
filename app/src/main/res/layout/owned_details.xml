@@ -111,32 +111,6 @@
                     />
             </LinearLayout>
 
-            <!-- Refresh Button -->
-            <!--<RelativeLayout android:layout_row="0" android:layout_column="1" android:layout_rowSpan="4"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_gravity="center"-->
-                <!--&gt;-->
-                <!--<ImageButton android:id="@+id/detail_refresh_button_stationary"-->
-                    <!--android:layout_width="48dip"-->
-                    <!--android:layout_height="48dip"-->
-                    <!--android:background="@android:color/transparent"-->
-                    <!--android:layout_centerInParent="true"-->
-                    <!--android:src="@drawable/gradient_shape"-->
-                    <!--android:contentDescription="@string/refresh_button_stationary"-->
-                    <!--/>-->
-
-                <!--&lt;!&ndash;suppress AndroidMissingOnClickHandler &ndash;&gt;-->
-                <!--<ImageButton android:id="@+id/detail_refresh_button_moving"-->
-                    <!--android:layout_width="48dip"-->
-                    <!--android:layout_height="48dip"-->
-                    <!--android:background="@android:color/transparent"-->
-                    <!--android:layout_centerInParent="true"-->
-                    <!--android:src="@drawable/refresh_arrows"-->
-                    <!--android:contentDescription="@string/refresh_button_moving"-->
-                    <!--android:onClick="detailRefreshButtonClicked"-->
-                    <!--/>-->
-            <!--</RelativeLayout>-->
             <Button
                 android:layout_row="0"
                 android:layout_column="1"
@@ -159,16 +133,17 @@
             android:layout_marginTop="5dp"
             >
             <Button android:layout_width="wrap_content"  android:layout_height="wrap_content"
-                android:text="@string/strike_price_label"
+                android:text="@string/strike_price_button"
                 android:background="@color/button_background_color"
                 android:textColor="@color/button_text_color"
-                android:textSize="11sp"
+                android:textSize="12sp"
                 android:textAllCaps="false"
                 android:layout_marginStart="5dp"
                 android:paddingStart="@dimen/details_padding_left"
                 android:paddingEnd="@dimen/details_padding_right"
+                android:minWidth="10dp"
                 android:onClick="changeButtonClicked_StrikePrice"
-                tools:ignore="SmallSp" />
+                />
 
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                 android:id="@+id/owned_strike_price_field"
@@ -181,13 +156,14 @@
                 android:text="@string/gain_target_label"
                 android:background="@color/button_background_color"
                 android:textColor="@color/button_text_color"
-                android:textSize="11sp"
+                android:textSize="12sp"
                 android:textAllCaps="false"
-                android:layout_marginStart="60dp"
+                android:layout_marginStart="40dp"
                 android:paddingStart="@dimen/details_padding_left"
                 android:paddingEnd="@dimen/details_padding_right"
+                android:minWidth="10dp"
                 android:onClick="changeButtonClicked_GainTarget"
-                tools:ignore="SmallSp" />
+                 />
 
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                 android:id="@+id/owned_gain_target_field"
@@ -204,7 +180,7 @@
             >
             <TextView android:layout_height="wrap_content"
                 android:layout_width="0sp"
-                android:layout_weight="44"
+                android:layout_weight="40"
                 android:textColor="@color/normal_text_color"
                 android:text="@string/total_investment_label"
                 android:layout_gravity="center_vertical"
@@ -220,7 +196,7 @@
                 />
             <TextView android:layout_height="wrap_content"
                 android:layout_width="0sp"
-                android:layout_weight="19"
+                android:layout_weight="23"
                 android:textColor="@color/normal_text_color"
                 android:id="@+id/owned_total_investment_gain"
                 android:paddingStart="@dimen/details_padding_left"
