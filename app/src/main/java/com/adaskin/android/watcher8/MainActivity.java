@@ -174,7 +174,7 @@ public class MainActivity extends AppCompatActivity implements ListFragmentBase.
         SimpleDateFormat sdf = new SimpleDateFormat("yyMMddHHmmss", Locale.US);
         Calendar calendar = Calendar.getInstance();
         String timestamp = sdf.format(calendar.getTime());
-        return "Watcher8_" + timestamp + ".json";
+        return "Watcher8_" + timestamp;
     }
 
     private void showAvailableImportFilenames() {
