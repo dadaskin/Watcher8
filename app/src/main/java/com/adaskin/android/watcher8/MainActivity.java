@@ -120,6 +120,7 @@ public class MainActivity extends AppCompatActivity implements ListFragmentBase.
     private static final int PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 11;  // Arbitrary value
     private static final int PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 12;   // Different arbitrary value
 
+    @SuppressWarnings("unused")
     public void ExportJsonCommand(MenuItem item) {
         int isOk = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
         // If user has not previous granted permission, pop up the dialog asking for it.
@@ -135,6 +136,7 @@ public class MainActivity extends AppCompatActivity implements ListFragmentBase.
         }
     }
 
+    @SuppressWarnings("unused")
     public void ImportJsonCommand(MenuItem item) {
         int isOk = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
         // If user has not previous granted permission, pop up the dialog asking for it.

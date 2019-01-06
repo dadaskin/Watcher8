@@ -47,7 +47,7 @@ public class FileChooserFragment extends DialogFragment {
 
     private ListView mLv;
     private Dialog mDlg;
-    private List<String> mFiles = new ArrayList<String>();
+    private List<String> mFiles = new ArrayList<>();
 
     @NonNull
     @Override

@@ -31,7 +31,7 @@ public abstract class GenericDetailsActivity extends AppCompatActivity implement
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View customTitleView = Objects.requireNonNull(inflater).inflate(R.layout.custom_main_titlebar, null);
         TextView tv = customTitleView.findViewById(R.id.custom_main_title_bar_text);
-        tv.setText(getString(R.string.app_name) + ": " + symbol + getString(R.string.detail) );
+        tv.setText(String.format("%s: %s %s", getString(R.string.app_name),symbol,getString(R.string.detail) ));
         actionBar.setCustomView(customTitleView);
     }
 

@@ -16,7 +16,7 @@ public class DataModel implements Parcelable {
 
     // Constructors
     public DataModel(DbAdapter dbAdapter) {
-        mMasterList = new ArrayList<StockQuote>();
+        mMasterList = new ArrayList<>();
         mDbAdapter = dbAdapter;
 
         mDbAdapter.createLastUpdateRecord("Aug 31, 2012", "12:22 PM PDT");
@@ -96,7 +96,7 @@ public class DataModel implements Parcelable {
         long id = mDbAdapter.fetchQuoteIdFromSymbol(symbol);
 
         quote.mStatus = QuoteStatus.WATCH;
-        quote.mBuyBlockList = new ArrayList<BuyBlock>();
+        quote.mBuyBlockList = new ArrayList<>();
         mDbAdapter.changeQuoteRecord(id, quote);
     }
 
@@ -124,7 +124,7 @@ public class DataModel implements Parcelable {
     }
 
     private void readFromParcel(Parcel in) {
-        mMasterList = new ArrayList<StockQuote>();
+        mMasterList = new ArrayList<>();
         in.readTypedList(mMasterList, StockQuote.CREATOR);
     }
 

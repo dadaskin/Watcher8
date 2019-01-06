@@ -16,6 +16,7 @@ public class NonSwipableViewPager extends ViewPager {
         super(context);
     }
 
+    @SuppressWarnings("EmptyMethod")
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         // Never allow swiping to switch between pages
@@ -29,6 +30,7 @@ public class NonSwipableViewPager extends ViewPager {
         return false;
     }
 
+    @SuppressWarnings("EmptyMethod")
     @Override
     public boolean performClick() {
         return super.performClick();

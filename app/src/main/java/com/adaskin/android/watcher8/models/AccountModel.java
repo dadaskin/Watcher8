@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class AccountModel {
+    @SuppressWarnings("unused")
     public static String getNameFromColor(int color) {
         switch(color) {
             case Constants.ACCOUNT_UNKNOWN: return "Unassigned";

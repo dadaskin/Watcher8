@@ -47,7 +47,7 @@ public class StockQuote implements Parcelable {
         mPctGainTarget = pctGainTarget;
         mYrMax = 0f;
         mYrMin = 0f;
-        mBuyBlockList = new ArrayList<BuyBlock>();
+        mBuyBlockList = new ArrayList<>();
         mStrikePrice = 0f;
         mPctChangeSinceBuy = 0f;
         mAnalystsOpinion = 0.0f;
@@ -171,7 +171,7 @@ public class StockQuote implements Parcelable {
             mStatus = QuoteStatus.OWNED;
         }
         mPPS = in.readFloat();
-        mBuyBlockList = new ArrayList<BuyBlock>();
+        mBuyBlockList = new ArrayList<>();
         in.readTypedList(mBuyBlockList, BuyBlock.CREATOR);
         mPctGainTarget = in.readFloat();
         mYrMax = in.readFloat();

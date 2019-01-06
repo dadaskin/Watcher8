@@ -144,6 +144,7 @@ public class DatePickerDialogFragment extends DialogFragment {
         return picker;
     }
 
+    @SuppressWarnings("SameReturnValue")
     private static boolean hasJellyBeanAndAbove() {
         return true;
     }
