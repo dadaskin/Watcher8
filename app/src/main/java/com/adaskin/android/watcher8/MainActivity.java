@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.multidex.MultiDex;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -27,6 +28,7 @@ import android.widget.Toast;
 import com.adaskin.android.watcher8.adapters.NonSwipableViewPager;
 import com.adaskin.android.watcher8.adapters.SectionsPagerAdapter;
 import com.adaskin.android.watcher8.database.DbAdapter;
+import com.adaskin.android.watcher8.fragments.FileChooserFragment;
 import com.adaskin.android.watcher8.fragments.FooterFragment;
 import com.adaskin.android.watcher8.fragments.ListFragmentBase;
 import com.adaskin.android.watcher8.models.StockQuote;
@@ -44,11 +46,13 @@ import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.io.Writer;
 import java.lang.reflect.Type;
-import java.util.Collections;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity implements ListFragmentBase.ListFragmentListener, FooterFragment.FooterListener {
+public class MainActivity extends AppCompatActivity implements ListFragmentBase.ListFragmentListener, FooterFragment.FooterListener, FileChooserFragment.FileOkListener {
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
@@ -142,7 +146,7 @@ public class MainActivity extends AppCompatActivity implements ListFragmentBase.
                     new String[]{ Manifest.permission.READ_EXTERNAL_STORAGE},
                     PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
         } else {
-            doPublicRead();
+            showAvailableImportFilenames();
         }
     }
 
@@ -156,7 +160,7 @@ public class MainActivity extends AppCompatActivity implements ListFragmentBase.
             }
         } else if (requestCode == PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE) {
             if ((grantResults.length > 0) && grantResults[0]== PackageManager.PERMISSION_GRANTED) {
-                doPublicRead();
+                showAvailableImportFilenames();
             } else {
                 Toast.makeText(this, "Reading a public  file is not permitted.", Toast.LENGTH_LONG).show();
             }
@@ -166,11 +170,22 @@ public class MainActivity extends AppCompatActivity implements ListFragmentBase.
     }
 
     private String createBackupFilename() {
-        return "Watcher8_timestamp.json";
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyMMddHHmmss", Locale.US);
+        Calendar calendar = Calendar.getInstance();
+        String timestamp = sdf.format(calendar.getTime());
+        return "Watcher8_" + timestamp + ".json";
     }
 
-    private String findBestBackupFilename() {
-        return "Watcher8_timestamp.json";
+    private void showAvailableImportFilenames() {
+        FragmentManager manager = getSupportFragmentManager();
+        FileChooserFragment fileChooserFragment = new FileChooserFragment();
+        fileChooserFragment.show(manager, "fooTag");
+    }
+
+    @Override
+    public void onOkClick(String selectedFilename) {
+        doPublicRead(selectedFilename);
     }
 
     private void doPublicWrite() {
@@ -183,7 +198,7 @@ public class MainActivity extends AppCompatActivity implements ListFragmentBase.
 
             FileOutputStream fos = new FileOutputStream(file);
             Writer osWriter = new OutputStreamWriter(fos);
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            Gson gson = new GsonBuilder().setPrettyPrinting().serializeSpecialFloatingPointValues().create();
             gson.toJson(quoteList, osWriter);
             osWriter.close();
             Toast.makeText(this, "Exported to JSON", Toast.LENGTH_LONG).show();
@@ -192,16 +207,27 @@ public class MainActivity extends AppCompatActivity implements ListFragmentBase.
         }
     }
 
-    private void doPublicRead() {
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_RINGTONES), findBestBackupFilename());
+    private void doPublicRead(String filename) {
+        if (filename.equals("")) {
+            String msg = "Nothing imported";
+            Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_RINGTONES), filename);
         try {
             FileInputStream fis = new FileInputStream(file);
             Reader isReader = new InputStreamReader(fis);
             Type quoteListType = new TypeToken<List<StockQuote>>(){}.getType();
-            List<StockQuote> quoteList = Collections.synchronizedList((List<StockQuote>)gson.fromJson(isReader, quoteListType));
+            Gson gson = new GsonBuilder().setPrettyPrinting().serializeSpecialFloatingPointValues().create();
+            List<StockQuote> quoteList = gson.fromJson(isReader, quoteListType);
             isReader.close();
 
+            if (quoteList == null) {
+                String msg = "Imported file is empty.";
+                Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+                return;
+            }
             String msg = "Imported " + quoteList.size() + " items from JSON.";
             Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
 
@@ -212,8 +238,7 @@ public class MainActivity extends AppCompatActivity implements ListFragmentBase.
 
             // Redisplay everything
             quoteAddedOrMoved();
-
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

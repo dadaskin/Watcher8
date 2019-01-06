@@ -19,4 +19,6 @@
     <color name="button_text_color">#ffcccccc</color>
     <color name="dialog_text_color">#ff000000</color>
     <color name="button_background_color">#ff333333</color>
+
+    <color name="alert_dialog_background_color">#ffffffaa</color>
 </resources>
