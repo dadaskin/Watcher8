@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
@@ -63,10 +64,12 @@ public class BuyBlockActivity extends AppCompatActivity implements AccountSelect
         Objects.requireNonNull(actionBar).setDisplayShowHomeEnabled(false);
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setBackgroundDrawable(new ColorDrawable(getColor(android.R.color.white)));
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View customTitleView = inflater.inflate(R.layout.custom_main_titlebar, null);
+        View customTitleView = Objects.requireNonNull(inflater).inflate(R.layout.custom_main_titlebar, null);
         TextView tv = customTitleView.findViewById(R.id.custom_main_titlebar_text);
-        tv.setText(getString(R.string.app_name) + getString(R.string.add_buy_block) + mSymbol);
+        tv.setTextSize(18f);
+        tv.setText(String.format("%s %s %s",getString(R.string.app_name),getString(R.string.add_buy_block),mSymbol));
         actionBar.setCustomView(customTitleView);
     }
 

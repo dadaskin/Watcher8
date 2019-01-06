@@ -19,6 +19,7 @@ import com.adaskin.android.watcher8.R;
 import com.adaskin.android.watcher8.database.DbAdapter;
 import com.adaskin.android.watcher8.utilities.Constants;
 
+import java.util.Locale;
 import java.util.Objects;
 
 public class WatchAddActivity extends AppCompatActivity {
@@ -40,7 +41,7 @@ public class WatchAddActivity extends AppCompatActivity {
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View customTitleView = Objects.requireNonNull(inflater).inflate(R.layout.custom_main_titlebar, null);
         TextView tv = (TextView)customTitleView.findViewById(R.id.custom_main_titlebar_text);
-        tv.setText(getString(R.string.app_name) + getString(R.string.add_watch));
+        tv.setText(String.format(Locale.US, "%s%s", getString(R.string.app_name),getString(R.string.add_watch)));
         actionBar.setCustomView(customTitleView);
     }
 

@@ -3,6 +3,7 @@ package com.adaskin.android.watcher8.views;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -29,6 +30,10 @@ public class ChangeParameterActivity extends AppCompatActivity {
         setTitleString();
 
         Bundle bundle = getIntent().getExtras();
+        if (bundle == null) {
+            Toast.makeText(this, "ChangeParameter Bundle is null", Toast.LENGTH_LONG).show();
+            return;
+        }
         String symbol = bundle.getString(Constants.SYMBOL_BUNDLE_KEY);
         mParamName = bundle.getString(Constants.PARAM_NAME_BUNDLE_KEY);
         float oldValue = bundle.getFloat(Constants.OLD_VALUE_BUNDLE_KEY);
@@ -42,10 +47,12 @@ public class ChangeParameterActivity extends AppCompatActivity {
         Objects.requireNonNull(actionBar).setDisplayShowHomeEnabled(false);
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setBackgroundDrawable(new ColorDrawable(getColor(android.R.color.white)));
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View customTitleView = inflater.inflate(R.layout.custom_main_titlebar, null);
-        TextView tv = (TextView)customTitleView.findViewById(R.id.custom_main_titlebar_text);
-        tv.setText(getString(R.string.app_name) + getString(R.string.change_parameter_title));
+        View customTitleView = Objects.requireNonNull(inflater).inflate(R.layout.custom_main_titlebar, null);
+        TextView tv = customTitleView.findViewById(R.id.custom_main_titlebar_text);
+        tv.setTextSize(18f);
+        tv.setText(String.format("%s %s", getString(R.string.app_name), getString(R.string.change_parameter_title)));
         actionBar.setCustomView(customTitleView);
     }
 
@@ -64,16 +71,16 @@ public class ChangeParameterActivity extends AppCompatActivity {
             format = Constants.CURRENCY_FORMAT;
         }
 
-        TextView nameView = (TextView)findViewById(R.id.param_change_name);
-        nameView.setText("Change \"" + paramName +"\" parameter on " + symbol);
+        TextView nameView = findViewById(R.id.param_change_name);
+        nameView.setText(String.format("%s %s %s %s", getString(R.string.change), paramName, getString(R.string.parameter_on), symbol));
 
-        TextView oldValueView = (TextView)findViewById(R.id.param_change_old_value);
-        oldValueView.setText("Old Value: " + String.format(Locale.US,format, oldValue));
+        TextView oldValueView = findViewById(R.id.param_change_old_value);
+        oldValueView.setText(String.format("%s %s", getString(R.string.old_value_label), String.format(Locale.US,format, oldValue)));
     }
 
     @SuppressWarnings("UnusedParameters")
     public void doneButtonClicked(View v) {
-        EditText newValueField = (EditText)findViewById(R.id.param_change_new_value);
+        EditText newValueField = findViewById(R.id.param_change_new_value);
         float newValue;
         try {
             newValue = Float.parseFloat(newValueField.getText().toString());

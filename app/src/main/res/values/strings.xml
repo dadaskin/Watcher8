@@ -2,7 +2,7 @@
     <string name="app_name">Watcher8</string>
     <string name="tab_text_owned">Owned</string>
     <string name="tab_text_watch">Watch</string>
-    <string name="build_string">Build 0.1.0 \u0020\u0020\u0020 15 Dec 2018</string>
+    <string name="build_string">Build 0.2.0 \u0020\u0020\u0020 05 Jan 2019</string>
     <string name="action_export">Export DB</string>
     <string name="action_export_JSON">Export JSON</string>
     <string name="action_import">Import DB</string>
@@ -40,11 +40,15 @@
     <string name="strike_price_label">Strike Price:</string>
     <string name="first_block_button_label">Add Information for First Block of Shares</string>
     <string name="add_buy_block">: Buy Block of\u0020</string>
-    <string name="add_watch">Add to Watch List</string>
+    <string name="add_watch">: Add to Watch List</string>
+    <string name="add_owned">: Add to Owned List</string>
 
     <!-- Change Parameters -->
     <string name="new_value_label">New value:</string>
-    <string name="change_parameter_title">Change Parameter</string>
+    <string name="old_value_label">Old Value:</string>
+    <string name="change_parameter_title">: Change Parameter</string>
+    <string name="change">Change</string>
+    <string name="parameter_on">parameter on</string>
 
     <!-- Accounts -->
     <string name="unknown_account">Unknown</string>
