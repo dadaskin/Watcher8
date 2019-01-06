@@ -31,7 +31,7 @@ public class FooterFragment extends Fragment implements Refresher.RefreshedObjec
 
     public interface FooterListener {
         void addButtonClicked();
-        void refreshButtonClicked(FooterFragment footerFragment, View buttonView);
+        void refreshButtonClicked(FooterFragment footerFragment);
     }
 
     @Nullable
@@ -59,21 +59,21 @@ public class FooterFragment extends Fragment implements Refresher.RefreshedObjec
         mRefreshButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                refreshButtonClicked(v);
+                refreshButtonClicked();
             }
         });
         return view;
     }
 
-    public void addButtonClicked() {
+    private void addButtonClicked() {
         ((FooterListener) Objects.requireNonNull(getActivity())).addButtonClicked();
     }
 
-    public void refreshButtonClicked(View view) {
-        ((FooterListener) Objects.requireNonNull(getActivity())).refreshButtonClicked(this, view);
+    private void refreshButtonClicked() {
+        ((FooterListener) Objects.requireNonNull(getActivity())).refreshButtonClicked(this);
     }
 
-    public void refreshUpdateDateTime(String dateString, String timeString)
+    private void refreshUpdateDateTime(String dateString, String timeString)
     {
         mDateTextView.setText(dateString);
         mTimeTextView.setText(timeString);

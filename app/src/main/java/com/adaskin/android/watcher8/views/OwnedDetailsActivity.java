@@ -58,7 +58,7 @@ public class OwnedDetailsActivity extends GenericDetailsActivity implements Acco
         mRefreshButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                detailRefreshButtonClicked(view);
+                detailRefreshButtonClicked();
         }
         });
 
@@ -69,7 +69,7 @@ public class OwnedDetailsActivity extends GenericDetailsActivity implements Acco
     public void fillData() {
         TextView nameField = findViewById(R.id.owned_full_name_field);
         TextView ppsField = findViewById(R.id.owned_pps_field);
-        TextView divPSField = findViewById(R.id.owned_divps_field);
+        TextView divPSField = findViewById(R.id.owned_divPerShare_field);
         TextView analOpField = findViewById(R.id.owned_anal_op_field);
         TextView yrMinField = findViewById(R.id.owned_yr_min_field);
         TextView yrMaxField = findViewById(R.id.owned_yr_max_field);
@@ -112,7 +112,7 @@ public class OwnedDetailsActivity extends GenericDetailsActivity implements Acco
                 R.id.chng_buy_field_id,
                 R.id.eff_div_field_id};
 
-        BuyBlockCursorAdapter bbca
+        @SuppressWarnings("SpellCheckingInspection") BuyBlockCursorAdapter bbca
                 = new BuyBlockCursorAdapter(this, cursor, mQuote.mPctGainTarget, fields, ids);
 
         blockListView.setAdapter(bbca);
@@ -121,7 +121,7 @@ public class OwnedDetailsActivity extends GenericDetailsActivity implements Acco
     private void displayTotalInvestment(Cursor cursor, StockQuote quote) {
         TextView amountView = findViewById(R.id.owned_total_investment_amount);
         TextView gainView = findViewById(R.id.owned_total_investment_gain);
-        TextView divyView = findViewById(R.id.owned_total_investment_divy);
+        TextView divYieldView = findViewById(R.id.owned_total_investment_divYield);
 
         float totalShares = 0.0f;
         float totalAmount = 0.0f;
@@ -143,9 +143,9 @@ public class OwnedDetailsActivity extends GenericDetailsActivity implements Acco
         Themes.adjustOverallTextColor(this, gainView, overallGain);
 
         if (mQuote.mDivPerShare > Constants.MINIMUM_SIGNIFICANT_VALUE)
-            divyView.setText(String.format(Locale.US, Constants.PERCENTAGE_FORMAT, overallEffectiveDividend));
+            divYieldView.setText(String.format(Locale.US, Constants.PERCENTAGE_FORMAT, overallEffectiveDividend));
         else
-            divyView.setText("--");
+            divYieldView.setText("--");
     }
 
     // Create context menu and dispatch selections

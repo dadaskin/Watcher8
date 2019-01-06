@@ -1,6 +1,5 @@
 package com.adaskin.android.watcher8.fragments;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
@@ -24,8 +23,8 @@ abstract public class ListFragmentBase extends ListFragment {
         void moveToOwned(Intent data);
     }
 
-    protected int mTopVisiblePosition = -1;
-    protected int mTopPadding = -1;
+    int mTopVisiblePosition = -1;
+    int mTopPadding = -1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -36,7 +35,7 @@ abstract public class ListFragmentBase extends ListFragment {
 
     public abstract void redisplayList();
 
-    protected StockQuote getQuoteFromRow(View v)
+    StockQuote getQuoteFromRow(View v)
     {
         ListView lv = getListView();
         View firstChildView = lv.getChildAt(0);
@@ -52,7 +51,7 @@ abstract public class ListFragmentBase extends ListFragment {
         return model.findStockQuoteBySymbol(symbol);
     }
 
-    protected String getSymbolFromRow(View v) {
+    String getSymbolFromRow(View v) {
         LinearLayout ll = (LinearLayout)v;
         TextView tv = (TextView)ll.getChildAt(Constants.SYMBOL_VIEW_IN_QUOTE);
         return tv.getText().toString();

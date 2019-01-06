@@ -60,7 +60,7 @@
                     />
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                     android:textColor="@color/normal_text_color"
-                    android:id="@+id/owned_divps_field"
+                    android:id="@+id/owned_divPerShare_field"
                     android:paddingStart="@dimen/details_padding_left"
                     android:paddingEnd="@dimen/details_padding_right"
 
@@ -111,6 +111,7 @@
                     />
             </LinearLayout>
 
+            <!--suppress AndroidMissingOnClickHandler -->
             <Button
                 android:layout_row="0"
                 android:layout_column="1"
@@ -122,7 +123,6 @@
                 android:background="@color/view_background_color"
                 android:drawableLeft="@drawable/progress"
                 tools:ignore="RtlHardcoded"
-                android:onClick="detailRefreshButtonClicked"
                 />
 
         </GridLayout>
@@ -207,7 +207,7 @@
                 android:layout_width="0sp"
                 android:layout_weight="16"
                 android:textColor="@color/normal_text_color"
-                android:id="@+id/owned_total_investment_divy"
+                android:id="@+id/owned_total_investment_divYield"
                 android:paddingStart="@dimen/details_padding_left"
                 android:paddingEnd="@dimen/details_padding_right"
                 android:layout_gravity="center_vertical"

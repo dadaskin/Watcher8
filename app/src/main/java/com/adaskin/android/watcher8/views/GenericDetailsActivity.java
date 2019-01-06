@@ -22,7 +22,7 @@ public abstract class GenericDetailsActivity extends AppCompatActivity implement
         super();
     }
 
-    public void setTitleString(String symbol) {
+    void setTitleString(String symbol) {
         ActionBar actionBar = getSupportActionBar();
         Objects.requireNonNull(actionBar).setDisplayShowHomeEnabled(false);
         actionBar.setDisplayShowCustomEnabled(true);
@@ -30,14 +30,14 @@ public abstract class GenericDetailsActivity extends AppCompatActivity implement
         actionBar.setBackgroundDrawable(new ColorDrawable(getColor(android.R.color.white))); // Makes background of whole actionBar white
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View customTitleView = Objects.requireNonNull(inflater).inflate(R.layout.custom_main_titlebar, null);
-        TextView tv = customTitleView.findViewById(R.id.custom_main_titlebar_text);
+        TextView tv = customTitleView.findViewById(R.id.custom_main_title_bar_text);
         tv.setText(getString(R.string.app_name) + ": " + symbol + getString(R.string.detail) );
         actionBar.setCustomView(customTitleView);
     }
 
     public abstract void fillData();
 
-    public void detailRefreshButtonClicked(View v) {
+    void detailRefreshButtonClicked() {
         Refresher refresher = new Refresher(this,this);
         refresher.refreshSingle(mQuote);
     }

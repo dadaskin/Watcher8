@@ -2,7 +2,7 @@
     <string name="app_name">Watcher8</string>
     <string name="tab_text_owned">Owned</string>
     <string name="tab_text_watch">Watch</string>
-    <string name="build_string">Build 0.4.1 \u0020\u0020\u0020 06 Jan 2019</string>
+    <string name="build_string">Build 0.4.2 \u0020\u0020\u0020 06 Jan 2019</string>
     <string name="action_export">Export DB</string>
     <string name="action_export_JSON">Export JSON</string>
     <string name="action_import">Import DB</string>
@@ -24,7 +24,7 @@
     <string name="anal_label">Analysts\' Opinion: </string>
     <string name="strike_price_button">Strike\nPrice:</string>
     <string name="gain_target_label">Gain\nTarget:</string>
-    <string name="total_investment_label">Total Invesment: </string>
+    <string name="total_investment_label">Total Investment: </string>
     <string name="add_block_label">Add Another Block</string>
 
     <!-- Add Buy Block -->

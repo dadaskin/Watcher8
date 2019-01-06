@@ -34,7 +34,7 @@ public class WatchDetailsActivity extends GenericDetailsActivity {
         mRefreshButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                detailRefreshButtonClicked(view);
+                detailRefreshButtonClicked();
             }
         });
 
@@ -45,7 +45,7 @@ public class WatchDetailsActivity extends GenericDetailsActivity {
     public void fillData() {
         TextView nameField = findViewById(R.id.watch_full_name_field);
         TextView ppsField = findViewById(R.id.watch_pps_field);
-        TextView divPSField = findViewById(R.id.watch_divps_field);
+        TextView divPSField = findViewById(R.id.watch_divPerShare_field);
         TextView analOpField = findViewById(R.id.watch_anal_op_field);
         TextView yrMinField = findViewById(R.id.watch_yr_min_field);
         TextView yrMaxField = findViewById(R.id.watch_yr_max_field);

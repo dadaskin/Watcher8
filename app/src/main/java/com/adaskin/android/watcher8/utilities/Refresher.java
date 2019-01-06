@@ -28,12 +28,12 @@ public class Refresher {
         void fillData();
     }
 
-    private Context mContext;
-    private RequestQueue mRequestQueue;
+    private final Context mContext;
+    private final RequestQueue mRequestQueue;
     private final List<String> mInvalidSymbols = new ArrayList<>();
     private int mUnansweredRequests;
-    private RefreshedObject mRefreshedObject;
-    private AnimationDrawable mDrawable;
+    private final RefreshedObject mRefreshedObject;
+    private final AnimationDrawable mDrawable;
 
     public Refresher(Context context, RefreshedObject refreshedObject) {
         mContext = context;
@@ -193,7 +193,7 @@ public class Refresher {
         String msg = createInvalidSymbolMessage(mInvalidSymbols);
         removeInvalidSymbolsFromDb(mInvalidSymbols, quoteList);
 
-        // Buld and display dialog
+        // Build and display dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         builder.setIcon(android.R.drawable.ic_dialog_alert)
                 .setTitle("Invalid Symbol(s)")

@@ -25,12 +25,14 @@
         <!--android:title="@string/action_import"-->
         <!--android:onClick="ImportCommand"-->
         <!--app:showAsAction="never" />-->
+    <!--suppress AndroidMissingOnClickHandler -->
     <item
         android:id="@+id/action_export_JSON"
         android:orderInCategory="200"
         android:title="@string/action_export_JSON"
         android:onClick="ExportJsonCommand"
         app:showAsAction="never" />
+    <!--suppress AndroidMissingOnClickHandler -->
     <item
         android:id="@+id/action_import_JSON"
         android:orderInCategory="300"

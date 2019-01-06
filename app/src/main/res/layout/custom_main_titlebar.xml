@@ -16,7 +16,7 @@
         tools:ignore="RtlSymmetry" />
 
     <TextView
-        android:id="@+id/custom_main_titlebar_text"
+        android:id="@+id/custom_main_title_bar_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingStart="55dp"

@@ -25,21 +25,21 @@ public class QuoteCursorAdapter extends SimpleCursorAdapter {
         TextView lastQView;
     }
 
-    private LayoutInflater mInflater;
-    private int mOverallAccountIdx;
-    private int mSymbolIdx;
-    private int mPPSIdx;
-    private int mChngVsCloseIdx;
-    private int mStrikeIdx;
-    private int mGainTargetIdx;
+    private final LayoutInflater mInflater;
+    private final int mOverallAccountIdx;
+    private final int mSymbolIdx;
+    private final int mPPSIdx;
+    private final int mChngVsCloseIdx;
+    private final int mStrikeIdx;
+    private final int mGainTargetIdx;
 
-    private int mNormalBackgroundColor;
-    private int mBuyBackgroundColor;
-    private int mSellBackgroundColor;
+    private final int mNormalBackgroundColor;
+    private final int mBuyBackgroundColor;
+    private final int mSellBackgroundColor;
 
-    private int mNeutralTextColor;
-    private int mPositiveDayChangeTextColor;
-    private int mNegativeTextColor;
+    private final int mNeutralTextColor;
+    private final int mPositiveDayChangeTextColor;
+    private final int mNegativeTextColor;
 
     public QuoteCursorAdapter(Context context,
                               Cursor cursor,

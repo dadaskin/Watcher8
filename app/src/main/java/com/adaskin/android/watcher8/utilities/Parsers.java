@@ -1,28 +1,10 @@
 package com.adaskin.android.watcher8.utilities;
 
-import android.util.Log;
-
-import com.adaskin.android.watcher8.models.BuyBlock;
 import com.adaskin.android.watcher8.models.StockQuote;
 
-import java.io.BufferedReader;
-import java.io.IOException;
 
-public class Parsers {
-    private static final String badSymbolPattern = "<title>Symbol Lookup from Yahoo! Finance";
-    private static final String nameStart = "D(ib)\" data-reactid=\"35\">";
-    private static final String nameStop = "</span>";
-    private static final String ppsStart = "<!-- react-text: 15 -->";
-    private static final String ppsStop = "<!--";
-    private static final String divStart = "DIVIDEND_AND_YIELD-value";
-    private static final String divStop = " (";
-    private static final String rangeStart = "FIFTY_TWO_WK_RANGE-value";
-    private static final String rangeStop = "</td>";
-    private static final String opinionStart = "\"recommendationMean\":{\"raw\":";
-    private static final String opinionStop = ",\"fmt\"";
-
-    private static final int divStartOffset = 20;
-    private static final int rangeStartOffset = 20;
+@SuppressWarnings("SpellCheckingInspection")
+class Parsers {
 
     public static boolean parseYAHOOResponse(final StockQuote quote, String response){
         String invalidSymbolMarker = "content=\"Symbol Lookup from Yahoo Finance\"";

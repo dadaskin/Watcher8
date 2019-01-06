@@ -10,7 +10,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-public class DbTable {
+class DbTable {
 
     private static final String LAST_UPDATE_TABLE_CREATE =
         "create table " + DbAdapter.LAST_UPDATE_TABLE + " (" +

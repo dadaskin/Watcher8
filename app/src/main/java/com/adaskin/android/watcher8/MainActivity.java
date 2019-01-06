@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements ListFragmentBase.
         actionBar.setBackgroundDrawable(new ColorDrawable(getColor(android.R.color.white)));
         LayoutInflater inflater = (LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View customTitleView = Objects.requireNonNull(inflater).inflate(R.layout.custom_main_titlebar, null);
-        TextView tv = customTitleView.findViewById(R.id.custom_main_titlebar_text);
+        TextView tv = customTitleView.findViewById(R.id.custom_main_title_bar_text);
         tv.setText(getString(R.string.app_name));
         actionBar.setCustomView(customTitleView);
 
@@ -152,26 +152,30 @@ public class MainActivity extends AppCompatActivity implements ListFragmentBase.
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE) {
-            if ((grantResults.length > 0) && grantResults[0]== PackageManager.PERMISSION_GRANTED) {
-                doPublicWrite();
-            } else {
-                Toast.makeText(this, "Writing a public file is not permitted.", Toast.LENGTH_LONG).show();
-            }
-        } else if (requestCode == PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE) {
-            if ((grantResults.length > 0) && grantResults[0]== PackageManager.PERMISSION_GRANTED) {
-                showAvailableImportFilenames();
-            } else {
-                Toast.makeText(this, "Reading a public  file is not permitted.", Toast.LENGTH_LONG).show();
-            }
-        } else {
-            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE:
+                if ((grantResults.length > 0) && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    doPublicWrite();
+                } else {
+                    Toast.makeText(this, "Writing a public file is not permitted.", Toast.LENGTH_LONG).show();
+                }
+                break;
+            case PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE:
+                if ((grantResults.length > 0) && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    showAvailableImportFilenames();
+                } else {
+                    Toast.makeText(this, "Reading a public  file is not permitted.", Toast.LENGTH_LONG).show();
+                }
+                break;
+            default:
+                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+                break;
         }
     }
 
     private String createBackupFilename() {
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyMMddHHmmss", Locale.US);
+        @SuppressWarnings("SpellCheckingInspection") SimpleDateFormat sdf = new SimpleDateFormat("yyMMddHHmmss", Locale.US);
         Calendar calendar = Calendar.getInstance();
         String timestamp = sdf.format(calendar.getTime());
         return "Watcher8_" + timestamp;
@@ -275,7 +279,7 @@ public class MainActivity extends AppCompatActivity implements ListFragmentBase.
     }
 
     @Override
-    public void refreshButtonClicked(final FooterFragment footerFragment, View buttonView) {
+    public void refreshButtonClicked(final FooterFragment footerFragment) {
         Refresher refresher = new Refresher(this, footerFragment);
         refresher.refreshAll();
     }

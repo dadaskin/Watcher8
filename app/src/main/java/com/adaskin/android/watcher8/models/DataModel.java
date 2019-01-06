@@ -6,7 +6,6 @@ import android.os.Parcelable;
 import com.adaskin.android.watcher8.database.DbAdapter;
 import com.adaskin.android.watcher8.utilities.Constants;
 import com.adaskin.android.watcher8.utilities.QuoteStatus;
-import com.adaskin.android.watcher8.utilities.SeedData;
 
 import java.util.ArrayList;
 import java.util.List;

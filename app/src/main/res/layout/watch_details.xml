@@ -50,7 +50,7 @@
                 android:text="@string/div_label"/>
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                 android:textColor="@color/normal_text_color"
-                android:id="@+id/watch_divps_field"
+                android:id="@+id/watch_divPerShare_field"
                 android:paddingStart="@dimen/details_padding_left"
                 android:paddingEnd="@dimen/details_padding_right"
                 />

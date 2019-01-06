@@ -1,10 +1,5 @@
 package com.adaskin.android.watcher8.database;
 
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.nio.channels.FileChannel;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -23,7 +18,6 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.Environment;
 
 public class DbAdapter {
 
@@ -132,14 +126,12 @@ public class DbAdapter {
         return cv;
     }
 
-// Create methods
-
+    // Create methods
     public void createLastUpdateRecord(String dateString, String timeString) {
         ContentValues cv = createLastUpdateCV(dateString, timeString);
         mDb.insert(LAST_UPDATE_TABLE, "", cv);
     }
 
-    // OK
     public void createQuoteRecord(StockQuote quote) {
         quote.determineOverallAccountColor();
         ContentValues cv = createQuoteCV(quote);
@@ -149,47 +141,16 @@ public class DbAdapter {
                 createBuyBlockRecord(bb, newRow);
             }
         }
-
-        //backupDbToFile();
     }
 
-    // OK
     private void  createBuyBlockRecord(BuyBlock block, long parentId) {
         ContentValues cv = createBuyBlockCV(block, parentId);
         mDb.insert(BUY_BLOCK_TABLE, "", cv);
 
     }
 
-// --Commented out by Inspection START (5/3/2017 11:02 AM):
-//// Read methods
-//    public int getLastUpdateCount() {
-//    	Cursor cursor = mDb.rawQuery("select * from " + LAST_UPDATE_TABLE, null);
-//    	int n = cursor.getCount();
-//    	cursor.close();
-//    	return n;
-//    }
-// --Commented out by Inspection STOP (5/3/2017 11:02 AM)
-
-    // OK
-    public int getQuoteCount() {
-        Cursor cursor = mDb.rawQuery("Select * from " + QUOTE_TABLE, null);
-        int n = cursor.getCount();
-        cursor.close();
-        return n;
-    }
-
-// --Commented out by Inspection START (5/3/2017 11:02 AM):
-//    // OK
-//    public int getBuyBlockCount() {
-//    	Cursor cursor = mDb.rawQuery("Select * from " + BUY_BLOCK_TABLE, null);
-//    	int n = cursor.getCount();
-//    	cursor.close();
-//    	return n;
-//    }
-// --Commented out by Inspection STOP (5/3/2017 11:02 AM)
-
     // User must manage cursor
-    public Cursor fetchLastUpdateRecord() {
+    private Cursor fetchLastUpdateRecord() {
         String sql = "select " + U_ROW_ID + " as _id, * from " + LAST_UPDATE_TABLE;
         Cursor cursor = mDb.rawQuery(sql, null);
         cursor.moveToFirst();
@@ -197,7 +158,6 @@ public class DbAdapter {
     }
 
     // User must manage cursor
-    //OK
     public Cursor fetchAllQuoteRecordsByStatus(QuoteStatus status) {
         String statusAsString = statusAsString(status);
         String sql = "select " + Q_ROW_ID + " as _id, * from " + QUOTE_TABLE +
@@ -208,7 +168,6 @@ public class DbAdapter {
     }
 
     // User must manage cursor
-    // OK
     public Cursor fetchBuyBlockRecordsForThisSymbol(String symbol) {
 
         String sql = "select * from " + DB_VIEW_NAME +
@@ -218,21 +177,6 @@ public class DbAdapter {
         return cursor;
     }
 
-// --Commented out by Inspection START (5/3/2017 11:03 AM):
-//    //OK
-//    public String fetchQuoteSymbolFromId(long id) {
-//    	String[] params = new String[] { String.valueOf(id) };
-//    	String sql = "select " + Q_SYMBOL + " from " + QUOTE_TABLE + " where " + Q_ROW_ID + "=?";
-//    	Cursor cursor = mDb.rawQuery(sql, params);
-//    	cursor.moveToFirst();
-//    	int idx = cursor.getColumnIndex(Q_SYMBOL);
-//    	String name = cursor.getString(idx);
-//    	cursor.close();
-//    	return name;
-//    }
-// --Commented out by Inspection STOP (5/3/2017 11:03 AM)
-
-    // OK
     public long fetchQuoteIdFromSymbol(String symbol) {
         String[] params = new String[] { symbol };
         String sql = "select " + Q_ROW_ID + " from " + QUOTE_TABLE + " where " + Q_SYMBOL + "=?";
@@ -247,7 +191,6 @@ public class DbAdapter {
     }
 
     // User must manage cursor
-    // OK
     private Cursor fetchQuoteRecordFromId(long id) {
         String[] params = new String[] { String.valueOf(id) };
         String sql = "select * from " + QUOTE_TABLE + " where " + Q_ROW_ID + "=?";
@@ -266,28 +209,9 @@ public class DbAdapter {
         return fetchQuoteObjectFromId(fetchQuoteIdFromSymbol(symbol));
     }
 
-// --Commented out by Inspection START (5/3/2017 11:03 AM):
-//    public BuyBlock fetchBuyBlockObjectFromSymbolAndDate(String symbol, String dateString) {
-//    	Cursor cursor = fetchBuyBlockRecordsForThisSymbol(symbol);
-//    	int buyDateIdx = cursor.getColumnIndex(B_DATE);
-//    	BuyBlock thisBuyBlock = null;
-//    	while (!cursor.isAfterLast()) {
-//    		String thisDateString = cursor.getString(buyDateIdx);
-//    		if (thisDateString.contentEquals(dateString)) {
-//    			thisBuyBlock = makeBuyBlockFromCursor(cursor);
-//    			break;
-//    		}
-//    		cursor.moveToNext();
-//    	}
-//    	cursor.close();
-//    	return thisBuyBlock;
-//    }
-// --Commented out by Inspection STOP (5/3/2017 11:03 AM)
-
-
     public List<StockQuote> fetchStockQuoteList() {
 
-        List<StockQuote> quoteList = new ArrayList<StockQuote>();
+        List<StockQuote> quoteList = new ArrayList<>();
         Cursor cursor = this.fetchAllQuoteRecords();
 
         while (!cursor.isAfterLast()) {
@@ -340,7 +264,7 @@ public class DbAdapter {
 
         // Get elements of BuyBlock objects associated with this symbol
         Cursor bCursor = fetchBuyBlockRecordsForThisSymbol(symbol);
-        ArrayList<BuyBlock> bbList = new ArrayList<BuyBlock>();
+        ArrayList<BuyBlock> bbList = new ArrayList<>();
         while (!bCursor.isAfterLast()) {
             BuyBlock bb = makeBuyBlockFromCursor(bCursor);
             bbList.add(bb);
@@ -362,11 +286,7 @@ public class DbAdapter {
         return quote;
     }
 
-
-
-
     // User must manage cursor
-    // OK
     private Cursor fetchAllQuoteRecords() {
         String sql = "select " + Q_ROW_ID + " as _id, * from " + QUOTE_TABLE;
         Cursor cursor = mDb.rawQuery(sql, new String[] {});
@@ -376,7 +296,6 @@ public class DbAdapter {
 
 
     // Update methods
-    // OK
     public void changeQuoteRecord(long id, StockQuote newQuote) {
         ContentValues quoteCV = createQuoteCV(newQuote);
         for (BuyBlock bb : newQuote.mBuyBlockList)
@@ -393,21 +312,7 @@ public class DbAdapter {
                 quoteCV,
                 Q_ROW_ID + "=?",
                 new String[] {String.valueOf(id)});
-
-        //backupDbToFile();
     }
-
-
-// --Commented out by Inspection START (5/3/2017 11:03 AM):
-//    public int changeBuyBlockRecord(long parentId, BuyBlock newBuyBlock) {
-//    	ContentValues bbCV = createBuyBlockCV(newBuyBlock, parentId);
-//    	String dateString = bbCV.getAsString(B_DATE);
-//		return mDb.update(BUY_BLOCK_TABLE,
-//			                 bbCV,
-//				             B_PARENT + "=? and " + B_DATE + "=?",
-//				             new String[] { String.valueOf(parentId), dateString });
-//    }
-// --Commented out by Inspection STOP (5/3/2017 11:03 AM)
 
     // Delete methods
     public void removeLastUpdateRecord() {
@@ -417,36 +322,13 @@ public class DbAdapter {
         mDb.delete(LAST_UPDATE_TABLE, U_ROW_ID + "=?", new String[] {String.valueOf(id)});
     }
 
-    // OK
     public void removeQuoteRecord(String symbol) {
         long id = fetchQuoteIdFromSymbol(symbol);
         mDb.delete(BUY_BLOCK_TABLE, B_PARENT  + "=?", new String[] {String.valueOf(id)});
         mDb.delete(QUOTE_TABLE, Q_ROW_ID + "=?", new String[] {String.valueOf(id)});
-
-        //backupDbToFile();
     }
 
-// --Commented out by Inspection START (5/3/2017 11:03 AM):
-//    // OK
-//    public void removeBuyBlockRecord(String symbol, Date buyDate) {
-//
-//    	// Get QuoteId corresponding to symbol
-//    	long parentId = this.fetchQuoteIdFromSymbol(symbol);
-//
-//    	// Convert Date into dateString
-//    	SimpleDateFormat sdf = new SimpleDateFormat(Constants.DATE_FORMAT, Locale.US);
-//		String dateString = sdf.format(buyDate);
-//
-//    	// Delete the BB from the BB table that corresponds to
-//    	//       B_DATE == dateString && B_PARENT == QuoteID.
-//		String whereClause = B_DATE + "=? and " +  B_PARENT + "=?";
-//		String[] whereArgs = new String[] { dateString, String.valueOf(parentId) };
-//        mDb.delete(BUY_BLOCK_TABLE, whereClause, whereArgs);
-//    }
-// --Commented out by Inspection STOP (5/3/2017 11:03 AM)
-
     public void removeBuyBlockRecord(String symbol, String dateString) {
-
         // Get QuoteId corresponding to symbol
         long parentId = this.fetchQuoteIdFromSymbol(symbol);
 
@@ -455,14 +337,12 @@ public class DbAdapter {
         String whereClause = B_DATE + "=? and " +  B_PARENT + "=?";
         String[] whereArgs = new String[] { dateString, String.valueOf(parentId) };
         mDb.delete(BUY_BLOCK_TABLE, whereClause, whereArgs);
-
-        //backupDbToFile();
     }
 
 
 
 
-// Converter methods
+    // Converter methods
 
     // Converts DB value of status field into Status enum
     public QuoteStatus getStatus(Cursor cursor) {
@@ -472,7 +352,6 @@ public class DbAdapter {
         return statusFromString(statusString);
     }
 
-    // OK
     public float getBestChangeSinceBuy(String symbol) {
         Cursor blockCursor = fetchBuyBlockRecordsForThisSymbol(symbol);
         blockCursor.moveToFirst();
@@ -491,9 +370,7 @@ public class DbAdapter {
         return change;
     }
 
-    // OK
     private void putBestChangeSinceBuyInQuote(String symbol, float changeSinceBuy) {
-
         long id = fetchQuoteIdFromSymbol(symbol);
         Cursor cursor = fetchQuoteRecordFromId(id);
 
@@ -506,20 +383,22 @@ public class DbAdapter {
                 new String[] {String.valueOf(id)});
     }
 
-    // OK
     private String statusAsString(QuoteStatus status) {
-        if (status == QuoteStatus.OWNED) { return ST_OWNED;}
-        else if (status == QuoteStatus.WATCH) { return ST_WATCH;}
-        else { return ST_SOLD;}
+        switch (status) {
+            case OWNED:
+                return ST_OWNED;
+            case WATCH:
+                return ST_WATCH;
+            default:
+                return ST_SOLD;
+        }
     }
 
     private QuoteStatus statusFromString(String statusString) {
         QuoteStatus status;
-
         if (statusString.contentEquals(ST_OWNED)) { status = QuoteStatus.OWNED;}
         else if (statusString.contentEquals(ST_WATCH)) {status = QuoteStatus.WATCH; }
         else { status = QuoteStatus.SOLD; }
-
         return status;
     }
 
@@ -535,52 +414,60 @@ public class DbAdapter {
         mDb.execSQL("DELETE FROM " + BUY_BLOCK_TABLE);
     }
 
-    public boolean importDB()
-    {
-        boolean result = false;
-        try  {
-            File root = mContext.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
-            File srcFile = new File(root.getAbsolutePath() + "/watcher8_backup.db");
-            File dstFile = mContext.getDatabasePath(DbAdapter.DATABASE_NAME);
 
-            FileChannel src = new FileInputStream(srcFile).getChannel();
-            FileChannel dst = new FileOutputStream(dstFile).getChannel();
-
-            dst.transferFrom(src, 0, src.size());
-            src.close();
-            dst.close();
-
-            result = true;
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return result;
-    }
-
-    public boolean exportDB()
-    {
-        boolean result = false;
-        try {
-            File root = mContext.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
-            File dstFile = new File(root.getAbsolutePath() + "/watcher8_backup.db");
-            File srcFile = mContext.getDatabasePath(DbAdapter.DATABASE_NAME);
-
-            FileChannel src = new FileInputStream(srcFile).getChannel();
-            FileChannel dst = new FileOutputStream(dstFile).getChannel();
-
-            dst.transferFrom(src, 0, src.size());
-
-            src.close();
-            dst.close();
-
-            result = true;
-
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-
-        return result;
-    }
+//    public int getQuoteCount() {
+//        Cursor cursor = mDb.rawQuery("Select * from " + QUOTE_TABLE, null);
+//        int n = cursor.getCount();
+//        cursor.close();
+//        return n;
+//    }
+//
+//    public boolean importDB()
+//    {
+//        boolean result = false;
+//        try  {
+//            File root = mContext.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
+//            File srcFile = new File(root.getAbsolutePath() + "/watcher8_backup.db");
+//            File dstFile = mContext.getDatabasePath(DbAdapter.DATABASE_NAME);
+//
+//            FileChannel src = new FileInputStream(srcFile).getChannel();
+//            FileChannel dst = new FileOutputStream(dstFile).getChannel();
+//
+//            dst.transferFrom(src, 0, src.size());
+//            src.close();
+//            dst.close();
+//
+//            result = true;
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//        return result;
+//    }
+//
+//    public boolean exportDB()
+//    {
+//        boolean result = false;
+//        try {
+//            File root = mContext.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
+//            File dstFile = new File(root.getAbsolutePath() + "/watcher8_backup.db");
+//            File srcFile = mContext.getDatabasePath(DbAdapter.DATABASE_NAME);
+//
+//            FileChannel src = new FileInputStream(srcFile).getChannel();
+//            FileChannel dst = new FileOutputStream(dstFile).getChannel();
+//
+//            dst.transferFrom(src, 0, src.size());
+//
+//            src.close();
+//            dst.close();
+//
+//            result = true;
+//
+//        } catch(Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//        return result;
+//    }
 }

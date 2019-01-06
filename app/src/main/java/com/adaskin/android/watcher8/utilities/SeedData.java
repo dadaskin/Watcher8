@@ -7,6 +7,7 @@ import com.adaskin.android.watcher8.database.DbAdapter;
 import com.adaskin.android.watcher8.models.BuyBlock;
 import com.adaskin.android.watcher8.models.StockQuote;
 
+@SuppressWarnings("ALL")
 public class SeedData {
 
     public SeedData(DbAdapter dba) {

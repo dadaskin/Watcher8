@@ -11,9 +11,7 @@ import javax.activation.FileDataSource;
 import javax.activation.MailcapCommandMap;
 import javax.mail.Authenticator;
 import javax.mail.BodyPart;
-import javax.mail.MessagingException;
 import javax.mail.Multipart;
-import javax.mail.NoSuchProviderException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
@@ -26,6 +24,7 @@ import javax.mail.internet.MimeMultipart;
  * Copied from http://developer-dot-android.blogspot.com/2012/03/sending-emails-without-user-interaction.html
  * on May 13, 2017
  */
+@SuppressWarnings("ALL")
 public class Mail extends Authenticator {
     private String _username;
     private String _password;
