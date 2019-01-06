@@ -7,10 +7,12 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.adaskin.android.watcher8.R;
 import com.adaskin.android.watcher8.adapters.AccountAdapter;
@@ -51,25 +53,40 @@ public class AccountSelectionFragment extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-
+        Activity activity = getActivity();
+        if (activity== null) {
+            Log.d("foo", "AccountSelectionFragment.onCreateDialog(): getActivity() returns null");
+            return mDlg;
+        }
+        LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        if (inflater == null) {
+            Toast.makeText(activity, "AccountSelection: Inflater is null", Toast.LENGTH_LONG).show();
+            return mDlg;
+        }
+        View layout = inflater.inflate(R.layout.account_list, null);
         Bundle bundle = getArguments();
+        if (bundle == null){
+            AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+            builder.setTitle("AccountSelection: Bundle is null").setView(layout);
+            mDlg = builder.create();
+            mDlg.show();
+            return mDlg;
+        }
         int accountColor = bundle.getInt("color");
         int index = AccountModel.getBlockColorIndex(accountColor);
 
-        LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View layout = inflater.inflate(R.layout.account_list, null);
-        mLv = (ListView)layout.findViewById(R.id.account_list);
+        mLv = layout.findViewById(R.id.account_list);
 
         mLv.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
-        AccountAdapter accountAdapter = new AccountAdapter(getActivity(), getAccountModelList());
+        AccountAdapter accountAdapter = new AccountAdapter(activity, getAccountModelList());
         mLv.setAdapter(accountAdapter);
         mLv.setItemChecked(index, true);
 
-        Button okButton = (Button)layout.findViewById(R.id.account_list_ok_button);
+        Button okButton = layout.findViewById(R.id.account_list_ok_button);
         okButton.setOnClickListener(mOkListener);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.setTitle("Select Account:");
         builder.setView(layout);
 

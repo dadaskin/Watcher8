@@ -40,7 +40,7 @@ public class WatchAddActivity extends AppCompatActivity {
         actionBar.setBackgroundDrawable(new ColorDrawable(getColor(android.R.color.white))); // Makes background of whole actionBar white
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View customTitleView = Objects.requireNonNull(inflater).inflate(R.layout.custom_main_titlebar, null);
-        TextView tv = (TextView)customTitleView.findViewById(R.id.custom_main_titlebar_text);
+        TextView tv = customTitleView.findViewById(R.id.custom_main_titlebar_text);
         tv.setText(String.format(Locale.US, "%s%s", getString(R.string.app_name),getString(R.string.add_watch)));
         actionBar.setCustomView(customTitleView);
     }
