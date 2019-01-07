@@ -79,8 +79,7 @@ public class StockQuote implements Parcelable {
     public void compute(float lastClosePPS) {
         if (mBuyBlockList != null) {
             for (BuyBlock block: mBuyBlockList)
-                block.computeChange(mPPS);
-
+                block.computeChange(mPPS, mDivPerShare);
             mPctChangeSinceBuy = findBestChangeSinceBuy();
         }
 

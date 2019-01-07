@@ -42,9 +42,10 @@ public class BuyBlock implements Parcelable {
 
     // -------- Methods --------
     // Public Methods
-    public void computeChange(float currentPPS){
+    public void computeChange(float currentPPS, float currentDiv){
         // Assuming that that the sell commission per shares is same as buy.
         mPctChangeSinceBuy = ((currentPPS - mBuyPPS - mBuyCommissionPerShare)/mBuyPPS)*100.0f;
+        mEffDivYield = currentDiv/mBuyPPS * 100f;
     }
 
 
