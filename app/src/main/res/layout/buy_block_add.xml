@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/view_background_color" >
+    android:background="@color/view_background_color"
+    tools:ignore="Overdraw">
 
     <!-- Buy Date -->
     <LinearLayout android:id="@+id/buy_block_row_buy_date"

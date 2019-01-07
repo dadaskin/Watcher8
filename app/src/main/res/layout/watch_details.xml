@@ -9,7 +9,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@color/view_background_color">
+    android:background="@color/view_background_color"
+    tools:ignore="Overdraw">
 
     <!-- Full Name -->
     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"

@@ -10,7 +10,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@color/view_background_color"
-    >
+    tools:ignore="Overdraw">
 
     <LinearLayout android:id="@+id/quote_information"
         android:layout_width="match_parent"
