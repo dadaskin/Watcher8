@@ -2,7 +2,7 @@
     <string name="app_name">Watcher8</string>
     <string name="tab_text_owned">Owned</string>
     <string name="tab_text_watch">Watch</string>
-    <string name="build_string">Build 0.4.4 \u0020\u0020\u0020 06 Jan 2019</string>
+    <string name="build_string">Build 0.4.5 \u0020\u0020\u0020 06 Jan 2019</string>
     <string name="action_export">Export DB</string>
     <string name="action_export_JSON">Export JSON</string>
     <string name="action_import">Import DB</string>
@@ -14,6 +14,9 @@
     <string name="defaultTimeText">Default Time Text</string>
     <string name="defaultDateText">Default Date Text</string>
     <string name="icon_description">Bull Icon</string>
+    <string name="delete_menu_item">Delete</string>
+    <string name="content_description">radio button image</string>
+    <string name="Ok_button_text">OK</string>
 
     <!-- Owned/Watch Detail -->
     <string name="detail">\u0020Detail</string>
@@ -33,6 +36,7 @@
     <string name="num_shares_label"># of Shares:</string>
     <string name="done_button_label">Done</string>
     <string name="change_account_button_label">Change Account</string>
+    <string name="buy_menu_item">Buy a Block</string>
 
     <!-- Add Owned/Watch/Block -->
     <string name="symbol_label">Symbol:</string>
@@ -49,6 +53,9 @@
     <string name="change_parameter_title">: Change Parameter</string>
     <string name="change">Change</string>
     <string name="parameter_on">parameter on</string>
+    <string name="change_shares_menu_item">Change Number of Shares</string>
+    <string name="change_account_menu_item">Change Account</string>
+    <string name="delete_block_menu_item">Delete Block</string>
 
     <!-- Accounts -->
     <string name="unknown_account">Unknown</string>

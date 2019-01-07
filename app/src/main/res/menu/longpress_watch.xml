@@ -2,7 +2,7 @@
 <menu
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/menu_watch_to_owned"  android:title="Buy a Block" />
-    <item android:id="@+id/menu_watch_delete" android:title="Delete" />
+    <item android:id="@+id/menu_watch_to_owned"  android:title="@string/buy_menu_item" />
+    <item android:id="@+id/menu_watch_delete" android:title="@string/delete_menu_item" />
 
 </menu>
