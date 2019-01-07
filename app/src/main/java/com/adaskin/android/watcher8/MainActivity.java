@@ -248,11 +248,6 @@ public class MainActivity extends AppCompatActivity implements ListFragmentBase.
         }
     }
 
-    @Override
-    protected void attachBaseContext(Context base) {
-        super.attachBaseContext(base);
-    }
-
 
     // ListFragmentListener implementation
     @Override
