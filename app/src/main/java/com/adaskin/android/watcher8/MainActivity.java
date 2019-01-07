@@ -8,7 +8,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
-import android.support.multidex.MultiDex;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
@@ -252,7 +251,6 @@ public class MainActivity extends AppCompatActivity implements ListFragmentBase.
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
-        MultiDex.install(this);
     }
 
 
