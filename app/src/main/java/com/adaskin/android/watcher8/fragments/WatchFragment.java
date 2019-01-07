@@ -43,7 +43,7 @@ public class WatchFragment extends ListFragmentBase {
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        getActivity().getMenuInflater().inflate(R.menu.longpress_watch, menu);
+        Objects.requireNonNull(getActivity()).getMenuInflater().inflate(R.menu.longpress_watch, menu);
         super.onCreateContextMenu(menu, v, menuInfo);
     }
 
@@ -77,7 +77,7 @@ public class WatchFragment extends ListFragmentBase {
 
         final String finalSymbol = symbol;
 
-        new AlertDialog.Builder(getActivity())
+        new AlertDialog.Builder(Objects.requireNonNull(getActivity()))
                 .setTitle("Confirm Delete")
                 .setMessage(msg)
                 .setIcon(android.R.drawable.ic_dialog_alert)
@@ -173,14 +173,14 @@ public class WatchFragment extends ListFragmentBase {
                 ((ListFragmentListener) Objects.requireNonNull(getActivity())).quoteAddedOrMoved();
             }
             if (requestCode == Constants.OWNED_ADD_ACTIVITY) {
-                ((ListFragmentListener)getActivity()).moveToOwned(data);
+                ((ListFragmentListener) Objects.requireNonNull(getActivity())).moveToOwned(data);
             }
         }
     }
 
     private void grabNewQuoteInfoAndStore(Intent data){
         Bundle bundle = data.getExtras();
-        String symbol = bundle.getString(Constants.WATCH_ADD_SYMBOL_BUNDLE_KEY);
+        String symbol = Objects.requireNonNull(bundle).getString(Constants.WATCH_ADD_SYMBOL_BUNDLE_KEY);
         float strikePrice = bundle.getFloat(Constants.WATCH_ADD_STRIKE_PRICE_BUNDLE_KEY);
 
         DbAdapter dbAdapter = new DbAdapter(getActivity());

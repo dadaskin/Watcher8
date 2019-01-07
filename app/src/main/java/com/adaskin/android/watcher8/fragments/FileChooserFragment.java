@@ -20,6 +20,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 
 public class FileChooserFragment extends DialogFragment {
 
@@ -52,8 +53,8 @@ public class FileChooserFragment extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View layout = inflater.inflate(R.layout.file_chooser_list, null);
+        LayoutInflater inflater = (LayoutInflater) Objects.requireNonNull(getActivity()).getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View layout = Objects.requireNonNull(inflater).inflate(R.layout.file_chooser_list, null);
         mLv = layout.findViewById(R.id.file_list);
 
         mLv.setChoiceMode(ListView.CHOICE_MODE_SINGLE);

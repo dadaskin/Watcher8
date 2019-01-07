@@ -12,6 +12,7 @@ import com.adaskin.android.watcher8.database.DbAdapter;
 import com.adaskin.android.watcher8.utilities.Constants;
 
 import java.util.Locale;
+import java.util.Objects;
 
 public class WatchDetailsActivity extends GenericDetailsActivity {
 
@@ -22,7 +23,7 @@ public class WatchDetailsActivity extends GenericDetailsActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.watch_details);
 
-        String symbol = getIntent().getExtras().getString(Constants.SYMBOL_BUNDLE_KEY);
+        String symbol = Objects.requireNonNull(getIntent().getExtras()).getString(Constants.SYMBOL_BUNDLE_KEY);
         setTitleString(symbol);
 
         DbAdapter dbAdapter = new DbAdapter(this);

@@ -28,6 +28,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
 public class OwnedFragment extends ListFragmentBase {
 
@@ -43,7 +44,7 @@ public class OwnedFragment extends ListFragmentBase {
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
-        getActivity().getMenuInflater().inflate(R.menu.longpress_owned, menu);
+        Objects.requireNonNull(getActivity()).getMenuInflater().inflate(R.menu.longpress_owned, menu);
         super.onCreateContextMenu(menu, v, menuInfo);
     }
 
@@ -97,7 +98,7 @@ public class OwnedFragment extends ListFragmentBase {
 
         dbAdapter.close();
 
-        ((ListFragmentListener)getActivity()).quoteAddedOrMoved();
+        ((ListFragmentListener) Objects.requireNonNull(getActivity())).quoteAddedOrMoved();
     }
 
     @Override
@@ -143,8 +144,6 @@ public class OwnedFragment extends ListFragmentBase {
 
     @Override
     public void addAQuote() {
-//        String msg = "Start OwnedAddActivity";
-//        Toast.makeText(getContext(), msg, Toast.LENGTH_LONG).show();
         Intent intent = new Intent(getActivity(), OwnedAddActivity.class);
         startActivityForResult(intent, Constants.OWNED_ADD_ACTIVITY);
     }
@@ -164,19 +163,17 @@ public class OwnedFragment extends ListFragmentBase {
                 getListView().setSelectionFromTop(mTopVisiblePosition, mTopPadding);
                 mTopVisiblePosition = -1;
             }
-        }
-
-        if (resultCode == Activity.RESULT_OK) {
-            if (requestCode == Constants.OWNED_ADD_ACTIVITY) {
+        } else if (requestCode == Constants.OWNED_ADD_ACTIVITY) {
+            if (resultCode == Activity.RESULT_OK) {
                 grabNewQuoteInfoAndStore(data);
-                ((ListFragmentListener)getActivity()).quoteAddedOrMoved();
+                ((ListFragmentListener) Objects.requireNonNull(getActivity())).quoteAddedOrMoved();
             }
         }
     }
 
     private void grabNewQuoteInfoAndStore(Intent data) {
         Bundle bundle = data.getExtras();
-        String symbol = bundle.getString(Constants.OWNED_ADD_SYMBOL_BUNDLE_KEY);
+        String symbol = Objects.requireNonNull(bundle).getString(Constants.OWNED_ADD_SYMBOL_BUNDLE_KEY);
         float gainTargetPct = bundle.getFloat(Constants.OWNED_ADD_GAIN_TARGET_BUNDLE_KEY);
         String buyDateString = bundle.getString(Constants.BUY_BLOCK_DATE_KEY);
         float buyNumShares = bundle.getFloat(Constants.BUY_BLOCK_NUM_KEY);
@@ -203,7 +200,7 @@ public class OwnedFragment extends ListFragmentBase {
 
     public void moveToOwned(Intent data) {
         grabNewQuoteInfoAndStore(data);
-        ((ListFragmentListener)getActivity()).quoteAddedOrMoved();
+        ((ListFragmentListener) Objects.requireNonNull(getActivity())).quoteAddedOrMoved();
     }
 
 }

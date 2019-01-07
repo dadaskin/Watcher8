@@ -11,6 +11,8 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.widget.DatePicker;
 
+import java.util.Objects;
+
 /**
  * <p>This class provides a usable {@link DatePickerDialog} wrapped as a {@link DialogFragment},
  * using the compatibility package v4. Its main advantage is handling Issue 34833
@@ -96,7 +98,7 @@ public class DatePickerDialogFragment extends DialogFragment {
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        day = getArguments().getInt(DAY);
+        day = Objects.requireNonNull(getArguments()).getInt(DAY);
         month = getArguments().getInt(MONTH);
         year = getArguments().getInt(YEAR);
     }
@@ -125,7 +127,7 @@ public class DatePickerDialogFragment extends DialogFragment {
 
         if (hasJellyBeanAndAbove()) {
             picker.setButton(DialogInterface.BUTTON_POSITIVE,
-                    getActivity().getString(android.R.string.ok),
+                    Objects.requireNonNull(getActivity()).getString(android.R.string.ok),
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {

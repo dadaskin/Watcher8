@@ -144,7 +144,7 @@ public class OwnedAddActivity extends AppCompatActivity {
 
         if (resultCode == Activity.RESULT_OK) {
             Bundle bundle = intent.getExtras();
-            mFirstBuyBlock = grabBuyBlockInfo(bundle);
+            mFirstBuyBlock = grabBuyBlockInfo(Objects.requireNonNull(bundle));
             grabInfoAndReturn();
         }
 

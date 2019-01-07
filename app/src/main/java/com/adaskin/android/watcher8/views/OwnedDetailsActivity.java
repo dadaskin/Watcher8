@@ -32,6 +32,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 public class OwnedDetailsActivity extends GenericDetailsActivity implements AccountSelectionFragment.AlertOkListener {
 
@@ -44,7 +45,7 @@ public class OwnedDetailsActivity extends GenericDetailsActivity implements Acco
         super.onCreate(savedInstanceState);
         setContentView(R.layout.owned_details);
 
-        String symbol = getIntent().getExtras().getString(Constants.SYMBOL_BUNDLE_KEY);
+        String symbol = Objects.requireNonNull(getIntent().getExtras()).getString(Constants.SYMBOL_BUNDLE_KEY);
         setTitleString(symbol);
 
         DbAdapter dbAdapter = new DbAdapter(this);
@@ -291,7 +292,7 @@ public class OwnedDetailsActivity extends GenericDetailsActivity implements Acco
             dbAdapter.removeQuoteRecord(mQuote.mSymbol);
             switch(requestCode) {
                 case Constants.BUY_BLOCK_ADD_ACTIVITY:
-                    BuyBlock newBB = grabBuyBlockInfo(intent.getExtras());
+                    BuyBlock newBB = grabBuyBlockInfo(Objects.requireNonNull(intent.getExtras()));
                     mQuote.mBuyBlockList.add(newBB);
                     break;
                 case Constants.PARAMETER_CHANGE_ACTIVITY:
