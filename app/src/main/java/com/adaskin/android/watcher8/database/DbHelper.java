@@ -22,7 +22,6 @@ public class DbHelper extends SQLiteOpenHelper {
         return mInstance;
     }
 
-
     @Override
     public void onCreate(SQLiteDatabase database) {
         DbTable.onCreate(database);

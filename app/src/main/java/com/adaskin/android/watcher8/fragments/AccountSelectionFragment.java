@@ -30,8 +30,7 @@ public class AccountSelectionFragment extends DialogFragment {
     }
 
     // Required empty constructor
-    public AccountSelectionFragment() {
-    }
+    public AccountSelectionFragment() {}
 
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -106,5 +105,4 @@ public class AccountSelectionFragment extends DialogFragment {
 
         return  accountList;
     }
-
 }

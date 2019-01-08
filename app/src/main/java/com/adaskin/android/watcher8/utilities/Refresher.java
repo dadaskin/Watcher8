@@ -23,7 +23,6 @@ import java.util.List;
 public class Refresher {
 
     public interface RefreshedObject {
- //       void endButtonAnimation();
         Button getRefreshButton();
         void fillData();
     }

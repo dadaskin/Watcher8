@@ -16,8 +16,6 @@ import java.util.List;
 
 public class AccountAdapter extends ArrayAdapter<AccountModel> {
     public AccountAdapter(Context context, List<AccountModel> accounts) {
-        // Do something with default item
-
         super(context, 0, accounts);
     }
 

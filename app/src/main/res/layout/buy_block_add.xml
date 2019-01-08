@@ -124,7 +124,6 @@
 
     </LinearLayout>
 
-
     <!-- Done button -->
     <Button android:id="@+id/buy_block_done_button"
         android:layout_width="fill_parent"

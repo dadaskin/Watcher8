@@ -19,7 +19,6 @@ public final class AccountModel {
         return "Other";
     }
 
-
     // Returns a list of Account names for a BuyBlock (i.e. no "Mixed")
     public static List<CharSequence> getBlockAccountNameList() {
         List<CharSequence> nameList = new ArrayList<>();
@@ -41,7 +40,6 @@ public final class AccountModel {
         colorList.add(Constants.ACCOUNT_ROTH);
         colorList.add(Constants.ACCOUNT_DRIP);
         return colorList;
-
     }
 
     // Returns index of a color in the above list.

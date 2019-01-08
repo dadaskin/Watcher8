@@ -2,37 +2,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.adaskin.android.watcher8.MainActivity">
-    <!--<item-->
-        <!--android:id="@+id/email_test"-->
-        <!--android:orderInCategory="10"-->
-        <!--android:title="Email"-->
-        <!--android:onClick="EmailTest"-->
-        <!--app:showAsAction="never"/>-->
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:title="@string/build_string"
         app:showAsAction="never" />
-    <!--<item-->
-        <!--android:id="@+id/action_export"-->
-        <!--android:orderInCategory="200"-->
-        <!--android:title="@string/action_export"-->
-        <!--android:onClick="ExportCommand"-->
-        <!--app:showAsAction="never" />-->
-    <!--<item-->
-        <!--android:id="@+id/action_import"-->
-        <!--android:orderInCategory="300"-->
-        <!--android:title="@string/action_import"-->
-        <!--android:onClick="ImportCommand"-->
-        <!--app:showAsAction="never" />-->
-    <!--suppress AndroidMissingOnClickHandler -->
     <item
         android:id="@+id/action_export_JSON"
         android:orderInCategory="200"
         android:title="@string/action_export_JSON"
         android:onClick="ExportJsonCommand"
         app:showAsAction="never" />
-    <!--suppress AndroidMissingOnClickHandler -->
     <item
         android:id="@+id/action_import_JSON"
         android:orderInCategory="300"

@@ -48,7 +48,6 @@ public class BuyBlock implements Parcelable {
         mEffDivYield = currentDiv/mBuyPPS * 100f;
     }
 
-
     // -------- Implementation of Parcelable Interface --------
     // Constructor used when re-constructing object from a parcel
     private BuyBlock(Parcel in) {

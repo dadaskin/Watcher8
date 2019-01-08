@@ -55,7 +55,6 @@ public class DataModel implements Parcelable {
             mDbAdapter.createQuoteRecord(newQuote);
             mMasterList.add(newQuote);
         }
-
     }
 
     private void addNewStockQuote(StockQuote newQuote) {

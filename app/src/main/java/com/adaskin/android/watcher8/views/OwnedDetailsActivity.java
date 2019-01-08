@@ -231,7 +231,6 @@ public class OwnedDetailsActivity extends GenericDetailsActivity implements Acco
             e.printStackTrace();
         }
 
-//        Toast.makeText(this, "TBD: ChangeParameter for NumShares", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(this, ChangeParameterActivity.class);
         intent.putExtra(Constants.SYMBOL_BUNDLE_KEY, mQuote.mSymbol);
         intent.putExtra(Constants.PARAM_NAME_BUNDLE_KEY, "Number of Shares");
@@ -276,7 +275,6 @@ public class OwnedDetailsActivity extends GenericDetailsActivity implements Acco
     // Handle Add Another Block button
     @SuppressWarnings("UnusedParameters")
     public void addAnotherBlockButtonClicked(View v) {
-//        Toast.makeText(this, "TBD: Start BuyBlockAddActivity", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(this, BuyBlockActivity.class);
         intent.putExtra(Constants.BUY_BLOCK_SYMBOL_KEY, mQuote.mSymbol);
         startActivityForResult(intent, Constants.BUY_BLOCK_ADD_ACTIVITY);
@@ -336,7 +334,6 @@ public class OwnedDetailsActivity extends GenericDetailsActivity implements Acco
     // Handle parameter change buttons
     @SuppressWarnings("UnusedParameters")
     public void changeButtonClicked_StrikePrice(View v) {
-//        Toast.makeText(this, "TBD: Call ChangeParameterActivity for Strike Price", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(this, ChangeParameterActivity.class);
         intent.putExtra(Constants.SYMBOL_BUNDLE_KEY, mQuote.mSymbol);
         intent.putExtra(Constants.PARAM_NAME_BUNDLE_KEY, "Strike Price");
@@ -346,7 +343,6 @@ public class OwnedDetailsActivity extends GenericDetailsActivity implements Acco
 
     @SuppressWarnings("UnusedParameters")
     public void changeButtonClicked_GainTarget(View v) {
-//        Toast.makeText(this, "TBD Call ChangeParameterActivity for Gain Target", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(this, ChangeParameterActivity.class);
         intent.putExtra(Constants.SYMBOL_BUNDLE_KEY, mQuote.mSymbol);
         intent.putExtra(Constants.PARAM_NAME_BUNDLE_KEY, "Gain Target");

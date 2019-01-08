@@ -30,8 +30,7 @@ public class WatchFragment extends ListFragmentBase {
 
     private int mSelectedPosition = -1;
 
-    public WatchFragment() {
-    }
+    public WatchFragment() {}
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -66,7 +65,6 @@ public class WatchFragment extends ListFragmentBase {
     }
 
     private void buyBlockOfThisStock(String symbol) {
-//        Toast.makeText(getActivity(), "TBD: Buy a block", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(getActivity(), OwnedAddActivity.class);
         intent.putExtra(Constants.BUY_BLOCK_SYMBOL_KEY, symbol);
         startActivityForResult(intent, Constants.OWNED_ADD_ACTIVITY);
@@ -144,8 +142,6 @@ public class WatchFragment extends ListFragmentBase {
 
     @Override
     public void addAQuote() {
-//        String msg = "Start WatchAddActivity";
-//        Toast.makeText(getContext(), msg, Toast.LENGTH_LONG).show();
         Intent intent = new Intent(getActivity(),WatchAddActivity.class);
         startActivityForResult(intent, Constants.WATCH_ADD_ACTIVITY);
     }

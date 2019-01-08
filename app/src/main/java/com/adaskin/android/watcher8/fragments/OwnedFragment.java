@@ -32,8 +32,7 @@ import java.util.Objects;
 
 public class OwnedFragment extends ListFragmentBase {
 
-    public OwnedFragment() {
-    }
+    public OwnedFragment() {}
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {

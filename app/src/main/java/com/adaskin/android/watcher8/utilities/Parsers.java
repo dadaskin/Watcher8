@@ -173,39 +173,6 @@ class Parsers {
         return true;
     }
 
-//    private static String findItemTrimString(String input, String startPattern, int startOffset, String stopPattern, StockQuote quote, int itemNumber) {
-//        String remainder = input;
-//        int startIdx = input.indexOf(startPattern);
-//        if (startIdx != -1) {
-//            String sub = input.substring(startIdx + startPattern.length() + startOffset);
-//            int stopIdx = sub.indexOf(stopPattern);
-//            if (stopIdx != -1)
-//            {
-//                String itemString = sub.substring(0, stopIdx);
-//                remainder = sub.substring(stopIdx + stopPattern.length());
-//                switch(itemNumber)  {
-//                    case 0: quote.mFullName = itemString.replace("&amp;","&");
-//                        break;
-//                    case 1: quote.mPPS = parseFloatOrNA(itemString);
-//                        break;
-//                    case 2: // Do stuff involving previous value
-//                        float previousClose = parseFloatOrNA(itemString);
-//                        quote.compute(previousClose);
-//                        break;
-//                    case 3: // Parse range string, add pieces to quote
-//                        String yrMinString = itemString.substring(0, itemString.indexOf(" -"));
-//                        String yrMaxString = itemString.substring(itemString.indexOf("- ")+2, itemString.length());
-//                        quote.mYrMin = parseFloatOrNA(yrMinString);
-//                        quote.mYrMax = parseFloatOrNA(yrMaxString);
-//                        break;
-//                    case 4: quote.mDivPerShare = parseFloatOrNA(itemString);
-//                        break;
-//                }
-//            }
-//        }
-//        return remainder;
-//    }
-
     private static float parseFloatOrNA(String field) {
         float parsedFloat = 0.0f;
         if (!field.contains("N/A")) {
