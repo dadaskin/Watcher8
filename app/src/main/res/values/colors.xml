@@ -7,6 +7,7 @@
     <color name="toolbarBackground">#005000</color>
     <color name="dateTextColor">#bbbbbb</color>
     <color name="timeTextColor">#cccccc</color>
+    <color name="highlightColor">#774f7f</color>
 
     <color name="over_gain_target_color">#ff004400</color>
     <color name="under_strike_price_color">#ff770000</color>
