@@ -91,7 +91,7 @@ public class FileChooserFragment extends DialogFragment {
         File folder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_RINGTONES);
         for (File file : folder.listFiles()) {
             String filename = file.getName();
-            if (filename.indexOf("Watcher8") != 0)
+            if ((filename.indexOf("Watcher8") != 0) ||(filename.equals("Watcher8_Parser")))
                 continue;
             filenames.add(filename);
         }

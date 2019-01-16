@@ -31,6 +31,7 @@ import com.adaskin.android.watcher8.fragments.FileChooserFragment;
 import com.adaskin.android.watcher8.fragments.FooterFragment;
 import com.adaskin.android.watcher8.fragments.ListFragmentBase;
 import com.adaskin.android.watcher8.models.StockQuote;
+import com.adaskin.android.watcher8.utilities.Parsers;
 import com.adaskin.android.watcher8.utilities.Refresher;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -118,6 +119,7 @@ public class MainActivity extends AppCompatActivity implements ListFragmentBase.
     // JSON Import/Export methods
     private static final int PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 11;  // Arbitrary value
     private static final int PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 12;   // Different arbitrary value
+    private static final int PERMISSIONS_REQUEST_READ_PARSER_UPDATE = 13;      // Yet another arbitrary value
 
     @SuppressWarnings("unused")
     public void ExportJsonCommand(MenuItem item) {
@@ -151,6 +153,19 @@ public class MainActivity extends AppCompatActivity implements ListFragmentBase.
         }
     }
 
+    @SuppressWarnings("unused")
+    public void UpdateParserCommand(MenuItem item) {
+        int isOk = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
+
+        if (isOk != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{ Manifest.permission.READ_EXTERNAL_STORAGE},
+                    PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+        } else {
+            updateParserStrings();
+        }
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
@@ -168,6 +183,12 @@ public class MainActivity extends AppCompatActivity implements ListFragmentBase.
                     Toast.makeText(this, "Reading a public  file is not permitted.", Toast.LENGTH_LONG).show();
                 }
                 break;
+            case PERMISSIONS_REQUEST_READ_PARSER_UPDATE:
+                if ((grantResults.length > 0) && (grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                    updateParserStrings();
+                } else {
+                    Toast.makeText(this, "Reading a public  file is not permitted.", Toast.LENGTH_LONG).show();
+                }
             default:
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
                 break;
@@ -246,6 +267,11 @@ public class MainActivity extends AppCompatActivity implements ListFragmentBase.
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void updateParserStrings() {
+        Parsers parser = Parsers.getInstance();
+        parser.LoadStrings(this);
     }
 
 

@@ -19,4 +19,10 @@
         android:title="@string/action_import_JSON"
         android:onClick="ImportJsonCommand"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_update_parser"
+        android:orderInCategory="400"
+        android:title="@string/action_update_parser"
+        android:onClick="UpdateParserCommand"
+        app:showAsAction="never"/>
 </menu>

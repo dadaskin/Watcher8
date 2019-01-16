@@ -116,7 +116,8 @@ public class Refresher {
     }
 
     private void handleWebResponse(StockQuote quote, String response) {
-        boolean isValidSymbol = Parsers.parseYAHOOResponse(quote, response);
+        Parsers parser = Parsers.getInstance();
+        boolean isValidSymbol = parser.parseYAHOOResponse(mContext, quote, response);
         mUnansweredRequests--;
         if (!isValidSymbol)
             mInvalidSymbols.add(quote.mSymbol);

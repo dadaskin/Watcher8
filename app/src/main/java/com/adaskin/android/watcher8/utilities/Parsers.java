@@ -1,28 +1,86 @@
 package com.adaskin.android.watcher8.utilities;
 
+import android.content.Context;
+import android.os.Environment;
+import android.util.Log;
+import android.widget.Toast;
+
 import com.adaskin.android.watcher8.models.StockQuote;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.lang.reflect.Type;
 
 
 @SuppressWarnings("SpellCheckingInspection")
-class Parsers {
+public class Parsers {
+    private static Parsers mInstance;
+    private static boolean mLoaded;
+    private ParserStrings mParserStrings;
 
-    public static boolean parseYAHOOResponse(final StockQuote quote, String response){
-        String invalidSymbolMarker = "content=\"Symbol Lookup from Yahoo Finance\"";
-        String nameStart1 = "Lh(18px)\" data-reactid=\"7\">" + quote.mSymbol + " - ";
-        String nameEnd1 = "<";
-        String nameStart2 = "content=\"" + quote.mSymbol + ", ";
-        String nameEnd2 = ", ";
-        String ppsStart = "\"regularMarketPrice\":{\"raw\":";
-        String midPattern = ",\"fmt\":\"";
-        String stopPattern = "\"}";
-        String divStart = "\"dividendRate\":{\"raw\":";
-        String yrStart = "FIFTY_TWO_WK_RANGE-value";
-        String generalMid =">";
-        String yrStop = "</td>";
-        String analStart="\"recommendationMean\":{\"raw\":";
-        String analStop=",\"fmt\"";
-        String prevStart = "<span class=\"Trsdu(0.3s) \" data-reactid=\"";
-        String prevStop = "</span>";
+    private Parsers() {
+        mLoaded = false;
+    }
+
+    public static Parsers getInstance() {
+        if (mInstance == null) {
+            mInstance = new Parsers();
+        }
+        return mInstance;
+    }
+
+
+    public void LoadStrings(Context context){
+        final File folder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_RINGTONES);
+        File file = new File(folder, "Watcher8_Parser");
+        try {
+            FileInputStream fis = new FileInputStream(file);
+            Reader isReader = new InputStreamReader(fis);
+            Type ParserStringType = new TypeToken<ParserStrings>(){}.getType();
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            mParserStrings = gson.fromJson(isReader, ParserStringType);
+            isReader.close();
+            if (mParserStrings == null) {
+                Toast.makeText(context, "Could not read parser strings.", Toast.LENGTH_LONG).show();
+            }
+            Toast.makeText(context, "Parser strings loaded", Toast.LENGTH_LONG).show();
+            mLoaded = true;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean parseYAHOOResponse(Context context, final StockQuote quote, String response){
+        if (!mLoaded) {
+            LoadStrings(context);
+        }
+        String invalidSymbolMarker = mParserStrings.invalidSymbolMarker;
+        String nameStartA = mParserStrings.nameStartA;
+        String nameMidA = mParserStrings.nameMidA;
+        String nameEnd1 = mParserStrings.nameEnd1;
+        String nameStartB = mParserStrings.nameStartB;
+        String nameMidB = mParserStrings.nameMidB;
+        String nameEnd2 = mParserStrings.nameEnd2;
+        String ppsStart = mParserStrings.ppsStart;
+        String midPattern = mParserStrings.midPattern;
+        String stopPattern = mParserStrings.stopPattern;
+        String divStart = mParserStrings.divStart;
+        String yrStart = mParserStrings.yrStart;
+        String generalMid =mParserStrings.generalMid;
+        String yrStop = mParserStrings.yrStop;
+        String analStart = mParserStrings.analStart;
+        String analStop = mParserStrings.analStop;
+        String prevStart = mParserStrings.prevStart;
+        String prevStop = mParserStrings.prevStop;
+
+        String nameStart1 = nameStartA + quote.mSymbol + nameMidA;
+        String nameStart2 = nameStartB + quote.mSymbol + nameMidB;
 
         // Make sure Invalid Symbol Marker isn't present
         int idxInvalid = response.indexOf(invalidSymbolMarker);
@@ -31,8 +89,8 @@ class Parsers {
         }
 
         // Parse out Full Name
-        String nameString1 = "";
-        String nameString2 = "";
+        String nameString1 = "-";
+        String nameString2 = "-";
         int idxNameStart = response.indexOf(nameStart1);
         if (idxNameStart == -1) {
             quote.mFullName = "N/A";
@@ -45,7 +103,7 @@ class Parsers {
             nameString1 = nameString1.substring(0, idxNameStop).replaceFirst("&amp;", "&");
         }
 
-        if (nameString1.length() == 0) {
+        if (nameString1.equals(nameString2)) {
             idxNameStart = response.indexOf(nameStart2);
             if (idxNameStart == -1) {
                 quote.mFullName = "N/A";
@@ -61,6 +119,9 @@ class Parsers {
         quote.mFullName = nameString1;
         if (nameString2.length() > nameString1.length()) {
             quote.mFullName = nameString2;
+        }else {
+            String msg = "Using string 1 for " + quote.mSymbol;
+            Log.d("foo", msg);
         }
 
         // Parse out PPS string
@@ -173,7 +234,7 @@ class Parsers {
         return true;
     }
 
-    private static float parseFloatOrNA(String field) {
+    private float parseFloatOrNA(String field) {
         float parsedFloat = 0.0f;
         if (!field.contains("N/A")) {
             parsedFloat = Float.valueOf(field.replace(",",""));
