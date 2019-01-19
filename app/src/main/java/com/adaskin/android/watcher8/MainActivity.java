@@ -266,6 +266,7 @@ public class MainActivity extends AppCompatActivity implements ListFragmentBase.
             quoteAddedOrMoved();
         } catch (Exception e) {
             e.printStackTrace();
+            Toast.makeText(this, "Exception when importing JSON file.", Toast.LENGTH_LONG).show();
         }
     }
 
