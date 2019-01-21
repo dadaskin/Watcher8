@@ -9,6 +9,7 @@
     <ListView
         android:id="@android:id/list"
         android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:background="@color/list_background_color"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
