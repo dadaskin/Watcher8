@@ -117,10 +117,9 @@ public class DbAdapter {
         String dateString = sdf.format(block.mBuyDate);
         cv.put(B_DATE, dateString);
         cv.put(B_CHANGE_VS_BUY, block.mPctChangeSinceBuy);
-        cv.put(B_COMM_SHARE, block.mBuyCommissionPerShare);
         cv.put(B_EFF_YIELD, block.mEffDivYield);
         cv.put(B_NUM_SHARES, block.mNumShares);
-        cv.put(B_PPS, block.mBuyPPS);
+        cv.put(B_PPS, block.mBuyCostBasis);
         cv.put(B_PARENT, parentId);
         cv.put(B_ACCOUNT, block.mAccountColor);
         return cv;
@@ -228,7 +227,6 @@ public class DbAdapter {
 
         int account = bCursor.getInt(bCursor.getColumnIndex(B_ACCOUNT));
         float changeVsBuy = bCursor.getFloat(bCursor.getColumnIndex(B_CHANGE_VS_BUY));
-        float commPS = bCursor.getFloat(bCursor.getColumnIndex(B_COMM_SHARE));
         String dateString = bCursor.getString(bCursor.getColumnIndex(B_DATE));
         Date buyDate = new Date();
         try {
@@ -240,7 +238,7 @@ public class DbAdapter {
         float numShares = bCursor.getFloat(bCursor.getColumnIndex(B_NUM_SHARES));
         float bPPS = bCursor.getFloat(bCursor.getColumnIndex(B_PPS));
 
-        BuyBlock bb = new BuyBlock(buyDate, numShares, bPPS, commPS, 0.0f, account);
+        BuyBlock bb = new BuyBlock(buyDate, numShares, bPPS, 0.0f, account);
         bb.mEffDivYield = effYield;
         bb.mPctChangeSinceBuy = changeVsBuy;
         return bb;
@@ -413,61 +411,4 @@ public class DbAdapter {
         mDb.execSQL("DELETE FROM " + QUOTE_TABLE);
         mDb.execSQL("DELETE FROM " + BUY_BLOCK_TABLE);
     }
-
-
-//    public int getQuoteCount() {
-//        Cursor cursor = mDb.rawQuery("Select * from " + QUOTE_TABLE, null);
-//        int n = cursor.getCount();
-//        cursor.close();
-//        return n;
-//    }
-//
-//    public boolean importDB()
-//    {
-//        boolean result = false;
-//        try  {
-//            File root = mContext.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
-//            File srcFile = new File(root.getAbsolutePath() + "/watcher8_backup.db");
-//            File dstFile = mContext.getDatabasePath(DbAdapter.DATABASE_NAME);
-//
-//            FileChannel src = new FileInputStream(srcFile).getChannel();
-//            FileChannel dst = new FileOutputStream(dstFile).getChannel();
-//
-//            dst.transferFrom(src, 0, src.size());
-//            src.close();
-//            dst.close();
-//
-//            result = true;
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        return result;
-//    }
-//
-//    public boolean exportDB()
-//    {
-//        boolean result = false;
-//        try {
-//            File root = mContext.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
-//            File dstFile = new File(root.getAbsolutePath() + "/watcher8_backup.db");
-//            File srcFile = mContext.getDatabasePath(DbAdapter.DATABASE_NAME);
-//
-//            FileChannel src = new FileInputStream(srcFile).getChannel();
-//            FileChannel dst = new FileOutputStream(dstFile).getChannel();
-//
-//            dst.transferFrom(src, 0, src.size());
-//
-//            src.close();
-//            dst.close();
-//
-//            result = true;
-//
-//        } catch(Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        return result;
-//    }
 }

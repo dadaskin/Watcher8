@@ -317,7 +317,6 @@ public class OwnedDetailsActivity extends GenericDetailsActivity implements Acco
         String buyDateString = bundle.getString(Constants.BUY_BLOCK_DATE_KEY);
         float buyPrice = bundle.getFloat(Constants.BUY_BLOCK_PRICE_KEY);
         float numShares = bundle.getFloat(Constants.BUY_BLOCK_NUM_KEY);
-        float commissionPS = bundle.getFloat(Constants.BUY_BLOCK_COMMISSION_KEY);
         int accountColor = bundle.getInt(Constants.BUY_BLOCK_ACCOUNT_COLOR_KEY);
 
         SimpleDateFormat sdf = new SimpleDateFormat(Constants.DATE_FORMAT, Locale.US);
@@ -328,7 +327,7 @@ public class OwnedDetailsActivity extends GenericDetailsActivity implements Acco
             e.printStackTrace();
         }
 
-        return new BuyBlock(buyDate, numShares, buyPrice, commissionPS, 0.0f, accountColor);
+        return new BuyBlock(buyDate, numShares, buyPrice, 0.0f, accountColor);
     }
 
     // Handle parameter change buttons

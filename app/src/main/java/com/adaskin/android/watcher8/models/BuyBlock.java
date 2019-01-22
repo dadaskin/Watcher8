@@ -16,8 +16,7 @@ public class BuyBlock implements Parcelable {
     // Raw fields
     public Date mBuyDate;
     public float mNumShares;
-    public float mBuyPPS;
-    public float mBuyCommissionPerShare;
+    public float mBuyCostBasis;
     public int mAccountColor;
 
     // Calculated fields
@@ -29,14 +28,12 @@ public class BuyBlock implements Parcelable {
     public BuyBlock(Date buyDate,
                     float numShares,
                     float buyPrice,
-                    float buyCommissionPS,
                     float divPS,
                     int accountColor) {
         mBuyDate = buyDate;
         mNumShares = numShares;
-        mBuyPPS = buyPrice;
-        mBuyCommissionPerShare = buyCommissionPS;
-        mEffDivYield = divPS/mBuyPPS * 100.0f;
+        mBuyCostBasis = buyPrice;
+        mEffDivYield = divPS/mBuyCostBasis * 100.0f;
         mAccountColor = accountColor;
     }
 
@@ -44,8 +41,8 @@ public class BuyBlock implements Parcelable {
     // Public Methods
     public void computeChange(float currentPPS, float currentDiv){
         // Assuming that that the sell commission per shares is same as buy.
-        mPctChangeSinceBuy = ((currentPPS - mBuyPPS - mBuyCommissionPerShare)/mBuyPPS)*100.0f;
-        mEffDivYield = currentDiv/mBuyPPS * 100f;
+        mPctChangeSinceBuy = ((currentPPS - mBuyCostBasis)/mBuyCostBasis)*100.0f;
+        mEffDivYield = currentDiv/mBuyCostBasis * 100f;
     }
 
     // -------- Implementation of Parcelable Interface --------
@@ -66,8 +63,7 @@ public class BuyBlock implements Parcelable {
         String dateString = sdf.format(mBuyDate);
         dest.writeString(dateString);
         dest.writeFloat(mNumShares);
-        dest.writeFloat(mBuyPPS);
-        dest.writeFloat(mBuyCommissionPerShare);
+        dest.writeFloat(mBuyCostBasis);
         dest.writeFloat(mTotalDividend);
         dest.writeFloat(mEffDivYield);
         dest.writeFloat(mPctChangeSinceBuy);
@@ -83,8 +79,7 @@ public class BuyBlock implements Parcelable {
             e.printStackTrace();
         }
         mNumShares = in.readFloat();
-        mBuyPPS = in.readFloat();
-        mBuyCommissionPerShare = in.readFloat();
+        mBuyCostBasis = in.readFloat();
         mTotalDividend = in.readFloat();
         mEffDivYield = in.readFloat();
         mPctChangeSinceBuy = in.readFloat();

@@ -155,7 +155,6 @@ public class OwnedAddActivity extends AppCompatActivity {
         float buyPrice = bundle.getFloat(Constants.BUY_BLOCK_PRICE_KEY);
         float numShares = bundle.getFloat(Constants.BUY_BLOCK_NUM_KEY);
         int accountColor = bundle.getInt(Constants.BUY_BLOCK_ACCOUNT_COLOR_KEY);
-        float commissionPS = Constants.COMMISSION_PER_TRANSACTION;
 
         SimpleDateFormat sdf = new SimpleDateFormat(Constants.DATE_FORMAT, Locale.US);
         Date buyDate = new Date();
@@ -165,7 +164,7 @@ public class OwnedAddActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        return new BuyBlock(buyDate, numShares, buyPrice, commissionPS, 0.0f, accountColor);
+        return new BuyBlock(buyDate, numShares, buyPrice, /*commissionPS,*/ 0.0f, accountColor);
     }
 
     private void grabInfoAndReturn() {
@@ -183,9 +182,8 @@ public class OwnedAddActivity extends AppCompatActivity {
         bundle.putFloat(Constants.OWNED_ADD_GAIN_TARGET_BUNDLE_KEY, gainTarget);
         bundle.putString(Constants.BUY_BLOCK_DATE_KEY, buyDateString);
         bundle.putFloat(Constants.BUY_BLOCK_NUM_KEY, mFirstBuyBlock.mNumShares);
-        bundle.putFloat(Constants.BUY_BLOCK_PRICE_KEY, mFirstBuyBlock.mBuyPPS);
+        bundle.putFloat(Constants.BUY_BLOCK_PRICE_KEY, mFirstBuyBlock.mBuyCostBasis);
         bundle.putInt(Constants.BUY_BLOCK_ACCOUNT_COLOR_KEY, mFirstBuyBlock.mAccountColor);
-        bundle.putFloat(Constants.BUY_BLOCK_COMMISSION_KEY, mFirstBuyBlock.mBuyCommissionPerShare);
 
         Intent returnIntent = new Intent();
         returnIntent.putExtras(bundle);

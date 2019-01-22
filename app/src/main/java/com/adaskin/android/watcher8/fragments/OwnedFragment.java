@@ -178,7 +178,6 @@ public class OwnedFragment extends ListFragmentBase {
         float buyNumShares = bundle.getFloat(Constants.BUY_BLOCK_NUM_KEY);
         float buyPPS = bundle.getFloat(Constants.BUY_BLOCK_PRICE_KEY);
         int accountColor = bundle.getInt(Constants.BUY_BLOCK_ACCOUNT_COLOR_KEY);
-        float commission = bundle.getFloat(Constants.BUY_BLOCK_COMMISSION_KEY);
 
         SimpleDateFormat sdf = new SimpleDateFormat(Constants.DATE_FORMAT, Locale.US);
         Date buyDate = new Date();
@@ -188,7 +187,7 @@ public class OwnedFragment extends ListFragmentBase {
             e.printStackTrace();
         }
 
-        BuyBlock firstBlock = new BuyBlock(buyDate, buyNumShares, buyPPS, commission, 0.0f, accountColor);
+        BuyBlock firstBlock = new BuyBlock(buyDate, buyNumShares, buyPPS,0.0f, accountColor);
 
         DbAdapter dbAdapter = new DbAdapter(getActivity());
         dbAdapter.open();
