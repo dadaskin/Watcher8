@@ -91,6 +91,7 @@ public class DataModel implements Parcelable {
         long id = mDbAdapter.fetchQuoteIdFromSymbol(symbol);
 
         quote.mStatus = QuoteStatus.WATCH;
+        quote.mOverallAccountColor = Constants.ACCOUNT_UNKNOWN;
         quote.mBuyBlockList = new ArrayList<>();
         mDbAdapter.changeQuoteRecord(id, quote);
     }
