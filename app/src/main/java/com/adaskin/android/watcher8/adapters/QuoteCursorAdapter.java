@@ -84,7 +84,6 @@ public class QuoteCursorAdapter extends SimpleCursorAdapter {
         DbAdapter dbAdapter = new DbAdapter(context);
         dbAdapter.open();
 
-        //Status status = mDbAdapter.getStatus(cursor);
         QuoteStatus status = dbAdapter.getStatus(cursor);
 
         // Account

@@ -210,7 +210,8 @@ public class OwnedDetailsActivity extends GenericDetailsActivity implements Acco
 
         long parentId = dbAdapter.fetchQuoteIdFromSymbol(mQuote.mSymbol);
         mQuote = dbAdapter.fetchQuoteObjectFromId(parentId);
-
+        mQuote.determineOverallAccountColor();
+        dbAdapter.changeQuoteRecord(parentId, mQuote);
         dbAdapter.close();
 
         fillData();
@@ -292,6 +293,7 @@ public class OwnedDetailsActivity extends GenericDetailsActivity implements Acco
                 case Constants.BUY_BLOCK_ADD_ACTIVITY:
                     BuyBlock newBB = grabBuyBlockInfo(Objects.requireNonNull(intent.getExtras()));
                     mQuote.mBuyBlockList.add(newBB);
+                    mQuote.determineOverallAccountColor();
                     break;
                 case Constants.PARAMETER_CHANGE_ACTIVITY:
                     String paramName = intent.getStringExtra(Constants.PARAM_NAME_BUNDLE_KEY);
