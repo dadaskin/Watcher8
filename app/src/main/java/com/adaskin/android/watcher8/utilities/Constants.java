@@ -1,8 +1,6 @@
 package com.adaskin.android.watcher8.utilities;
 
 public class Constants {
-    public static final float COMMISSION_PER_TRANSACTION = 0.05f;  // Fidelity as of ~ 01 Mar 2017
-
     public static final String SYMBOL_BUNDLE_KEY = "TheSymbol";
     public static final String WATCH_ADD_SYMBOL_BUNDLE_KEY = "WatchAddSymbolBundleKey";
     public static final String WATCH_ADD_STRIKE_PRICE_BUNDLE_KEY = "WatchAddStrikePriceBundleKey";
@@ -10,7 +8,6 @@ public class Constants {
     public static final String OWNED_ADD_GAIN_TARGET_BUNDLE_KEY = "OwnedAddGainTargetBundleKey";
     public static final String BUY_BLOCK_SYMBOL_KEY = "BuyBlockSymbolKey";
     public static final String BUY_BLOCK_ACCOUNT_COLOR_KEY = "BuyBlockAccountColorKey";
-    public static final String BUY_BLOCK_COMMISSION_KEY = "BuyBlockCommissionKey";
     public static final String BUY_BLOCK_DATE_KEY = "BuyBlockDateKey";
     public static final String BUY_BLOCK_PRICE_KEY = "BuyBlockPriceKey";
     public static final String BUY_BLOCK_NUM_KEY = "BuyBlockNumKey";

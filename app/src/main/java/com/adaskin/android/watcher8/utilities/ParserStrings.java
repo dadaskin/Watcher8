@@ -1,6 +1,7 @@
 package com.adaskin.android.watcher8.utilities;
 
-public class ParserStrings {
+@SuppressWarnings("unused")
+class ParserStrings {
     public String invalidSymbolMarker;
     public String nameStartA;
     public String nameMidA;
