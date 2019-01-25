@@ -180,7 +180,7 @@
             >
             <TextView android:layout_height="wrap_content"
                 android:layout_width="0sp"
-                android:layout_weight="40"
+                android:layout_weight="36"
                 android:textColor="@color/normal_text_color"
                 android:text="@string/total_investment_label"
                 android:layout_gravity="center_vertical"
@@ -205,7 +205,7 @@
                 />
             <TextView android:layout_height="wrap_content"
                 android:layout_width="0sp"
-                android:layout_weight="16"
+                android:layout_weight="20"
                 android:textColor="@color/normal_text_color"
                 android:id="@+id/owned_total_investment_divYield"
                 android:paddingStart="@dimen/details_padding_left"
