@@ -2,7 +2,7 @@
     <string name="app_name">Watcher8</string>
     <string name="tab_text_owned">Owned</string>
     <string name="tab_text_watch">Watch</string>
-    <string name="build_string">Build 0.9.1 \u0020\u0020\u0020 23 Jan 2019</string>
+    <string name="build_string">Build 1.0.0 \u0020\u0020\u0020 25 Jan 2019</string>
     <string name="action_export_JSON">Export JSON</string>
     <string name="action_import_JSON">Import JSON</string>
     <string name="action_update_parser">Update Parser</string>
