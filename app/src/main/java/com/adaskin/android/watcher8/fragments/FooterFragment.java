@@ -1,5 +1,6 @@
 package com.adaskin.android.watcher8.fragments;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -28,10 +29,18 @@ public class FooterFragment extends Fragment implements Refresher.RefreshedObjec
     private TextView mDateTextView;
     private TextView mTimeTextView;
     private Button mRefreshButton;
+    SimpleDateFormat mSdf = new SimpleDateFormat(Constants.UPDATE_DATE_FORMAT, Locale.US);
+    SimpleDateFormat mStf = new SimpleDateFormat(Constants.UPDATE_TIME_FORMAT, Locale.US);
 
     public interface FooterListener {
         void addButtonClicked();
         void refreshButtonClicked(FooterFragment footerFragment);
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        displayData();
     }
 
     @Nullable
@@ -81,18 +90,26 @@ public class FooterFragment extends Fragment implements Refresher.RefreshedObjec
 
     public void fillData() {
         Date now = new Date();
-
-        SimpleDateFormat sdf = new SimpleDateFormat(Constants.UPDATE_DATE_FORMAT, Locale.US);
-        SimpleDateFormat stf = new SimpleDateFormat(Constants.UPDATE_TIME_FORMAT, Locale.US);
-
-        String dateString = sdf.format(now);
-        String timeString = stf.format(now);
+        String dateString = mSdf.format(now);
+        String timeString = mStf.format(now);
 
         DbAdapter dbAdapter = new DbAdapter(getContext());
         dbAdapter.open();
         dbAdapter.removeLastUpdateRecord();
         dbAdapter.createLastUpdateRecord(dateString, timeString);
         dbAdapter.close();
+
+        refreshUpdateDateTime(dateString, timeString);
+    }
+
+    private void displayData() {
+        DbAdapter dbAdapter = new DbAdapter(getContext());
+        dbAdapter.open();
+        Cursor cursor = dbAdapter.fetchLastUpdateRecord();
+        dbAdapter.close();
+        String dateString = cursor.getString(cursor.getColumnIndex(DbAdapter.U_DATE));
+        String timeString = cursor.getString(cursor.getColumnIndex(DbAdapter.U_TIME));
+        cursor.close();
 
         refreshUpdateDateTime(dateString, timeString);
     }

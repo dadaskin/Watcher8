@@ -18,8 +18,9 @@ public class DataModel implements Parcelable {
     public DataModel(DbAdapter dbAdapter) {
         mMasterList = new ArrayList<>();
         mDbAdapter = dbAdapter;
-
-        mDbAdapter.createLastUpdateRecord("Aug 31, 2012", "12:22 PM PDT");
+        if (!mDbAdapter.lastUpdateRecordExists()) {
+            mDbAdapter.createLastUpdateRecord("Aug 31, 2012", "12:22 PM PDT");
+        }
         mMasterList = mDbAdapter.fetchStockQuoteList();
     }
 

@@ -127,6 +127,11 @@ public class DbAdapter {
 
     // Create methods
     public void createLastUpdateRecord(String dateString, String timeString) {
+        // First remove all existing records from LAST_UPDATE_TABLE
+        mDb.execSQL("delete from " + DbAdapter.LAST_UPDATE_TABLE);
+        mDb.execSQL("vacuum");
+
+        // Then insert the new cv.
         ContentValues cv = createLastUpdateCV(dateString, timeString);
         mDb.insert(LAST_UPDATE_TABLE, "", cv);
     }
@@ -148,8 +153,17 @@ public class DbAdapter {
 
     }
 
+    // Read methods
+    public boolean lastUpdateRecordExists() {
+        String sql = "select " + U_ROW_ID + " as _id, * from " + LAST_UPDATE_TABLE;
+        Cursor cursor = mDb.rawQuery(sql, null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count > 0;
+    }
+
     // User must manage cursor
-    private Cursor fetchLastUpdateRecord() {
+    public Cursor fetchLastUpdateRecord() {
         String sql = "select " + U_ROW_ID + " as _id, * from " + LAST_UPDATE_TABLE;
         Cursor cursor = mDb.rawQuery(sql, null);
         cursor.moveToFirst();
@@ -316,8 +330,8 @@ public class DbAdapter {
     public void removeLastUpdateRecord() {
         Cursor cursor = fetchLastUpdateRecord();
         long id = cursor.getLong(cursor.getColumnIndex(U_ROW_ID));
-        cursor.close();
         mDb.delete(LAST_UPDATE_TABLE, U_ROW_ID + "=?", new String[] {String.valueOf(id)});
+        cursor.close();
     }
 
     public void removeQuoteRecord(String symbol) {
