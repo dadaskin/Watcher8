@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/menu_block_change" android:title="@string/change_shares_menu_item" />
+    <item android:id="@+id/menu_account_change" android:title="@string/change_account_menu_item" />
+    <item android:id="@+id/menu_block_delete" android:title="@string/delete_block_menu_item" />
+
+</menu>

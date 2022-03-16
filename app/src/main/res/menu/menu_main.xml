@@ -1,0 +1,28 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.adaskin.android.watcher8.MainActivity">
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="@string/build_string"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_export_JSON"
+        android:orderInCategory="200"
+        android:title="@string/action_export_JSON"
+        android:onClick="ExportJsonCommand"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_import_JSON"
+        android:orderInCategory="300"
+        android:title="@string/action_import_JSON"
+        android:onClick="ImportJsonCommand"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_update_parser"
+        android:orderInCategory="400"
+        android:title="@string/action_update_parser"
+        android:onClick="UpdateParserCommand"
+        app:showAsAction="never"/>
+</menu>

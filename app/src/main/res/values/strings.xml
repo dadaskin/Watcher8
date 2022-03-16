@@ -1,0 +1,58 @@
+<resources>
+    <string name="app_name">Watcher8</string>
+    <string name="tab_text_owned">Owned</string>
+    <string name="tab_text_watch">Watch</string>
+    <string name="build_string">Build 1.1.0 \u0020\u0020\u0020 27 Jan 2019</string>
+    <string name="action_export_JSON">Export JSON</string>
+    <string name="action_import_JSON">Import JSON</string>
+    <string name="action_update_parser">Update Parser</string>
+    <string name="add_button">Add a new Stock Symbol</string>
+    <string name="defaultTimeText">Default Time Text</string>
+    <string name="defaultDateText">Default Date Text</string>
+    <string name="icon_description">Bull Icon</string>
+    <string name="delete_menu_item">Delete</string>
+    <string name="content_description">radio button image</string>
+    <string name="Ok_button_text">OK</string>
+
+    <!-- Owned/Watch Detail -->
+    <string name="detail">\u0020Detail</string>
+    <string name="pps_label">PPS: </string>
+    <string name="div_label">Div/Share: </string>
+    <string name="range_label">Yearly Range: </string>
+    <string name="range_separator">\u0020-\u0020</string>
+    <string name="anal_label">Analysts\' Opinion: </string>
+    <string name="strike_price_button">Strike\nPrice:</string>
+    <string name="gain_target_label">Gain\nTarget:</string>
+    <string name="total_investment_label">Total Investment: </string>
+    <string name="add_block_label">Add Another Block</string>
+
+    <!-- Add Buy Block -->
+    <string name="buy_date_label">Buy Date:</string>
+    <string name="buy_price_label">Buy Price:</string>
+    <string name="num_shares_label"># of Shares:</string>
+    <string name="done_button_label">Done</string>
+    <string name="change_account_button_label">Change Account</string>
+    <string name="buy_menu_item">Buy a Block</string>
+
+    <!-- Add Owned/Watch/Block -->
+    <string name="symbol_label">Symbol:</string>
+    <string name="new_gain_target_label">Gain Target(%):</string>
+    <string name="strike_price_label">Strike Price:</string>
+    <string name="first_block_button_label">Add Information for First Block of Shares</string>
+    <string name="add_buy_block">: Buy Block of\u0020</string>
+    <string name="add_watch">: Add to Watch List</string>
+    <string name="add_owned">: Add to Owned List</string>
+
+    <!-- Change Parameters -->
+    <string name="new_value_label">New value:</string>
+    <string name="old_value_label">Old Value:</string>
+    <string name="change_parameter_title">: Change Parameter</string>
+    <string name="change">Change</string>
+    <string name="parameter_on">parameter on</string>
+    <string name="change_shares_menu_item">Change Number of Shares</string>
+    <string name="change_account_menu_item">Change Account</string>
+    <string name="delete_block_menu_item">Delete Block</string>
+
+    <!-- Accounts -->
+    <string name="unknown_account">Unknown</string>
+</resources>

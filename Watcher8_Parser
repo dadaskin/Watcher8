@@ -1,0 +1,20 @@
+{
+    "invalidSymbolMarker" : "content=\"Symbol Lookup from Yahoo Finance\"",
+    "nameStartA" : "Lh(18px)\" data-reactid=\"7\">",
+    "nameMidA" : " - ",
+    "nameEnd1" : "<",
+    "nameStartB" : "content=\"",
+    "nameMidB" : ", ",
+    "nameEnd2" : ", ",
+    "ppsStart" : "\"regularMarketPrice\":{\"raw\":",
+    "midPattern" : ",\"fmt\":\"",
+    "stopPattern" : "\"}",
+    "divStart" : "\"dividendRate\":{\"raw\":",
+    "yrStart" : "FIFTY_TWO_WK_RANGE-value",
+    "generalMid" :">",
+    "yrStop" : "</td>",
+    "analStart" :"\"recommendationMean\":{\"raw\":",
+    "analStop" :",\"fmt\"",
+    "prevStart" : "<span class=\"Trsdu(0.3s) \" data-reactid=\"",
+    "prevStop" : "</span>"
+}	

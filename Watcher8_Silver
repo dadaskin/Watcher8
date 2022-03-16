@@ -1,0 +1,1833 @@
+[
+  {
+    "mAnalystsOpinion": 1.7,
+    "mBuyBlockList": [
+      {
+        "mAccountColor": -1019904,
+        "mBuyCostBasis": 594.8,
+        "mBuyDate": "Jan 27, 2016 12:00:00 AM",
+        "mEffDivYield": 0.0,
+        "mNumShares": 10.0,
+        "mPctChangeSinceBuy": 185.17148,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -1019904,
+        "mBuyCostBasis": 812.37,
+        "mBuyDate": "Feb 3, 2017 12:00:00 AM",
+        "mEffDivYield": 0.0,
+        "mNumShares": 10.0,
+        "mPctChangeSinceBuy": 108.79648,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -1019904,
+        "mBuyCostBasis": 995.5,
+        "mBuyDate": "Jul 31, 2017 12:00:00 AM",
+        "mEffDivYield": 0.0,
+        "mNumShares": 10.0,
+        "mPctChangeSinceBuy": 70.386734,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -1019904,
+        "mBuyCostBasis": 1365.99,
+        "mBuyDate": "Apr 3, 2018 12:00:00 AM",
+        "mEffDivYield": 0.0,
+        "mNumShares": 5.0,
+        "mPctChangeSinceBuy": 24.173674,
+        "mTotalDividend": 0.0
+      }
+    ],
+    "mDivPerShare": 0.0,
+    "mFullName": "Amazon.com, Inc.",
+    "mOverallAccountColor": -1019904,
+    "mPPS": 1696.2,
+    "mPctChangeSinceBuy": 185.17148,
+    "mPctChangeSinceLastClose": 0.175995,
+    "mPctGainTarget": 171.0,
+    "mStatus": "OWNED",
+    "mStrikePrice": 1100.0,
+    "mSymbol": "AMZN",
+    "mYrMax": 2050.5,
+    "mYrMin": 1265.93
+  },
+  {
+    "mAnalystsOpinion": 2.3,
+    "mBuyBlockList": [
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 27.55,
+        "mBuyDate": "Jun 4, 2009 12:00:00 AM",
+        "mEffDivYield": 9.872959,
+        "mNumShares": 200.0,
+        "mPctChangeSinceBuy": 19.419247,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -1019904,
+        "mBuyCostBasis": 34.34,
+        "mBuyDate": "Jul 25, 2011 12:00:00 AM",
+        "mEffDivYield": 7.920792,
+        "mNumShares": 157.0,
+        "mPctChangeSinceBuy": -4.1933565,
+        "mTotalDividend": 0.0
+      }
+    ],
+    "mDivPerShare": 2.72,
+    "mFullName": "British American Tobacco p.l.c.",
+    "mOverallAccountColor": -4145152,
+    "mPPS": 32.9,
+    "mPctChangeSinceBuy": 19.419247,
+    "mPctChangeSinceLastClose": 0.488698,
+    "mPctGainTarget": 166.0,
+    "mStatus": "OWNED",
+    "mStrikePrice": 50.0,
+    "mSymbol": "BTI",
+    "mYrMax": 71.44,
+    "mYrMin": 30.67
+  },
+  {
+    "mAnalystsOpinion": 0.0,
+    "mBuyBlockList": [
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 5.31,
+        "mBuyDate": "Jun 19, 2009 12:00:00 AM",
+        "mEffDivYield": 7.909604,
+        "mNumShares": 1000.0,
+        "mPctChangeSinceBuy": -24.105457,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 5.96,
+        "mBuyDate": "Aug 5, 2013 12:00:00 AM",
+        "mEffDivYield": 7.04698,
+        "mNumShares": 1000.0,
+        "mPctChangeSinceBuy": -32.38255,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 5.31,
+        "mBuyDate": "May 29, 2015 12:00:00 AM",
+        "mEffDivYield": 7.909604,
+        "mNumShares": 1000.0,
+        "mPctChangeSinceBuy": -24.105457,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 4.49,
+        "mBuyDate": "Dec 11, 2015 12:00:00 AM",
+        "mEffDivYield": 9.35412,
+        "mNumShares": 1000.0,
+        "mPctChangeSinceBuy": -10.24498,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 4.58,
+        "mBuyDate": "Feb 26, 2016 12:00:00 AM",
+        "mEffDivYield": 9.170305,
+        "mNumShares": 4000.0,
+        "mPctChangeSinceBuy": -12.008727,
+        "mTotalDividend": 0.0
+      }
+    ],
+    "mDivPerShare": 0.42,
+    "mFullName": "Aberdeen Asia-Pacific Income Fund, Inc.",
+    "mOverallAccountColor": -16728064,
+    "mPPS": 4.03,
+    "mPctChangeSinceBuy": -10.24498,
+    "mPctChangeSinceLastClose": 0.248762,
+    "mPctGainTarget": 25.0,
+    "mStatus": "OWNED",
+    "mStrikePrice": 4.0,
+    "mSymbol": "FAX",
+    "mYrMax": 5.02,
+    "mYrMin": 3.82
+  },
+  {
+    "mAnalystsOpinion": 2.5,
+    "mBuyBlockList": [
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 11.32,
+        "mBuyDate": "Dec 22, 2014 12:00:00 AM",
+        "mEffDivYield": 10.600708,
+        "mNumShares": 500.0,
+        "mPctChangeSinceBuy": -9.628977,
+        "mTotalDividend": 0.0
+      }
+    ],
+    "mDivPerShare": 1.2,
+    "mFullName": "Annaly Capital Management, Inc.",
+    "mOverallAccountColor": -16728064,
+    "mPPS": 10.23,
+    "mPctChangeSinceBuy": -9.628977,
+    "mPctChangeSinceLastClose": 0.392541,
+    "mPctGainTarget": 1.0,
+    "mStatus": "OWNED",
+    "mStrikePrice": 14.0,
+    "mSymbol": "NLY",
+    "mYrMax": 11.27,
+    "mYrMin": 9.57
+  },
+  {
+    "mAnalystsOpinion": 1.8,
+    "mBuyBlockList": [
+      {
+        "mAccountColor": -1019904,
+        "mBuyCostBasis": 13.2,
+        "mBuyDate": "Feb 1, 1993 12:00:00 AM",
+        "mEffDivYield": 5.0000005,
+        "mNumShares": 10.0,
+        "mPctChangeSinceBuy": 444.92426,
+        "mTotalDividend": 0.0
+      }
+    ],
+    "mDivPerShare": 0.66,
+    "mFullName": "Agilent Technologies, Inc.",
+    "mOverallAccountColor": -1019904,
+    "mPPS": 71.93,
+    "mPctChangeSinceBuy": 444.92426,
+    "mPctChangeSinceLastClose": 1.56735,
+    "mPctGainTarget": 542.0,
+    "mStatus": "OWNED",
+    "mStrikePrice": 0.0,
+    "mSymbol": "A",
+    "mYrMax": 75.11,
+    "mYrMin": 60.42
+  },
+  {
+    "mAnalystsOpinion": 2.2,
+    "mBuyBlockList": [
+      {
+        "mAccountColor": -1019904,
+        "mBuyCostBasis": 34.83,
+        "mBuyDate": "Mar 25, 2011 12:00:00 AM",
+        "mEffDivYield": 7.694516,
+        "mNumShares": 200.0,
+        "mPctChangeSinceBuy": 118.461075,
+        "mTotalDividend": 0.0
+      }
+    ],
+    "mDivPerShare": 2.68,
+    "mFullName": "American Electric Power Company, Inc.",
+    "mOverallAccountColor": -1019904,
+    "mPPS": 76.09,
+    "mPctChangeSinceBuy": 118.461075,
+    "mPctChangeSinceLastClose": 0.118416,
+    "mPctGainTarget": 124.0,
+    "mStatus": "OWNED",
+    "mStrikePrice": 0.0,
+    "mSymbol": "AEP",
+    "mYrMax": 81.05,
+    "mYrMin": 62.71
+  },
+  {
+    "mAnalystsOpinion": 1.6,
+    "mBuyBlockList": [
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 29.03,
+        "mBuyDate": "Jul 27, 2017 12:00:00 AM",
+        "mEffDivYield": 4.8225975,
+        "mNumShares": 200.0,
+        "mPctChangeSinceBuy": 25.904232,
+        "mTotalDividend": 0.0
+      }
+    ],
+    "mDivPerShare": 1.4,
+    "mFullName": "AstraZeneca PLC",
+    "mOverallAccountColor": -16728064,
+    "mPPS": 36.55,
+    "mPctChangeSinceBuy": 25.904232,
+    "mPctChangeSinceLastClose": 0.716446,
+    "mPctGainTarget": 26.0,
+    "mStatus": "OWNED",
+    "mStrikePrice": 28.0,
+    "mSymbol": "AZN",
+    "mYrMax": 41.78,
+    "mYrMin": 32.69
+  },
+  {
+    "mAnalystsOpinion": 2.3,
+    "mBuyBlockList": [
+      {
+        "mAccountColor": -1019904,
+        "mBuyCostBasis": 21.53,
+        "mBuyDate": "Sep 3, 2008 12:00:00 AM",
+        "mEffDivYield": 7.6172776,
+        "mNumShares": 100.0,
+        "mPctChangeSinceBuy": 132.79144,
+        "mTotalDividend": 0.0
+      }
+    ],
+    "mDivPerShare": 1.64,
+    "mFullName": "Bristol-Myers Squibb Company",
+    "mOverallAccountColor": -1019904,
+    "mPPS": 50.12,
+    "mPctChangeSinceBuy": 132.79144,
+    "mPctChangeSinceLastClose": 1.04839,
+    "mPctGainTarget": 222.0,
+    "mStatus": "OWNED",
+    "mStrikePrice": 50.0,
+    "mSymbol": "BMY",
+    "mYrMax": 70.05,
+    "mYrMin": 44.3
+  },
+  {
+    "mAnalystsOpinion": 2.4,
+    "mBuyBlockList": [
+      {
+        "mAccountColor": -1019904,
+        "mBuyCostBasis": 31.38,
+        "mBuyDate": "Dec 7, 2015 12:00:00 AM",
+        "mEffDivYield": 7.8393884,
+        "mNumShares": 300.0,
+        "mPctChangeSinceBuy": 29.89165,
+        "mTotalDividend": 0.0
+      }
+    ],
+    "mDivPerShare": 2.46,
+    "mFullName": "BP p.l.c.",
+    "mOverallAccountColor": -1019904,
+    "mPPS": 40.76,
+    "mPctChangeSinceBuy": 29.89165,
+    "mPctChangeSinceLastClose": 1.56989,
+    "mPctGainTarget": 40.0,
+    "mStatus": "OWNED",
+    "mStrikePrice": 31.0,
+    "mSymbol": "BP",
+    "mYrMax": 47.83,
+    "mYrMin": 36.15
+  },
+  {
+    "mAnalystsOpinion": 2.2,
+    "mBuyBlockList": [
+      {
+        "mAccountColor": -1019904,
+        "mBuyCostBasis": 148.08,
+        "mBuyDate": "Jan 6, 2015 12:00:00 AM",
+        "mEffDivYield": 0.0,
+        "mNumShares": 100.0,
+        "mPctChangeSinceBuy": 38.087517,
+        "mTotalDividend": 0.0
+      }
+    ],
+    "mDivPerShare": 0.0,
+    "mFullName": "Berkshire Hathaway Inc.",
+    "mOverallAccountColor": -1019904,
+    "mPPS": 204.48,
+    "mPctChangeSinceBuy": 38.087517,
+    "mPctChangeSinceLastClose": 2.86749,
+    "mPctGainTarget": 35.7,
+    "mStatus": "OWNED",
+    "mStrikePrice": 161.0,
+    "mSymbol": "BRK-B",
+    "mYrMax": 224.07,
+    "mYrMin": 184.75
+  },
+  {
+    "mAnalystsOpinion": 2.0,
+    "mBuyBlockList": [
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 89.58,
+        "mBuyDate": "Jul 27, 2015 12:00:00 AM",
+        "mEffDivYield": 5.0011163,
+        "mNumShares": 100.0,
+        "mPctChangeSinceBuy": 27.673588,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 112.9,
+        "mBuyDate": "Oct 27, 2017 12:00:00 AM",
+        "mEffDivYield": 3.9681132,
+        "mNumShares": 100.0,
+        "mPctChangeSinceBuy": 1.3020382,
+        "mTotalDividend": 0.0
+      }
+    ],
+    "mDivPerShare": 4.48,
+    "mFullName": "Chevron Corporation",
+    "mOverallAccountColor": -16728064,
+    "mPPS": 114.37,
+    "mPctChangeSinceBuy": 27.673588,
+    "mPctChangeSinceLastClose": 2.15256,
+    "mPctGainTarget": 50.0,
+    "mStatus": "OWNED",
+    "mStrikePrice": 100.0,
+    "mSymbol": "CVX",
+    "mYrMax": 132.67,
+    "mYrMin": 100.22
+  },
+  {
+    "mAnalystsOpinion": 2.7,
+    "mBuyBlockList": [
+      {
+        "mAccountColor": -1019904,
+        "mBuyCostBasis": 44.58,
+        "mBuyDate": "Aug 12, 2004 12:00:00 AM",
+        "mEffDivYield": 8.322118,
+        "mNumShares": 33.0,
+        "mPctChangeSinceBuy": 92.01434,
+        "mTotalDividend": 0.0
+      }
+    ],
+    "mDivPerShare": 3.71,
+    "mFullName": "Duke Energy Corporation",
+    "mOverallAccountColor": -1019904,
+    "mPPS": 85.6,
+    "mPctChangeSinceBuy": 92.01434,
+    "mPctChangeSinceLastClose": -0.0467082,
+    "mPctGainTarget": 104.0,
+    "mStatus": "OWNED",
+    "mStrikePrice": 74.0,
+    "mSymbol": "DUK",
+    "mYrMax": 91.35,
+    "mYrMin": 71.96
+  },
+  {
+    "mAnalystsOpinion": 3.2,
+    "mBuyBlockList": [
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 55.1,
+        "mBuyDate": "Dec 4, 2013 12:00:00 AM",
+        "mEffDivYield": 5.1905622,
+        "mNumShares": 100.0,
+        "mPctChangeSinceBuy": 38.856632,
+        "mTotalDividend": 0.0
+      }
+    ],
+    "mDivPerShare": 2.86,
+    "mFullName": "Consolidated Edison, Inc.",
+    "mOverallAccountColor": -16728064,
+    "mPPS": 76.51,
+    "mPctChangeSinceBuy": 38.856632,
+    "mPctChangeSinceLastClose": -0.675057,
+    "mPctGainTarget": 62.0,
+    "mStatus": "OWNED",
+    "mStrikePrice": 70.0,
+    "mSymbol": "ED",
+    "mYrMax": 84.32,
+    "mYrMin": 71.12
+  },
+  {
+    "mAnalystsOpinion": 2.3,
+    "mBuyBlockList": [
+      {
+        "mAccountColor": -1019904,
+        "mBuyCostBasis": 7.51,
+        "mBuyDate": "Jan 2, 2007 12:00:00 AM",
+        "mEffDivYield": 29.42743,
+        "mNumShares": 40.0,
+        "mPctChangeSinceBuy": 380.69238,
+        "mTotalDividend": 0.0
+      }
+    ],
+    "mDivPerShare": 2.21,
+    "mFullName": "Enbridge Inc.",
+    "mOverallAccountColor": -1019904,
+    "mPPS": 36.1,
+    "mPctChangeSinceBuy": 380.69238,
+    "mPctChangeSinceLastClose": 1.2055,
+    "mPctGainTarget": 470.0,
+    "mStatus": "OWNED",
+    "mStrikePrice": 0.0,
+    "mSymbol": "ENB",
+    "mYrMax": 39.86,
+    "mYrMin": 28.82
+  },
+  {
+    "mAnalystsOpinion": 0.0,
+    "mBuyBlockList": [
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 9.18,
+        "mBuyDate": "Jun 16, 2016 12:00:00 AM",
+        "mEffDivYield": 0.0,
+        "mNumShares": 1089.325,
+        "mPctChangeSinceBuy": 4.1394343,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 9.38,
+        "mBuyDate": "Oct 11, 2016 12:00:00 AM",
+        "mEffDivYield": 0.0,
+        "mNumShares": 319.917,
+        "mPctChangeSinceBuy": 1.9189798,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 10.25,
+        "mBuyDate": "Feb 6, 2018 12:00:00 AM",
+        "mEffDivYield": 0.0,
+        "mNumShares": 1951.22,
+        "mPctChangeSinceBuy": -6.7317033,
+        "mTotalDividend": 0.0
+      }
+    ],
+    "mDivPerShare": 0.0,
+    "mFullName": "Fidelity Capital \u0026 Income",
+    "mOverallAccountColor": -16728064,
+    "mPPS": 9.56,
+    "mPctChangeSinceBuy": 4.1394343,
+    "mPctChangeSinceLastClose": 0.525764,
+    "mPctGainTarget": 100.0,
+    "mStatus": "OWNED",
+    "mStrikePrice": 9.1,
+    "mSymbol": "FAGIX",
+    "mYrMax": 0.0,
+    "mYrMin": 0.0
+  },
+  {
+    "mAnalystsOpinion": 0.0,
+    "mBuyBlockList": [
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 4.32,
+        "mBuyDate": "Nov 11, 2008 12:00:00 AM",
+        "mEffDivYield": 0.0,
+        "mNumShares": 3200.65,
+        "mPctChangeSinceBuy": 174.99998,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 9.73,
+        "mBuyDate": "Nov 12, 2013 12:00:00 AM",
+        "mEffDivYield": 0.0,
+        "mNumShares": 1027.33,
+        "mPctChangeSinceBuy": 22.096617,
+        "mTotalDividend": 0.0
+      }
+    ],
+    "mDivPerShare": 0.0,
+    "mFullName": "Fidelity Contrafund",
+    "mOverallAccountColor": -16728064,
+    "mPPS": 11.88,
+    "mPctChangeSinceBuy": 174.99998,
+    "mPctChangeSinceLastClose": 1.19251,
+    "mPctGainTarget": 198.0,
+    "mStatus": "OWNED",
+    "mStrikePrice": 0.0,
+    "mSymbol": "FCNTX",
+    "mYrMax": 0.0,
+    "mYrMin": 0.0
+  },
+  {
+    "mAnalystsOpinion": 0.0,
+    "mBuyBlockList": [
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 9.78,
+        "mBuyDate": "Dec 28, 2010 12:00:00 AM",
+        "mEffDivYield": 0.0,
+        "mNumShares": 1022.495,
+        "mPctChangeSinceBuy": -3.6809783,
+        "mTotalDividend": 0.0
+      }
+    ],
+    "mDivPerShare": 0.0,
+    "mFullName": "Fidelity Floating Rate High Income",
+    "mOverallAccountColor": -16728064,
+    "mPPS": 9.42,
+    "mPctChangeSinceBuy": -3.6809783,
+    "mPctChangeSinceLastClose": 0.106272,
+    "mPctGainTarget": 100.0,
+    "mStatus": "OWNED",
+    "mStrikePrice": 0.0,
+    "mSymbol": "FFRHX",
+    "mYrMax": 0.0,
+    "mYrMin": 0.0
+  },
+  {
+    "mAnalystsOpinion": 0.0,
+    "mBuyBlockList": [
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 21.71,
+        "mBuyDate": "Nov 11, 2008 12:00:00 AM",
+        "mEffDivYield": 0.0,
+        "mNumShares": 555.646,
+        "mPctChangeSinceBuy": 114.18701,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 48.72,
+        "mBuyDate": "Nov 12, 2013 12:00:00 AM",
+        "mEffDivYield": 0.0,
+        "mNumShares": 205.255,
+        "mPctChangeSinceBuy": -4.5566525,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 49.42,
+        "mBuyDate": "Sep 1, 2015 12:00:00 AM",
+        "mEffDivYield": 0.0,
+        "mNumShares": 202.347,
+        "mPctChangeSinceBuy": -5.9085355,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 44.6,
+        "mBuyDate": "Feb 2, 2016 12:00:00 AM",
+        "mEffDivYield": 0.0,
+        "mNumShares": 112.108,
+        "mPctChangeSinceBuy": 4.260093,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 47.89,
+        "mBuyDate": "Oct 11, 2016 12:00:00 AM",
+        "mEffDivYield": 0.0,
+        "mNumShares": 62.644,
+        "mPctChangeSinceBuy": -2.9024835,
+        "mTotalDividend": 0.0
+      }
+    ],
+    "mDivPerShare": 0.0,
+    "mFullName": "Fidelity Low-Priced Stock",
+    "mOverallAccountColor": -16728064,
+    "mPPS": 46.5,
+    "mPctChangeSinceBuy": 114.18701,
+    "mPctChangeSinceLastClose": 1.24102,
+    "mPctGainTarget": 167.0,
+    "mStatus": "OWNED",
+    "mStrikePrice": 0.0,
+    "mSymbol": "FLPSX",
+    "mYrMax": 0.0,
+    "mYrMin": 0.0
+  },
+  {
+    "mAnalystsOpinion": 0.0,
+    "mBuyBlockList": [
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 22.58,
+        "mBuyDate": "Nov 11, 2008 12:00:00 AM",
+        "mEffDivYield": 0.0,
+        "mNumShares": 543.341,
+        "mPctChangeSinceBuy": 158.1045,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 51.86,
+        "mBuyDate": "Nov 12, 2013 12:00:00 AM",
+        "mEffDivYield": 0.0,
+        "mNumShares": 192.838,
+        "mPctChangeSinceBuy": 12.379479,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 52.23,
+        "mBuyDate": "Sep 1, 2015 12:00:00 AM",
+        "mEffDivYield": 0.0,
+        "mNumShares": 191.472,
+        "mPctChangeSinceBuy": 11.58338,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 51.88,
+        "mBuyDate": "Dec 11, 2015 12:00:00 AM",
+        "mEffDivYield": 0.0,
+        "mNumShares": 192.763,
+        "mPctChangeSinceBuy": 12.336156,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 44.73,
+        "mBuyDate": "Feb 2, 2016 12:00:00 AM",
+        "mEffDivYield": 0.0,
+        "mNumShares": 111.785,
+        "mPctChangeSinceBuy": 30.292866,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 49.74,
+        "mBuyDate": "Jun 24, 2016 12:00:00 AM",
+        "mEffDivYield": 0.0,
+        "mNumShares": 100.528,
+        "mPctChangeSinceBuy": 17.169275,
+        "mTotalDividend": 0.0
+      }
+    ],
+    "mDivPerShare": 0.0,
+    "mFullName": "Fidelity Extended Market Index",
+    "mOverallAccountColor": -16728064,
+    "mPPS": 58.28,
+    "mPctChangeSinceBuy": 158.1045,
+    "mPctChangeSinceLastClose": 1.14544,
+    "mPctGainTarget": 100.0,
+    "mStatus": "OWNED",
+    "mStrikePrice": 0.0,
+    "mSymbol": "FSMAX",
+    "mYrMax": 0.0,
+    "mYrMin": 0.0
+  },
+  {
+    "mAnalystsOpinion": 0.0,
+    "mBuyBlockList": [
+      {
+        "mAccountColor": -1019904,
+        "mBuyCostBasis": 59.02,
+        "mBuyDate": "Dec 11, 2015 12:00:00 AM",
+        "mEffDivYield": 0.0,
+        "mNumShares": 169.462,
+        "mPctChangeSinceBuy": 28.142998,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -1019904,
+        "mBuyCostBasis": 54.23,
+        "mBuyDate": "Feb 2, 2016 12:00:00 AM",
+        "mEffDivYield": 0.0,
+        "mNumShares": 92.198,
+        "mPctChangeSinceBuy": 39.46155,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -1019904,
+        "mBuyCostBasis": 59.42,
+        "mBuyDate": "Jun 24, 2016 12:00:00 AM",
+        "mEffDivYield": 0.0,
+        "mNumShares": 85.149,
+        "mPctChangeSinceBuy": 27.280375,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -1019904,
+        "mBuyCostBasis": 62.17,
+        "mBuyDate": "Oct 11, 2016 12:00:00 AM",
+        "mEffDivYield": 0.0,
+        "mNumShares": 80.399,
+        "mPctChangeSinceBuy": 21.650312,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -1019904,
+        "mBuyCostBasis": 60.54,
+        "mBuyDate": "Nov 4, 2016 12:00:00 AM",
+        "mEffDivYield": 0.0,
+        "mNumShares": 82.577,
+        "mPctChangeSinceBuy": 24.925663,
+        "mTotalDividend": 0.0
+      }
+    ],
+    "mDivPerShare": 0.0,
+    "mFullName": "Fidelity Total Market Index",
+    "mOverallAccountColor": -1019904,
+    "mPPS": 75.63,
+    "mPctChangeSinceBuy": 39.46155,
+    "mPctChangeSinceLastClose": 1.28566,
+    "mPctGainTarget": 100.0,
+    "mStatus": "OWNED",
+    "mStrikePrice": 0.0,
+    "mSymbol": "FSKAX",
+    "mYrMax": 0.0,
+    "mYrMin": 0.0
+  },
+  {
+    "mAnalystsOpinion": 0.0,
+    "mBuyBlockList": [
+      {
+        "mAccountColor": -1019904,
+        "mBuyCostBasis": 71.24,
+        "mBuyDate": "Dec 11, 2015 12:00:00 AM",
+        "mEffDivYield": 0.0,
+        "mNumShares": 140.372,
+        "mPctChangeSinceBuy": 30.376192,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -1019904,
+        "mBuyCostBasis": 66.94,
+        "mBuyDate": "Feb 2, 2016 12:00:00 AM",
+        "mEffDivYield": 0.0,
+        "mNumShares": 74.695,
+        "mPctChangeSinceBuy": 38.75111,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -1019904,
+        "mBuyCostBasis": 75.2,
+        "mBuyDate": "Jun 24, 2016 12:00:00 AM",
+        "mEffDivYield": 0.0,
+        "mNumShares": 66.49,
+        "mPctChangeSinceBuy": 23.51064,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -1019904,
+        "mBuyCostBasis": 75.2,
+        "mBuyDate": "Jun 24, 2016 12:00:00 AM",
+        "mEffDivYield": 0.0,
+        "mNumShares": 66.49,
+        "mPctChangeSinceBuy": 23.51064,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -1019904,
+        "mBuyCostBasis": 73.46,
+        "mBuyDate": "Nov 4, 2016 12:00:00 AM",
+        "mEffDivYield": 0.0,
+        "mNumShares": 68.065,
+        "mPctChangeSinceBuy": 26.436153,
+        "mTotalDividend": 0.0
+      }
+    ],
+    "mDivPerShare": 0.0,
+    "mFullName": "Fidelity 500 Index",
+    "mOverallAccountColor": -1019904,
+    "mPPS": 92.88,
+    "mPctChangeSinceBuy": 38.75111,
+    "mPctChangeSinceLastClose": 1.331,
+    "mPctGainTarget": 100.0,
+    "mStatus": "OWNED",
+    "mStrikePrice": 0.0,
+    "mSymbol": "FXAIX",
+    "mYrMax": 0.0,
+    "mYrMin": 0.0
+  },
+  {
+    "mAnalystsOpinion": 2.4,
+    "mBuyBlockList": [
+      {
+        "mAccountColor": -1019904,
+        "mBuyCostBasis": 13.48,
+        "mBuyDate": "Jul 20, 2015 12:00:00 AM",
+        "mEffDivYield": 0.5934718,
+        "mNumShares": 100.0,
+        "mPctChangeSinceBuy": -23.071215,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -1019904,
+        "mBuyCostBasis": 13.17,
+        "mBuyDate": "Oct 29, 2015 12:00:00 AM",
+        "mEffDivYield": 0.6074411,
+        "mNumShares": 500.0,
+        "mPctChangeSinceBuy": -21.260443,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -1019904,
+        "mBuyCostBasis": 11.52,
+        "mBuyDate": "Nov 6, 2015 12:00:00 AM",
+        "mEffDivYield": 0.6944444,
+        "mNumShares": 500.0,
+        "mPctChangeSinceBuy": -9.982643,
+        "mTotalDividend": 0.0
+      }
+    ],
+    "mDivPerShare": 0.08,
+    "mFullName": "Goldcorp Inc.",
+    "mOverallAccountColor": -1019904,
+    "mPPS": 10.37,
+    "mPctChangeSinceBuy": -9.982643,
+    "mPctChangeSinceLastClose": 0.290133,
+    "mPctGainTarget": 100.0,
+    "mStatus": "OWNED",
+    "mStrikePrice": 9.0,
+    "mSymbol": "GG",
+    "mYrMax": 15.32,
+    "mYrMin": 8.42
+  },
+  {
+    "mAnalystsOpinion": 0.0,
+    "mBuyBlockList": [
+      {
+        "mAccountColor": -1019904,
+        "mBuyCostBasis": 117.03,
+        "mBuyDate": "Mar 16, 2016 12:00:00 AM",
+        "mEffDivYield": 0.0,
+        "mNumShares": 20.0,
+        "mPctChangeSinceBuy": 3.4093804,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -1019904,
+        "mBuyCostBasis": 116.36,
+        "mBuyDate": "Nov 15, 2016 12:00:00 AM",
+        "mEffDivYield": 0.0,
+        "mNumShares": 30.0,
+        "mPctChangeSinceBuy": 4.0048094,
+        "mTotalDividend": 0.0
+      }
+    ],
+    "mDivPerShare": 0.0,
+    "mFullName": "SPDR Gold Shares",
+    "mOverallAccountColor": -1019904,
+    "mPPS": 121.02,
+    "mPctChangeSinceBuy": 4.0048094,
+    "mPctChangeSinceLastClose": -0.892641,
+    "mPctGainTarget": 25.0,
+    "mStatus": "OWNED",
+    "mStrikePrice": 110.0,
+    "mSymbol": "GLD",
+    "mYrMax": 129.51,
+    "mYrMin": 111.06
+  },
+  {
+    "mAnalystsOpinion": 2.8,
+    "mBuyBlockList": [
+      {
+        "mAccountColor": -1019904,
+        "mBuyCostBasis": 4.7,
+        "mBuyDate": "Nov 2, 2015 12:00:00 AM",
+        "mEffDivYield": 9.574469,
+        "mNumShares": 140.0,
+        "mPctChangeSinceBuy": 212.34045,
+        "mTotalDividend": 0.0
+      }
+    ],
+    "mDivPerShare": 0.45,
+    "mFullName": "Hewlett Packard Enterprise Company",
+    "mOverallAccountColor": -1019904,
+    "mPPS": 14.68,
+    "mPctChangeSinceBuy": 212.34045,
+    "mPctChangeSinceLastClose": 2.87316,
+    "mPctGainTarget": 307.0,
+    "mStatus": "OWNED",
+    "mStrikePrice": 0.0,
+    "mSymbol": "HPE",
+    "mYrMax": 19.48,
+    "mYrMin": 12.09
+  },
+  {
+    "mAnalystsOpinion": 2.0,
+    "mBuyBlockList": [
+      {
+        "mAccountColor": -1019904,
+        "mBuyCostBasis": 3.51,
+        "mBuyDate": "Feb 1, 1993 12:00:00 AM",
+        "mEffDivYield": 18.233618,
+        "mNumShares": 100.0,
+        "mPctChangeSinceBuy": 519.65814,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -1019904,
+        "mBuyCostBasis": 3.43,
+        "mBuyDate": "Nov 13, 1995 12:00:00 AM",
+        "mEffDivYield": 18.658892,
+        "mNumShares": 40.0,
+        "mPctChangeSinceBuy": 534.1108,
+        "mTotalDividend": 0.0
+      }
+    ],
+    "mDivPerShare": 0.64,
+    "mFullName": "HP Inc.",
+    "mOverallAccountColor": -1019904,
+    "mPPS": 21.75,
+    "mPctChangeSinceBuy": 534.1108,
+    "mPctChangeSinceLastClose": 2.44937,
+    "mPctGainTarget": 582.0,
+    "mStatus": "OWNED",
+    "mStrikePrice": 0.0,
+    "mSymbol": "HPQ",
+    "mYrMax": 27.08,
+    "mYrMin": 19.22
+  },
+  {
+    "mAnalystsOpinion": 3.3,
+    "mBuyBlockList": [
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 13.57,
+        "mBuyDate": "Aug 19, 2013 12:00:00 AM",
+        "mEffDivYield": 8.843037,
+        "mNumShares": 500.0,
+        "mPctChangeSinceBuy": -13.043475,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 12.55,
+        "mBuyDate": "Mar 27, 2014 12:00:00 AM",
+        "mEffDivYield": 9.561753,
+        "mNumShares": 100.0,
+        "mPctChangeSinceBuy": -5.976095,
+        "mTotalDividend": 0.0
+      }
+    ],
+    "mDivPerShare": 1.2,
+    "mFullName": "Horizon Technology Finance Corporation",
+    "mOverallAccountColor": -16728064,
+    "mPPS": 11.8,
+    "mPctChangeSinceBuy": -5.976095,
+    "mPctChangeSinceLastClose": 0.425534,
+    "mPctGainTarget": 25.0,
+    "mStatus": "OWNED",
+    "mStrikePrice": 0.0,
+    "mSymbol": "HRZN",
+    "mYrMax": 12.1,
+    "mYrMin": 9.92
+  },
+  {
+    "mAnalystsOpinion": 0.0,
+    "mBuyBlockList": [
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 16.45,
+        "mBuyDate": "Dec 28, 2010 12:00:00 AM",
+        "mEffDivYield": 0.0,
+        "mNumShares": 607.903,
+        "mPctChangeSinceBuy": 67.17324,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 17.67,
+        "mBuyDate": "Apr 18, 2011 12:00:00 AM",
+        "mEffDivYield": 0.0,
+        "mNumShares": 169.779,
+        "mPctChangeSinceBuy": 55.631012,
+        "mTotalDividend": 0.0
+      }
+    ],
+    "mDivPerShare": 0.0,
+    "mFullName": "Janus Henderson Triton T",
+    "mOverallAccountColor": -16728064,
+    "mPPS": 27.5,
+    "mPctChangeSinceBuy": 67.17324,
+    "mPctChangeSinceLastClose": 1.51347,
+    "mPctGainTarget": 100.0,
+    "mStatus": "OWNED",
+    "mStrikePrice": 0.0,
+    "mSymbol": "JATTX",
+    "mYrMax": 0.0,
+    "mYrMin": 0.0
+  },
+  {
+    "mAnalystsOpinion": 2.6,
+    "mBuyBlockList": [
+      {
+        "mAccountColor": -1019904,
+        "mBuyCostBasis": 74.5,
+        "mBuyDate": "Jun 30, 2016 12:00:00 AM",
+        "mEffDivYield": 5.3691278,
+        "mNumShares": 100.0,
+        "mPctChangeSinceBuy": 17.932888,
+        "mTotalDividend": 0.0
+      }
+    ],
+    "mDivPerShare": 4.0,
+    "mFullName": "LyondellBasell Industries N.V.",
+    "mOverallAccountColor": -1019904,
+    "mPPS": 87.86,
+    "mPctChangeSinceBuy": 17.932888,
+    "mPctChangeSinceLastClose": 2.3413,
+    "mPctGainTarget": 64.0,
+    "mStatus": "OWNED",
+    "mStrikePrice": 78.0,
+    "mSymbol": "LYB",
+    "mYrMax": 121.95,
+    "mYrMin": 77.52
+  },
+  {
+    "mAnalystsOpinion": 2.5,
+    "mBuyBlockList": [
+      {
+        "mAccountColor": -1019904,
+        "mBuyCostBasis": 8.61,
+        "mBuyDate": "Nov 19, 2001 12:00:00 AM",
+        "mEffDivYield": 37.16609,
+        "mNumShares": 100.0,
+        "mPctChangeSinceBuy": 461.0918,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -16748544,
+        "mBuyCostBasis": 15.69,
+        "mBuyDate": "Feb 18, 2009 12:00:00 AM",
+        "mEffDivYield": 20.395157,
+        "mNumShares": 200.0,
+        "mPctChangeSinceBuy": 207.90315,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 19.25,
+        "mBuyDate": "Nov 19, 2009 12:00:00 AM",
+        "mEffDivYield": 16.623377,
+        "mNumShares": 400.0,
+        "mPctChangeSinceBuy": 150.96104,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 24.06,
+        "mBuyDate": "Jan 27, 2011 12:00:00 AM",
+        "mEffDivYield": 13.300083,
+        "mNumShares": 100.0,
+        "mPctChangeSinceBuy": 100.7897,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -16748544,
+        "mBuyCostBasis": 23.53,
+        "mBuyDate": "Jan 31, 2011 12:00:00 AM",
+        "mEffDivYield": 13.59966,
+        "mNumShares": 100.0,
+        "mPctChangeSinceBuy": 105.31237,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 68.43,
+        "mBuyDate": "Jul 28, 2017 12:00:00 AM",
+        "mEffDivYield": 4.6763115,
+        "mNumShares": 300.0,
+        "mPctChangeSinceBuy": -29.402308,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -16748544,
+        "mBuyCostBasis": 44.90,
+        "mBuyDate": "Jan 23, 2019 12:00:00 AM",
+        "mEffDivYield": 4.6763115,
+        "mNumShares": 100.0,
+        "mPctChangeSinceBuy": -29.402308,
+        "mTotalDividend": 0.0
+      }
+    ],
+    "mDivPerShare": 3.2,
+    "mFullName": "Molybdenum",
+    "mOverallAccountColor": -4145152,
+    "mPPS": 48.31,
+    "mPctChangeSinceBuy": 461.0918,
+    "mPctChangeSinceLastClose": 2.65618,
+    "mPctGainTarget": 809.0,
+    "mStatus": "OWNED",
+    "mStrikePrice": 50.0,
+    "mSymbol": "MO",
+    "mYrMax": 71.86,
+    "mYrMin": 46.49
+  },
+  {
+    "mAnalystsOpinion": 0.0,
+    "mBuyBlockList": [
+      {
+        "mAccountColor": -16748544,
+        "mBuyCostBasis": 69.0,
+        "mBuyDate": "Apr 11, 2005 12:00:00 AM",
+        "mEffDivYield": 5.217391,
+        "mNumShares": 100.0,
+        "mPctChangeSinceBuy": 89.4058,
+        "mTotalDividend": 0.0
+      }
+    ],
+    "mDivPerShare": 3.6,
+    "mFullName": "Johnson \u0026 Johnson",
+    "mOverallAccountColor": -16748544,
+    "mPPS": 130.69,
+    "mPctChangeSinceBuy": 89.4058,
+    "mPctChangeSinceLastClose": 1.23945,
+    "mPctGainTarget": 25.0,
+    "mStatus": "OWNED",
+    "mStrikePrice": 0.0,
+    "mSymbol": "JNJ",
+    "mYrMax": 148.99,
+    "mYrMin": 118.62
+  },
+  {
+    "mAnalystsOpinion": 2.5,
+    "mBuyBlockList": [
+      {
+        "mAccountColor": -1019904,
+        "mBuyCostBasis": 28.04,
+        "mBuyDate": "May 15, 2007 12:00:00 AM",
+        "mEffDivYield": 9.664764,
+        "mNumShares": 200.0,
+        "mPctChangeSinceBuy": 130.56348,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 23.52,
+        "mBuyDate": "Oct 7, 2009 12:00:00 AM",
+        "mEffDivYield": 11.522109,
+        "mNumShares": 500.0,
+        "mPctChangeSinceBuy": 174.87245,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -16748544,
+        "mBuyCostBasis": 39.64,
+        "mBuyDate": "Nov 1, 2012 12:00:00 AM",
+        "mEffDivYield": 6.8365293,
+        "mNumShares": 100.0,
+        "mPctChangeSinceBuy": 63.09284,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 39.58,
+        "mBuyDate": "Aug 19, 2013 12:00:00 AM",
+        "mEffDivYield": 6.846892,
+        "mNumShares": 100.0,
+        "mPctChangeSinceBuy": 63.34007,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -16748544,
+        "mBuyCostBasis": 38.27,
+        "mBuyDate": "Nov 26, 2013 12:00:00 AM",
+        "mEffDivYield": 7.081265,
+        "mNumShares": 100.0,
+        "mPctChangeSinceBuy": 68.93128,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 37.65,
+        "mBuyDate": "Dec 3, 2013 12:00:00 AM",
+        "mEffDivYield": 7.197875,
+        "mNumShares": 100.0,
+        "mPctChangeSinceBuy": 71.71314,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 55.68,
+        "mBuyDate": "Oct 20, 2017 12:00:00 AM",
+        "mEffDivYield": 4.867098,
+        "mNumShares": 100.0,
+        "mPctChangeSinceBuy": 16.109917,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 53.85,
+        "mBuyDate": "Oct 26, 2017 12:00:00 AM",
+        "mEffDivYield": 5.032498,
+        "mNumShares": 100.0,
+        "mPctChangeSinceBuy": 20.055717,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -16748544,
+        "mBuyCostBasis": 54.82,
+        "mBuyDate": "Dec 7, 2017 12:00:00 AM",
+        "mEffDivYield": 4.9434514,
+        "mNumShares": 200.0,
+        "mPctChangeSinceBuy": 17.931416,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 49.75,
+        "mBuyDate": "Feb 6, 2018 12:00:00 AM",
+        "mEffDivYield": 5.447236,
+        "mNumShares": 100.0,
+        "mPctChangeSinceBuy": 29.94975,
+        "mTotalDividend": 0.0
+      }
+    ],
+    "mDivPerShare": 2.71,
+    "mFullName": "Realty Income Corporation",
+    "mOverallAccountColor": -4145152,
+    "mPPS": 64.65,
+    "mPctChangeSinceBuy": 174.87245,
+    "mPctChangeSinceLastClose": -0.246869,
+    "mPctGainTarget": 169.0,
+    "mStatus": "OWNED",
+    "mStrikePrice": 48.0,
+    "mSymbol": "O",
+    "mYrMax": 66.91,
+    "mYrMin": 47.25
+  },
+  {
+    "mAnalystsOpinion": 0.0,
+    "mBuyBlockList": [
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 19.37,
+        "mBuyDate": "Dec 28, 2010 12:00:00 AM",
+        "mEffDivYield": 0.0,
+        "mNumShares": 516.262,
+        "mPctChangeSinceBuy": 13.732574,
+        "mTotalDividend": 0.0
+      }
+    ],
+    "mDivPerShare": 0.0,
+    "mFullName": "Oakmark International Investor",
+    "mOverallAccountColor": -16728064,
+    "mPPS": 22.03,
+    "mPctChangeSinceBuy": 13.732574,
+    "mPctChangeSinceLastClose": 1.61439,
+    "mPctGainTarget": 60.0,
+    "mStatus": "OWNED",
+    "mStrikePrice": 0.0,
+    "mSymbol": "OAKIX",
+    "mYrMax": 0.0,
+    "mYrMin": 0.0
+  },
+  {
+    "mAnalystsOpinion": 2.3,
+    "mBuyBlockList": [
+      {
+        "mAccountColor": -1019904,
+        "mBuyCostBasis": 19.61,
+        "mBuyDate": "Mar 28, 2008 12:00:00 AM",
+        "mEffDivYield": 23.25344,
+        "mNumShares": 100.0,
+        "mPctChangeSinceBuy": 276.2876,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -1019904,
+        "mBuyCostBasis": 75.84,
+        "mBuyDate": "Feb 4, 2014 12:00:00 AM",
+        "mEffDivYield": 6.0126586,
+        "mNumShares": 100.0,
+        "mPctChangeSinceBuy": -2.7030532,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 98.95,
+        "mBuyDate": "Feb 6, 2018 12:00:00 AM",
+        "mEffDivYield": 4.6083884,
+        "mNumShares": 100.0,
+        "mPctChangeSinceBuy": -25.426981,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 85.05,
+        "mBuyDate": "Apr 19, 2018 12:00:00 AM",
+        "mEffDivYield": 5.361552,
+        "mNumShares": 100.0,
+        "mPctChangeSinceBuy": -13.239273,
+        "mTotalDividend": 0.0
+      }
+    ],
+    "mDivPerShare": 4.56,
+    "mFullName": "Philip Morris International Inc.",
+    "mOverallAccountColor": -4145152,
+    "mPPS": 73.79,
+    "mPctChangeSinceBuy": 276.2876,
+    "mPctChangeSinceLastClose": 1.75125,
+    "mPctGainTarget": 531.0,
+    "mStatus": "OWNED",
+    "mStrikePrice": 80.0,
+    "mSymbol": "PM",
+    "mYrMax": 111.25,
+    "mYrMin": 64.67
+  },
+  {
+    "mAnalystsOpinion": 2.6,
+    "mBuyBlockList": [
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 24.75,
+        "mBuyDate": "Sep 22, 2011 12:00:00 AM",
+        "mEffDivYield": 6.6262627,
+        "mNumShares": 200.0,
+        "mPctChangeSinceBuy": 21.49495,
+        "mTotalDividend": 0.0
+      }
+    ],
+    "mDivPerShare": 1.64,
+    "mFullName": "PPL Corporation",
+    "mOverallAccountColor": -16728064,
+    "mPPS": 30.07,
+    "mPctChangeSinceBuy": 21.49495,
+    "mPctChangeSinceLastClose": 0.568562,
+    "mPctGainTarget": 62.0,
+    "mStatus": "OWNED",
+    "mStrikePrice": 25.0,
+    "mSymbol": "PPL",
+    "mYrMax": 32.46,
+    "mYrMin": 25.3
+  },
+  {
+    "mAnalystsOpinion": 0.0,
+    "mBuyBlockList": [
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 45.41,
+        "mBuyDate": "Dec 28, 2010 12:00:00 AM",
+        "mEffDivYield": 0.0,
+        "mNumShares": 220.216,
+        "mPctChangeSinceBuy": -17.793434,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 48.6,
+        "mBuyDate": "Apr 18, 2011 12:00:00 AM",
+        "mEffDivYield": 0.0,
+        "mNumShares": 62.422,
+        "mPctChangeSinceBuy": -23.189295,
+        "mTotalDividend": 0.0
+      }
+    ],
+    "mDivPerShare": 0.0,
+    "mFullName": "Permanent Portfolio Permanent I",
+    "mOverallAccountColor": -16728064,
+    "mPPS": 37.33,
+    "mPctChangeSinceBuy": -17.793434,
+    "mPctChangeSinceLastClose": 0.322501,
+    "mPctGainTarget": 100.0,
+    "mStatus": "OWNED",
+    "mStrikePrice": 0.0,
+    "mSymbol": "PRPFX",
+    "mYrMax": 0.0,
+    "mYrMin": 0.0
+  },
+  {
+    "mAnalystsOpinion": 0.0,
+    "mBuyBlockList": [
+      {
+        "mAccountColor": -1019904,
+        "mBuyCostBasis": 16.59,
+        "mBuyDate": "Oct 31, 2003 12:00:00 AM",
+        "mEffDivYield": 0.0,
+        "mNumShares": 211.0,
+        "mPctChangeSinceBuy": 68.11331,
+        "mTotalDividend": 0.0
+      }
+    ],
+    "mDivPerShare": 0.0,
+    "mFullName": "T. Rowe Price Capital Appreciation",
+    "mOverallAccountColor": -1019904,
+    "mPPS": 27.89,
+    "mPctChangeSinceBuy": 68.11331,
+    "mPctChangeSinceLastClose": 0.941007,
+    "mPctGainTarget": 0.0,
+    "mStatus": "OWNED",
+    "mStrikePrice": 0.0,
+    "mSymbol": "PRWCX",
+    "mYrMax": 0.0,
+    "mYrMin": 0.0
+  },
+  {
+    "mAnalystsOpinion": 0.0,
+    "mBuyBlockList": [
+      {
+        "mAccountColor": -1019904,
+        "mBuyCostBasis": 48.53,
+        "mBuyDate": "Nov 10, 2016 12:00:00 AM",
+        "mEffDivYield": 1.7308881,
+        "mNumShares": 100.0,
+        "mPctChangeSinceBuy": 15.330729,
+        "mTotalDividend": 0.0
+      }
+    ],
+    "mDivPerShare": 0.84,
+    "mFullName": "Sturm, Ruger \u0026 Company, Inc.",
+    "mOverallAccountColor": -1019904,
+    "mPPS": 55.97,
+    "mPctChangeSinceBuy": 15.330729,
+    "mPctChangeSinceLastClose": -0.709593,
+    "mPctGainTarget": 100.0,
+    "mStatus": "OWNED",
+    "mStrikePrice": 0.0,
+    "mSymbol": "RGR",
+    "mYrMax": 70.0,
+    "mYrMin": 43.0
+  },
+  {
+    "mAnalystsOpinion": 3.4,
+    "mBuyBlockList": [
+      {
+        "mAccountColor": -1019904,
+        "mBuyCostBasis": 38.86,
+        "mBuyDate": "Sep 17, 2008 12:00:00 AM",
+        "mEffDivYield": 6.1760163,
+        "mNumShares": 100.0,
+        "mPctChangeSinceBuy": 21.513124,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 42.98,
+        "mBuyDate": "Jan 15, 2013 12:00:00 AM",
+        "mEffDivYield": 5.583993,
+        "mNumShares": 100.0,
+        "mPctChangeSinceBuy": 9.865057,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -1019904,
+        "mBuyCostBasis": 47.49,
+        "mBuyDate": "Jan 2, 2018 12:00:00 AM",
+        "mEffDivYield": 5.0536957,
+        "mNumShares": 100.0,
+        "mPctChangeSinceBuy": -0.5685417,
+        "mTotalDividend": 0.0
+      }
+    ],
+    "mDivPerShare": 2.4,
+    "mFullName": "The Southern Company",
+    "mOverallAccountColor": -4145152,
+    "mPPS": 47.22,
+    "mPctChangeSinceBuy": 21.513124,
+    "mPctChangeSinceLastClose": 0.318678,
+    "mPctGainTarget": 50.0,
+    "mStatus": "OWNED",
+    "mStrikePrice": 40.0,
+    "mSymbol": "SO",
+    "mYrMax": 49.43,
+    "mYrMin": 42.38
+  },
+  {
+    "mAnalystsOpinion": 2.4,
+    "mBuyBlockList": [
+      {
+        "mAccountColor": -1019904,
+        "mBuyCostBasis": 34.29,
+        "mBuyDate": "Feb 20, 2008 12:00:00 AM",
+        "mEffDivYield": 5.9492564,
+        "mNumShares": 100.0,
+        "mPctChangeSinceBuy": -9.711291,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 25.99,
+        "mBuyDate": "Apr 16, 2010 12:00:00 AM",
+        "mEffDivYield": 7.8491726,
+        "mNumShares": 500.0,
+        "mPctChangeSinceBuy": 19.122738,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -1019904,
+        "mBuyCostBasis": 27.71,
+        "mBuyDate": "Jan 28, 2011 12:00:00 AM",
+        "mEffDivYield": 7.3619633,
+        "mNumShares": 100.0,
+        "mPctChangeSinceBuy": 11.728619,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 38.26,
+        "mBuyDate": "Apr 21, 2016 12:00:00 AM",
+        "mEffDivYield": 5.3319397,
+        "mNumShares": 100.0,
+        "mPctChangeSinceBuy": -19.079977,
+        "mTotalDividend": 0.0
+      }
+    ],
+    "mDivPerShare": 2.04,
+    "mFullName": "AT\u0026T Inc.",
+    "mOverallAccountColor": -4145152,
+    "mPPS": 30.96,
+    "mPctChangeSinceBuy": 19.122738,
+    "mPctChangeSinceLastClose": 1.04439,
+    "mPctGainTarget": 65.0,
+    "mStatus": "OWNED",
+    "mStrikePrice": 32.5,
+    "mSymbol": "T",
+    "mYrMax": 39.29,
+    "mYrMin": 26.8
+  },
+  {
+    "mAnalystsOpinion": 0.0,
+    "mBuyBlockList": [
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 15.22,
+        "mBuyDate": "Nov 11, 2008 12:00:00 AM",
+        "mEffDivYield": 0.0,
+        "mNumShares": 961.329,
+        "mPctChangeSinceBuy": 2.4967155,
+        "mTotalDividend": 0.0
+      }
+    ],
+    "mDivPerShare": 0.0,
+    "mFullName": "Templeton Instl Intl Eq Ser Primary",
+    "mOverallAccountColor": -16728064,
+    "mPPS": 15.6,
+    "mPctChangeSinceBuy": 2.4967155,
+    "mPctChangeSinceLastClose": 1.03627,
+    "mPctGainTarget": 53.0,
+    "mStatus": "OWNED",
+    "mStrikePrice": 0.0,
+    "mSymbol": "TFEQX",
+    "mYrMax": 0.0,
+    "mYrMin": 0.0
+  },
+  {
+    "mAnalystsOpinion": 0.0,
+    "mBuyBlockList": [
+      {
+        "mAccountColor": -1019904,
+        "mBuyCostBasis": 26.68,
+        "mBuyDate": "Feb 25, 2008 12:00:00 AM",
+        "mEffDivYield": 7.1964016,
+        "mNumShares": 100.0,
+        "mPctChangeSinceBuy": 170.35231,
+        "mTotalDividend": 0.0
+      }
+    ],
+    "mDivPerShare": 1.92,
+    "mFullName": "Vectren Corporation",
+    "mOverallAccountColor": -1019904,
+    "mPPS": 72.13,
+    "mPctChangeSinceBuy": 170.35231,
+    "mPctChangeSinceLastClose": -0.221336,
+    "mPctGainTarget": 161.0,
+    "mStatus": "OWNED",
+    "mStrikePrice": 51.0,
+    "mSymbol": "VVC",
+    "mYrMax": 72.34,
+    "mYrMin": 58.0
+  },
+  {
+    "mAnalystsOpinion": 2.4,
+    "mBuyBlockList": [
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 38.75,
+        "mBuyDate": "Mar 30, 2011 12:00:00 AM",
+        "mEffDivYield": 6.219355,
+        "mNumShares": 700.0,
+        "mPctChangeSinceBuy": 47.329033,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 50.04,
+        "mBuyDate": "Apr 21, 2016 12:00:00 AM",
+        "mEffDivYield": 4.8161473,
+        "mNumShares": 100.0,
+        "mPctChangeSinceBuy": 14.088728,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 45.6,
+        "mBuyDate": "May 15, 2017 12:00:00 AM",
+        "mEffDivYield": 5.285088,
+        "mNumShares": 100.0,
+        "mPctChangeSinceBuy": 25.197372,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 49.85,
+        "mBuyDate": "Feb 6, 2018 12:00:00 AM",
+        "mEffDivYield": 4.8345037,
+        "mNumShares": 100.0,
+        "mPctChangeSinceBuy": 14.523575,
+        "mTotalDividend": 0.0
+      }
+    ],
+    "mDivPerShare": 2.41,
+    "mFullName": "Verizon Communications Inc.",
+    "mOverallAccountColor": -16728064,
+    "mPPS": 57.09,
+    "mPctChangeSinceBuy": 47.329033,
+    "mPctChangeSinceLastClose": 0.457502,
+    "mPctGainTarget": 50.0,
+    "mStatus": "OWNED",
+    "mStrikePrice": 42.0,
+    "mSymbol": "VZ",
+    "mYrMax": 61.58,
+    "mYrMin": 46.09
+  },
+  {
+    "mAnalystsOpinion": 2.5,
+    "mBuyBlockList": [
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 60.79,
+        "mBuyDate": "Jan 11, 2018 12:00:00 AM",
+        "mEffDivYield": 5.7246256,
+        "mNumShares": 100.0,
+        "mPctChangeSinceBuy": 20.15134,
+        "mTotalDividend": 0.0
+      }
+    ],
+    "mDivPerShare": 3.48,
+    "mFullName": "Welltower Inc.",
+    "mOverallAccountColor": -16728064,
+    "mPPS": 73.04,
+    "mPctChangeSinceBuy": 0.0,
+    "mPctChangeSinceLastClose": 0.45386,
+    "mPctGainTarget": 25.0,
+    "mStatus": "OWNED",
+    "mStrikePrice": 0.0,
+    "mSymbol": "WELL",
+    "mYrMax": 74.75,
+    "mYrMin": 0.14
+  },
+  {
+    "mAnalystsOpinion": 0.0,
+    "mBuyBlockList": [
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 17.14,
+        "mBuyDate": "Dec 28, 2010 12:00:00 AM",
+        "mEffDivYield": 0.0,
+        "mNumShares": 583.431,
+        "mPctChangeSinceBuy": 14.702455,
+        "mTotalDividend": 0.0
+      },
+      {
+        "mAccountColor": -16728064,
+        "mBuyCostBasis": 17.99,
+        "mBuyDate": "Apr 18, 2011 12:00:00 AM",
+        "mEffDivYield": 0.0,
+        "mNumShares": 170.94,
+        "mPctChangeSinceBuy": 9.282935,
+        "mTotalDividend": 0.0
+      }
+    ],
+    "mDivPerShare": 0.0,
+    "mFullName": "AMG Yacktman I",
+    "mOverallAccountColor": -16728064,
+    "mPPS": 19.66,
+    "mPctChangeSinceBuy": 14.702455,
+    "mPctChangeSinceLastClose": 0.665638,
+    "mPctGainTarget": 100.0,
+    "mStatus": "OWNED",
+    "mStrikePrice": 0.0,
+    "mSymbol": "YACKX",
+    "mYrMax": 0.0,
+    "mYrMin": 0.0
+  },
+  {
+    "mAnalystsOpinion": 0.0,
+    "mBuyBlockList": [
+      {
+        "mAccountColor": -1019904,
+        "mBuyCostBasis": 19.8,
+        "mBuyDate": "Dec 4, 2004 12:00:00 AM",
+        "mEffDivYield": 0.0,
+        "mNumShares": 151.515,
+        "mPctChangeSinceBuy": -12.626264,
+        "mTotalDividend": 0.0
+      }
+    ],
+    "mDivPerShare": 0.0,
+    "mFullName": "Columbia Global Energy \u0026 Natrl Res Inst",
+    "mOverallAccountColor": -1019904,
+    "mPPS": 17.3,
+    "mPctChangeSinceBuy": -12.626264,
+    "mPctChangeSinceLastClose": 1.34739,
+    "mPctGainTarget": 250.0,
+    "mStatus": "OWNED",
+    "mStrikePrice": 0.0,
+    "mSymbol": "UMESX",
+    "mYrMax": 0.0,
+    "mYrMin": 0.0
+  },
+  {
+    "mAnalystsOpinion": 0.0,
+    "mBuyBlockList": [
+      {
+        "mAccountColor": -1019904,
+        "mBuyCostBasis": 9.21,
+        "mBuyDate": "Mar 26, 2018 12:00:00 AM",
+        "mEffDivYield": 0.0,
+        "mNumShares": 1085.254,
+        "mPctChangeSinceBuy": 15.092294,
+        "mTotalDividend": 0.0
+      }
+    ],
+    "mDivPerShare": 0.0,
+    "mFullName": "PIMCO Real Return A",
+    "mOverallAccountColor": -1019904,
+    "mPPS": 10.6,
+    "mPctChangeSinceBuy": 15.092294,
+    "mPctChangeSinceLastClose": -0.0942439,
+    "mPctGainTarget": 25.0,
+    "mStatus": "OWNED",
+    "mStrikePrice": 0.0,
+    "mSymbol": "PRTNX",
+    "mYrMax": 0.0,
+    "mYrMin": 0.0
+  },
+  {
+    "mAnalystsOpinion": 2.2,
+    "mBuyBlockList": [
+      {
+        "mAccountColor": -1019904,
+        "mBuyCostBasis": 98.97,
+        "mBuyDate": "Sep 3, 2014 12:00:00 AM",
+        "mEffDivYield": 2.9503891,
+        "mNumShares": 100.0,
+        "mPctChangeSinceBuy": 58.452065,
+        "mTotalDividend": 0.0
+      }
+    ],
+    "mDivPerShare": 2.92,
+    "mFullName": "Apple Inc.",
+    "mOverallAccountColor": -1019904,
+    "mPPS": 156.82,
+    "mPctChangeSinceBuy": 58.452065,
+    "mPctChangeSinceLastClose": 0.615942,
+    "mPctGainTarget": 85.0,
+    "mStatus": "OWNED",
+    "mStrikePrice": 139.0,
+    "mSymbol": "AAPL",
+    "mYrMax": 233.47,
+    "mYrMin": 142.0
+  },
+  {
+    "mAnalystsOpinion": 2.9,
+    "mBuyBlockList": [
+      {
+        "mAccountColor": -16748544,
+        "mBuyCostBasis": 21.0,
+        "mBuyDate": "Jan 21, 2019 12:00:00 AM",
+        "mEffDivYield": 2.8571432,
+        "mNumShares": 300.0,
+        "mPctChangeSinceBuy": -59.142857,
+        "mTotalDividend": 0.0
+      }
+    ],
+    "mDivPerShare": 0.6,
+    "mFullName": "Ford Motor Company",
+    "mOverallAccountColor": -8947849,
+    "mPPS": 8.58,
+    "mPctChangeSinceBuy": -59.142857,
+    "mPctChangeSinceLastClose": 2.63158,
+    "mPctGainTarget": 25.0,
+    "mStatus": "WATCH",
+    "mStrikePrice": 0.0,
+    "mSymbol": "F",
+    "mYrMax": 12.15,
+    "mYrMin": 7.41
+  },
+  {
+    "mAnalystsOpinion": 0.0,
+    "mBuyBlockList": [],
+    "mDivPerShare": 0.0,
+    "mFullName": "Foo Bar Incorporated",
+    "mOverallAccountColor": -8947849,
+    "mPPS": 0.0,
+    "mPctChangeSinceBuy": 0.0,
+    "mPctChangeSinceLastClose": 0.0,
+    "mPctGainTarget": 0.0,
+    "mStatus": "WATCH",
+    "mStrikePrice": 18.0,
+    "mSymbol": "GM",
+    "mYrMax": 0.0,
+    "mYrMin": 0.0
+  }
+]

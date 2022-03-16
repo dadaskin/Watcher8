@@ -1,0 +1,178 @@
+Watcher8 Documentation 
+----------------------
+04-Dec-2021
+
+Here's the situation:
+The last time I made a change to Watcher was 27-Jan-2019.
+Up until this week it was working as intended.
+But around 01-Dec, give or take a day, I noticed tha that the "Daily % change" column was always showing "0.0%"
+for all symbols on both the Owned and Watch tabs.
+
+I thought that maybe Yahoo finance had changed the format of the HTML again.
+Luckily, the last time around I figured out to adapt to this situation.
+The specific strings used to parse the YAHOO finance HTML are stored in the
+Internal storage >> Ringtones >> Watcher8_Parser JSON file.
+
+This way, when YAHOO changes the format, I can change figure out the change
+and change the Parser string and we're back in business in about an hour.
+
+So when I noticed the problem I dug in and, sure enought the string for PrevStart and PrevStop.
+I found the correct strings and put them into the Watcher8_Parser file, but the problem persisted.
+
+Is the parser code not working or is it something else?
+
+I noticed that the Analyst opinion field was working, so I swapped the parser strings for that
+and now the Prev Close number is displayed in the Analyst opinion spot, formatted as an analyst opinion.
+
+This tells me that the parser is working properly to pull this number out or the HTML, but 
+something else is preventing it from being displayed correctly.
+
+I have the source code (in git and another copy on my hard drive) so I can try to figure out what is happening.
+Utilities\Parser.java: Parser.parseYAHOOResponse()
+   - Calls LoadStrings() to load the strings from the JSON file.
+   - the PrevClose section uses the generalMid string.  <-- This might be the problem. 
+   - the AnalystOpinion section doesn't   
+          Trace through this.
+    
+	
+05-Dec-2021
+-----------
+Yes!  This was the problem.
+And as it turns out I can fix it without changing the code.
+
+The pattern we need to match in the HTML is:
+"prevStart" followed, at some point, by "generalMid",
+followed immediately by the value that is sought, 
+followed immediately by "prevStop"
+
+And there is a unique pattern like this!
+
+Here's the working Watcher8_Parser file:
+{
+    "invalidSymbolMarker" : "content=\"Symbol Lookup from Yahoo Finance\"",
+    "nameStartA" : "Lh(18px)\" data-reactid=\"7\">",
+    "nameMidA" : " - ",
+    "nameEnd1" : "<",
+    "nameStartB" : "content=\"",
+    "nameMidB" : ", ",
+    "nameEnd2" : ", ",
+    "ppsStart" : "\"regularMarketPrice\":{\"raw\":",
+    "midPattern" : ",\"fmt\":\"",
+    "stopPattern" : "\"}",
+    "divStart" : "\"dividendRate\":{\"raw\":",
+    "yrStart" : "FIFTY_TWO_WK_RANGE-value",
+    "generalMid" :">",
+    "yrStop" : "</td>",
+    "analStart" : "\"recommendationMean\":{\"raw\":",
+    "analStop" : ",\"fmt\"",
+    "prevStart" : "data-test=\"PREV_CLOSE-value\" data-reactid=\"",
+    "prevStop" : "</td>"
+}
+
+I am a software God!
+
+
+11-Mar-2022
+-----------
+They changed it again!
+
+This time I took a clue from QuoteGrabber:
+{
+    "invalidSymbolMarker" : "content=\"Symbol Lookup from Yahoo Finance\"",
+    "nameStartA" : "Lh(18px)\" data-reactid=\"7\">",
+    "nameMidA" : " - ",
+    "nameEnd1" : "<",
+    "nameStartB" : "content=\"",
+    "nameMidB" : ", ",
+    "nameEnd2" : ", ",
+    "ppsStart" : "\"qsp-price\" data-field=\"regularMarketPrice\"",
+    "midPattern" : "value=\"",
+    "stopPattern" : "\"",
+    "divStart" : "\"dividendRate\":{\"raw\":",
+    "yrStart" : "FIFTY_TWO_WK_RANGE-value",
+    "generalMid" :">",
+    "yrStop" : "</td>",
+    "analStart" : "\"recommendationMean\":{\"raw\":",
+    "analStop" : ",\"fmt\"",
+    "prevStart" : "data-test=\"PREV_CLOSE-value\"",
+    "prevStop" : "</td>"
+}	
+
+This changed the midPattern and stopPattern.
+   PPS        OK
+   Dividend    x
+   Yr Range   OK
+   Analyst    OK
+   Prev Close OK
+   
+I tried changing the dividend string to be the same as QuoteGrabber, but it didn't work.   
+   
+I'm going to have to dig into the Android Studio again and change how the dividend is parsed out.
+
+It's been over 3 years since I've had to do that.
+
+
+12-Mar-2022
+-----------
+Found some of the old documentation in D:\Watcher8\StockWatcher notes.txt
+
+As of 15-Jul-2018 I was supporting API 25 <=> Android 7.1.1 (Nougat)
+
+Emuulator: 
+   Tools >> AVD Manager >> "Create Virtual Device" >> "New Hardware Profile"
+   From: https://developer.samsung.com/galaxy-emulator-skin/galaxy-s.html?download=/emulatorskin/file/b85f61ee-60a4-4003-95b0-f691afc96387
+   
+   Screen size: 5.8"
+   Resolution: 1440 x 2960  px
+   Currently the phone has Android 9 (API 28) installed
+   
+   
+App bulids and Emulator works! 
+  Entered some stock symbols and info by hand.
+  Chose "Export JSON" from Hamburger (aka "Action Bar") menu.
+
+On AndroidStudio:
+     View >> Tool Windows >> Device File Explorer.
+	 This brings up a view of the Emulated device's file system.
+	 
+	 
+On existing app on the phone the JSON app is stored in:
+  Internal Storage >> Ringtones
+This corresponds to:
+  storage >> emulated >> 0 >> Ringtones 
+     in Device File Explorer.
+and
+C:\Users\david\AppData\Local\Google\AndroidStudio2020.3\device-explorer\GalaxyS8_API_28 [emulator-5554]\storage\emulated\0\Ringtones	
+    on my computer's file system.
+
+To add a file from the computer to the emulator's file system:
+    Select the destination folder in Device File Explorer,
+	Right-click >> "Upload"
+	Navigate to source folder and click on file.
+    
+Uploaded the JSON file with all my current portfolio to the Emulator!
+
+Now: Can I get it to make the web request?
+	I select one symbol and click the refresh button.
+	I can't tell if anything worked or not, since the market is not open now.
+	
+I can emulate connecting to WiFi on the emulator, in almost the same way
+I would do it on a real device.
+
+Can I do something on the Emulated App and hit a breakpoint in the code?
+  Yes!  (Just make sure to "Debug" the App, rather than "Run" it)
+  
+views\GenericDetailsActivity.detailsRefreshBNuttonClicked()
+   calls utilities\Refresher.refreshSingle()
+     which calls doSingleWebRequest()
+   
+I can get a web response from the debugger!
+I'm in business!
+
+
+
+
+	 
+	 
+   
+
