@@ -17,7 +17,6 @@ import java.io.Reader;
 import java.lang.reflect.Type;
 
 
-@SuppressWarnings("SpellCheckingInspection")
 public class Parsers {
     private static Parsers mInstance;
     private static boolean mLoaded;
@@ -189,7 +188,7 @@ public class Parsers {
             }
         }
         String yrMinString = yrString.substring(0, yrString.indexOf(" -"));
-        String yrMaxString = yrString.substring(yrString.indexOf("- ")+2, yrString.length());
+        String yrMaxString = yrString.substring(yrString.indexOf("- ")+2);
         quote.mYrMin = parseFloatOrNA(yrMinString);
         quote.mYrMax = parseFloatOrNA(yrMaxString);
 
@@ -237,7 +236,7 @@ public class Parsers {
     private float parseFloatOrNA(String field) {
         float parsedFloat = 0.0f;
         if (!field.contains("N/A")) {
-            parsedFloat = Float.valueOf(field.replace(",",""));
+            parsedFloat = Float.parseFloat(field.replace(",",""));
         }
         return parsedFloat;
     }
