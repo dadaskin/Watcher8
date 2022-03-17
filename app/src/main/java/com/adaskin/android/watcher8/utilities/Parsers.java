@@ -17,7 +17,6 @@ import java.io.Reader;
 import java.lang.reflect.Type;
 
 
-@SuppressWarnings("SpellCheckingInspection")
 public class Parsers {
     private static Parsers mInstance;
     private static boolean mLoaded;
@@ -60,24 +59,29 @@ public class Parsers {
         if (!mLoaded) {
             LoadStrings(context);
         }
-        String invalidSymbolMarker = mParserStrings.invalidSymbolMarker;
-        String nameStartA = mParserStrings.nameStartA;
-        String nameMidA = mParserStrings.nameMidA;
-        String nameEnd1 = mParserStrings.nameEnd1;
-        String nameStartB = mParserStrings.nameStartB;
-        String nameMidB = mParserStrings.nameMidB;
-        String nameEnd2 = mParserStrings.nameEnd2;
-        String ppsStart = mParserStrings.ppsStart;
-        String midPattern = mParserStrings.midPattern;
-        String stopPattern = mParserStrings.stopPattern;
-        String divStart = mParserStrings.divStart;
-        String yrStart = mParserStrings.yrStart;
-        String generalMid =mParserStrings.generalMid;
-        String yrStop = mParserStrings.yrStop;
-        String analStart = mParserStrings.analStart;
-        String analStop = mParserStrings.analStop;
-        String prevStart = mParserStrings.prevStart;
-        String prevStop = mParserStrings.prevStop;
+         return parseYAHOOResponse2(mParserStrings, quote, response);
+
+    }
+
+    public boolean parseYAHOOResponse2(ParserStrings parserStrings, final StockQuote quote, String response){
+        String invalidSymbolMarker = parserStrings.invalidSymbolMarker;
+        String nameStartA = parserStrings.nameStartA;
+        String nameMidA = parserStrings.nameMidA;
+        String nameEnd1 = parserStrings.nameEnd1;
+        String nameStartB = parserStrings.nameStartB;
+        String nameMidB = parserStrings.nameMidB;
+        String nameEnd2 = parserStrings.nameEnd2;
+        String ppsStart = parserStrings.ppsStart;
+        String midPattern = parserStrings.midPattern;
+        String stopPattern = parserStrings.stopPattern;
+        String divStart = parserStrings.divStart;
+        String yrStart = parserStrings.yrStart;
+        String generalMid = parserStrings.generalMid;
+        String yrStop = parserStrings.yrStop;
+        String analStart = parserStrings.analStart;
+        String analStop = parserStrings.analStop;
+        String prevStart = parserStrings.prevStart;
+        String prevStop = parserStrings.prevStop;
 
         String nameStart1 = nameStartA + quote.mSymbol + nameMidA;
         String nameStart2 = nameStartB + quote.mSymbol + nameMidB;
@@ -189,7 +193,7 @@ public class Parsers {
             }
         }
         String yrMinString = yrString.substring(0, yrString.indexOf(" -"));
-        String yrMaxString = yrString.substring(yrString.indexOf("- ")+2, yrString.length());
+        String yrMaxString = yrString.substring(yrString.indexOf("- ")+2);
         quote.mYrMin = parseFloatOrNA(yrMinString);
         quote.mYrMax = parseFloatOrNA(yrMaxString);
 
@@ -234,10 +238,11 @@ public class Parsers {
         return true;
     }
 
+
     private float parseFloatOrNA(String field) {
         float parsedFloat = 0.0f;
         if (!field.contains("N/A")) {
-            parsedFloat = Float.valueOf(field.replace(",",""));
+            parsedFloat = Float.parseFloat(field.replace(",",""));
         }
         return parsedFloat;
     }
