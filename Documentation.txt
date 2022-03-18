@@ -169,6 +169,16 @@ views\GenericDetailsActivity.detailsRefreshBNuttonClicked()
 I can get a web response from the debugger!
 I'm in business!
 
+16-Mar-2022:
+------------
+After much struggle I have put a unit test around parseYAHOOResponse()
+so I can test it repeatably.
+
+Next Step: Refactor this method
+Then: Find a more robust way to do the parsing.
+
+
+
 
 
 
