@@ -19,14 +19,14 @@ import java.io.Reader;
 
 public class Test_parseYAHOOResponse {
     @Test
-    public void UnitTest_parseYAHOOResponse()
+    public void Test_AEP()
     {
         Parsers p = Parsers.getInstance();
 
         StockQuote quote = new StockQuote("AEP", 0.0f, 0.0f, 900.0f);
 
         ParserStrings pStrings= getParserStrings();
-        String response = getResponseString();
+        String response = getResponseString("Decoy_AEP_220316.txt");
 
         p.parseYAHOOResponse2(pStrings, quote, response);
 
@@ -43,9 +43,32 @@ public class Test_parseYAHOOResponse {
         assertEquals(expectedYrMax, quote.mYrMax, 0.001);
         assertEquals(expectedOpinion, quote.mAnalystsOpinion, 0.01);
         assertEquals(expectedPPS, quote.mPPS, 0.001);
-        assertEquals(expectedDailyChange, quote.mPctChangeSinceLastClose, 0.1);
+        assertEquals(expectedDailyChange, quote.mPctChangeSinceLastClose, 0.05);
     //    assertEquals(expectedDiv, quote.mDivPerShare, 0.0001);
     }
+
+    @Test
+    public void Test_BCHYX()
+    {
+        Parsers p = Parsers.getInstance();
+
+        StockQuote quote = new StockQuote("BCHYX", 0.0f, 0.0f, 900.0f);
+
+        ParserStrings pStrings= getParserStrings();
+        String response = getResponseString("Decoy_BCHYX_220317.txt");
+
+        p.parseYAHOOResponse2(pStrings, quote, response);
+
+        String expectedFullName = "American Century California High Yield Municipal Fund Investor Class";
+        double expectedPPS = 10.53f;
+        double expectedDailyChange = 0.1f;
+
+        assertEquals(expectedFullName, quote.mFullName);
+        assertEquals(expectedPPS, quote.mPPS, 0.001);
+        assertEquals(expectedDailyChange, quote.mPctChangeSinceLastClose, 0.01);
+    }
+
+
 
     public ParserStrings getParserStrings()
     {
@@ -72,11 +95,11 @@ public class Test_parseYAHOOResponse {
         return p;
     }
 
-    public String getResponseString()
+    public String getResponseString(String decoyFileName)
     {
         StringBuilder sb = new StringBuilder();
         File file;
-        file = new File("D:\\AndroidstudioProjects\\Watcher8\\app\\src\\test\\java\\com\\adaskin\\android\\watcher8", "Decoy_220316.txt");
+        file = new File("D:\\AndroidstudioProjects\\Watcher8\\app\\src\\test\\java\\com\\adaskin\\android\\watcher8", decoyFileName);
         try {
             FileInputStream fis = new FileInputStream(file);
             Reader isReader = new InputStreamReader(fis);
