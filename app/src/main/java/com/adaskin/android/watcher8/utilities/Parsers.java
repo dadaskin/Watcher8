@@ -66,17 +66,11 @@ public class Parsers {
 
     public boolean parseYAHOOResponse2(ParserStrings parserStrings, final StockQuote quote, String response){
         String invalidSymbolMarker = parserStrings.invalidSymbolMarker;
-        String ppsStart = parserStrings.ppsStart;
-        String midPattern = parserStrings.midPattern;
-        String stopPattern = parserStrings.stopPattern;
-        String divStart = parserStrings.divStart;
         String yrStart = parserStrings.yrStart;
         String generalMid = parserStrings.generalMid;
         String yrStop = parserStrings.yrStop;
         String analStart = parserStrings.analStart;
         String analStop = parserStrings.analStop;
-        String prevStart = parserStrings.prevStart;
-        String prevStop = parserStrings.prevStop;
 
         // Make sure Invalid Symbol Marker isn't present
         int idxInvalid = response.indexOf(invalidSymbolMarker);
@@ -85,8 +79,8 @@ public class Parsers {
         }
 
         quote.mFullName = parseFullName(quote.mSymbol, response, parserStrings);
-        quote.mPPS = parseCurrentPrice(response, ppsStart, midPattern, stopPattern);
-        quote.mDivPerShare = parseCurrentPrice(response, divStart, midPattern, stopPattern);
+        quote.mPPS = parseCurrentPrice(response, parserStrings);
+        quote.mDivPerShare = parseDividend(response, parserStrings);
 
         // Parse out 52-week range
         String yrString;
@@ -117,12 +111,12 @@ public class Parsers {
         quote.mAnalystsOpinion = parseAnalystsOpinion(response, analStart, analStop);
 
         // Parse out previous close pps and compute percent changes.
-        quote.compute(parseCurrentPrice(response, prevStart, generalMid, prevStop));
+        quote.compute(parsePreviousClosePrice(response, parserStrings));
 
         return true;
     }
 
-    private float parseAnalystsOpinion(String response, String analStart, String analStop) {
+    private float parseAnalystsOpinion(@NonNull String response, String analStart, String analStop) {
         String analString;
         int idxAnalStart = response.indexOf(analStart);
         if (idxAnalStart == -1) {
@@ -139,19 +133,64 @@ public class Parsers {
         return parseFloatOrNA(analString);
     }
 
-    private float parseCurrentPrice(String response, String ppsStart, String midPattern, String stopPattern) {
+    private float parseCurrentPrice(@NonNull String response, @NonNull ParserStrings parserStrings) {
         String ppsString;
-        int idxPpsStart = response.indexOf(ppsStart);
+        int idxPpsStart = response.indexOf(parserStrings.ppsStart);
         if (idxPpsStart == -1) {
             ppsString = "N/A";
         } else {
-            ppsString = response.substring(idxPpsStart + ppsStart.length());
-            int idxPpsMid = ppsString.indexOf(midPattern);
+            ppsString = response.substring(idxPpsStart + parserStrings.ppsStart.length());
+            int idxPpsMid = ppsString.indexOf(parserStrings.midPattern);
             if (idxPpsMid == -1) {
                 ppsString = "N/A";
             } else {
-                ppsString = ppsString.substring(idxPpsMid + midPattern.length());
-                int idxPpsStop = ppsString.indexOf(stopPattern);
+                ppsString = ppsString.substring(idxPpsMid + parserStrings.midPattern.length());
+                int idxPpsStop = ppsString.indexOf(parserStrings.stopPattern);
+                if (idxPpsStop == -1) {
+                    ppsString = "N/A";
+                } else {
+                    ppsString = ppsString.substring(0, idxPpsStop);
+                }
+            }
+        }
+        return parseFloatOrNA(ppsString);
+    }
+
+    private float parseDividend(@NonNull String response, @NonNull ParserStrings parserStrings) {
+        String ppsString;
+        int idxPpsStart = response.indexOf(parserStrings.divStart);
+        if (idxPpsStart == -1) {
+            ppsString = "N/A";
+        } else {
+            ppsString = response.substring(idxPpsStart + parserStrings.divStart.length());
+            int idxPpsMid = ppsString.indexOf(parserStrings.midPattern);
+            if (idxPpsMid == -1) {
+                ppsString = "N/A";
+            } else {
+                ppsString = ppsString.substring(idxPpsMid + parserStrings.midPattern.length());
+                int idxPpsStop = ppsString.indexOf(parserStrings.stopPattern);
+                if (idxPpsStop == -1) {
+                    ppsString = "N/A";
+                } else {
+                    ppsString = ppsString.substring(0, idxPpsStop);
+                }
+            }
+        }
+        return parseFloatOrNA(ppsString);
+    }
+    private float parsePreviousClosePrice(@NonNull String response, @NonNull ParserStrings parserStrings) {
+        String ppsString;
+        int idxPpsStart = response.indexOf(parserStrings.prevStart);
+        if (idxPpsStart == -1) {
+            ppsString = "N/A";
+        } else {
+            ppsString = response.substring(idxPpsStart + parserStrings.prevStart.length());
+            int idxPpsMid = ppsString.indexOf(parserStrings.generalMid);
+            if (idxPpsMid == -1) {
+                ppsString = "N/A";
+            } else {
+                ppsString = ppsString.substring(idxPpsMid + parserStrings.generalMid.length());
+                int idxPpsStop = ppsString.indexOf(parserStrings.prevStop);
                 if (idxPpsStop == -1) {
                     ppsString = "N/A";
                 } else {
@@ -163,7 +202,7 @@ public class Parsers {
     }
 
     @NonNull
-    private String parseFullName(String symbol, String response, ParserStrings parserStrings ) {
+    private String parseFullName(String symbol, @NonNull String response, @NonNull ParserStrings parserStrings ) {
 
         String nameStart1 = parserStrings.nameStartA + symbol + parserStrings.nameMidA;
         String nameStart2 = parserStrings.nameStartB + symbol + parserStrings.nameMidB;
@@ -199,7 +238,6 @@ public class Parsers {
         }
         return fullName;
     }
-
 
     private float parseFloatOrNA(String field) {
         float parsedFloat = 0.0f;

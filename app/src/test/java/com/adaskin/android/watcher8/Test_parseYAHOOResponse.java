@@ -11,7 +11,6 @@ import com.adaskin.android.watcher8.utilities.Parsers;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -36,7 +35,7 @@ public class Test_parseYAHOOResponse {
         double expectedOpinion = 2.2f;
         double expectedPPS = 95.07f;
         double expectedDailyChange = -1.1f;
-        double expectedDiv = 3.12f;
+//        double expectedDiv = 3.12f;
 
         assertEquals(expectedFullName, quote.mFullName);
         assertEquals(expectedYrMin, quote.mYrMin, 0.001);
