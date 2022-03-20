@@ -64,14 +64,9 @@ public class Parsers {
 
     }
 
-    public boolean parseYAHOOResponse2(ParserStrings parserStrings, final StockQuote quote, String response){
-        String invalidSymbolMarker = parserStrings.invalidSymbolMarker;
-        String yrStart = parserStrings.yrStart;
-        String generalMid = parserStrings.generalMid;
-        String yrStop = parserStrings.yrStop;
-
+    public boolean parseYAHOOResponse2(@NonNull ParserStrings parserStrings, final StockQuote quote, @NonNull String response){
         // Make sure Invalid Symbol Marker isn't present
-        int idxInvalid = response.indexOf(invalidSymbolMarker);
+        int idxInvalid = response.indexOf(parserStrings.invalidSymbolMarker);
         if (idxInvalid != -1) {
             return false;
         }
@@ -80,19 +75,30 @@ public class Parsers {
         quote.mPPS = parseCurrentPrice(response, parserStrings);
         quote.mDivPerShare = parseDividend(response, parserStrings);
 
-        // Parse out 52-week range
+        PriceRange yrRange = parsePriceRange(response, parserStrings);
+        quote.mYrMin = yrRange.minimum;
+        quote.mYrMax = yrRange.maximum;
+
+        quote.mAnalystsOpinion = parseAnalystsOpinion(response, parserStrings);
+        quote.compute(parsePreviousClosePrice(response, parserStrings));
+
+        return true;
+    }
+
+    @NonNull
+    private PriceRange parsePriceRange(@NonNull String response, @NonNull ParserStrings parserStrings) {
         String yrString;
-        int idxYrStart = response.indexOf(yrStart);
+        int idxYrStart = response.indexOf(parserStrings.yrStart);
         if (idxYrStart == -1) {
             yrString = "0 - 0";
         } else {
-            yrString = response.substring(idxYrStart + yrStart.length());
-            int idxYrMid = yrString.indexOf(generalMid);
+            yrString = response.substring(idxYrStart + parserStrings.yrStart.length());
+            int idxYrMid = yrString.indexOf(parserStrings.generalMid);
             if (idxYrMid == -1) {
                 yrString = "0 - 0";
             } else {
-                yrString = yrString.substring(idxYrMid + generalMid.length());
-                int idxYrStop = yrString.indexOf(yrStop);
+                yrString = yrString.substring(idxYrMid + parserStrings.generalMid.length());
+                int idxYrStop = yrString.indexOf(parserStrings.yrStop);
                 if (idxYrStop == -1) {
                     yrString = "0 - 0";
                 } else {
@@ -102,16 +108,8 @@ public class Parsers {
         }
         String yrMinString = yrString.substring(0, yrString.indexOf(" -"));
         String yrMaxString = yrString.substring(yrString.indexOf("- ")+2);
-        quote.mYrMin = parseFloatOrNA(yrMinString);
-        quote.mYrMax = parseFloatOrNA(yrMaxString);
 
-        // Parse out Analysts opinion
-        quote.mAnalystsOpinion = parseAnalystsOpinion(response, parserStrings);
-
-        // Parse out previous close pps and compute percent changes.
-        quote.compute(parsePreviousClosePrice(response, parserStrings));
-
-        return true;
+        return new PriceRange(parseFloatOrNA(yrMinString), parseFloatOrNA(yrMaxString));
     }
 
     private float parseAnalystsOpinion(@NonNull String response, @NonNull ParserStrings parserStrings) {
@@ -176,6 +174,7 @@ public class Parsers {
         }
         return parseFloatOrNA(ppsString);
     }
+
     private float parsePreviousClosePrice(@NonNull String response, @NonNull ParserStrings parserStrings) {
         String ppsString;
         int idxPpsStart = response.indexOf(parserStrings.prevStart);
@@ -237,11 +236,24 @@ public class Parsers {
         return fullName;
     }
 
-    private float parseFloatOrNA(String field) {
+    private float parseFloatOrNA(@NonNull String field) {
         float parsedFloat = 0.0f;
         if (!field.contains("N/A")) {
             parsedFloat = Float.parseFloat(field.replace(",",""));
         }
         return parsedFloat;
     }
+
+    public static class PriceRange
+    {
+        public float minimum;
+        public float maximum;
+
+        public PriceRange(float minimum, float maximum) {
+            this.minimum = minimum;
+            this.maximum = maximum;
+        }
+    }
+
+
 }
