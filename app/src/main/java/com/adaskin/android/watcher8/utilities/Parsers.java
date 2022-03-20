@@ -69,8 +69,6 @@ public class Parsers {
         String yrStart = parserStrings.yrStart;
         String generalMid = parserStrings.generalMid;
         String yrStop = parserStrings.yrStop;
-        String analStart = parserStrings.analStart;
-        String analStop = parserStrings.analStop;
 
         // Make sure Invalid Symbol Marker isn't present
         int idxInvalid = response.indexOf(invalidSymbolMarker);
@@ -108,7 +106,7 @@ public class Parsers {
         quote.mYrMax = parseFloatOrNA(yrMaxString);
 
         // Parse out Analysts opinion
-        quote.mAnalystsOpinion = parseAnalystsOpinion(response, analStart, analStop);
+        quote.mAnalystsOpinion = parseAnalystsOpinion(response, parserStrings);
 
         // Parse out previous close pps and compute percent changes.
         quote.compute(parsePreviousClosePrice(response, parserStrings));
@@ -116,14 +114,14 @@ public class Parsers {
         return true;
     }
 
-    private float parseAnalystsOpinion(@NonNull String response, String analStart, String analStop) {
+    private float parseAnalystsOpinion(@NonNull String response, @NonNull ParserStrings parserStrings) {
         String analString;
-        int idxAnalStart = response.indexOf(analStart);
+        int idxAnalStart = response.indexOf(parserStrings.analStart);
         if (idxAnalStart == -1) {
             analString = "N/A";
         } else {
-            analString = response.substring(idxAnalStart + analStart.length());
-            int idxAnalStop = analString.indexOf(analStop);
+            analString = response.substring(idxAnalStart + parserStrings.analStart.length());
+            int idxAnalStop = analString.indexOf(parserStrings.analStop);
             if (idxAnalStop == -1) {
                 analString = "N/A";
             } else {
