@@ -18,7 +18,7 @@ import java.io.Reader;
 
 public class Test_parseYAHOOResponse {
     @Test
-    public void Test_AEP()
+    public void Test_AEP_all_fields()
     {
         Parsers p = Parsers.getInstance();
 
@@ -47,7 +47,74 @@ public class Test_parseYAHOOResponse {
     }
 
     @Test
-    public void Test_BCHYX()
+    public void Test_AEP_parseFullName()
+    {
+        Parsers p = Parsers.getInstance();
+        ParserStrings pStrings = getParserStrings();
+        String response = getResponseString("Decoy_AEP_220316.txt");
+
+        String expected = "American Electric Power Company, Inc";
+        String actual = p.parseFullName("AEP", response, pStrings);
+
+        assertEquals("AEP FullName", expected, actual);
+    }
+
+    @Test
+    public void Test_AEP_parsePPS()
+    {
+       Parsers p = Parsers.getInstance();
+       ParserStrings pStrings = getParserStrings();
+       String response = getResponseString("Decoy_AEP_220316.txt");
+
+       float expected = 95.07f;
+       float actual = p.parseCurrentPrice(response, pStrings);
+
+       assertEquals("AEP current price", expected, actual, 0.005);
+   }
+
+    @Test
+    public void Test_AEP_parsePrevClose()
+    {
+       Parsers p = Parsers.getInstance();
+       ParserStrings pStrings = getParserStrings();
+       String response = getResponseString("Decoy_AEP_220316.txt");
+
+       float expected = 96.11f;
+       float actual = p.parsePreviousClosePrice(response, pStrings);
+
+       assertEquals("AEP previous close", expected, actual, 0.005);
+   }
+
+    @Test
+    public void Test_AEP_parseMinRange()
+    {
+        Parsers p = Parsers.getInstance();
+        ParserStrings pStrings = getParserStrings();
+        String response = getResponseString("Decoy_AEP_220316.txt");
+
+        float expected = 80.22f;
+        Parsers.PriceRange actualObject = p.parsePriceRange(response, pStrings);
+        float actual = actualObject.minimum;
+
+        assertEquals("AEP minimum range", expected, actual, 0.005);
+    }
+
+    @Test
+    public void Test_AEP_parseMaxRange()
+    {
+        Parsers p = Parsers.getInstance();
+        ParserStrings pStrings = getParserStrings();
+        String response = getResponseString("Decoy_AEP_220316.txt");
+
+        float expected = 98.15f;
+        Parsers.PriceRange actualObject = p.parsePriceRange(response, pStrings);
+        float actual = actualObject.maximum;
+
+        assertEquals("AEP maximum range", expected, actual, 0.005);
+    }
+
+    @Test
+    public void Test_BCHYX_all_fields()
     {
         Parsers p = Parsers.getInstance();
 
@@ -66,6 +133,21 @@ public class Test_parseYAHOOResponse {
         assertEquals(expectedPPS, quote.mPPS, 0.001);
         assertEquals(expectedDailyChange, quote.mPctChangeSinceLastClose, 0.01);
     }
+
+    @Test
+    public void Test_BCHYX_parseFullName()
+    {
+        Parsers p = Parsers.getInstance();
+        ParserStrings pStrings = getParserStrings();
+        String response = getResponseString("Decoy_BCHYX_220317.txt");
+
+        String expected = "American Century California High Yield Municipal Fund Investor Class";
+        String actual = p.parseFullName("BCHYX", response, pStrings);
+
+        assertEquals("BCHYX FullName", expected, actual);
+    }
+
+
 
 
 

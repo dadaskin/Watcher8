@@ -86,7 +86,7 @@ public class Parsers {
     }
 
     @NonNull
-    private PriceRange parsePriceRange(@NonNull String response, @NonNull ParserStrings parserStrings) {
+    public PriceRange parsePriceRange(@NonNull String response, @NonNull ParserStrings parserStrings) {
         String yrString;
         int idxYrStart = response.indexOf(parserStrings.yrStart);
         if (idxYrStart == -1) {
@@ -112,7 +112,7 @@ public class Parsers {
         return new PriceRange(parseFloatOrNA(yrMinString), parseFloatOrNA(yrMaxString));
     }
 
-    private float parseAnalystsOpinion(@NonNull String response, @NonNull ParserStrings parserStrings) {
+    public float parseAnalystsOpinion(@NonNull String response, @NonNull ParserStrings parserStrings) {
         String analString;
         int idxAnalStart = response.indexOf(parserStrings.analStart);
         if (idxAnalStart == -1) {
@@ -129,7 +129,7 @@ public class Parsers {
         return parseFloatOrNA(analString);
     }
 
-    private float parseCurrentPrice(@NonNull String response, @NonNull ParserStrings parserStrings) {
+    public float parseCurrentPrice(@NonNull String response, @NonNull ParserStrings parserStrings) {
         String ppsString;
         int idxPpsStart = response.indexOf(parserStrings.ppsStart);
         if (idxPpsStart == -1) {
@@ -152,7 +152,7 @@ public class Parsers {
         return parseFloatOrNA(ppsString);
     }
 
-    private float parseDividend(@NonNull String response, @NonNull ParserStrings parserStrings) {
+    public float parseDividend(@NonNull String response, @NonNull ParserStrings parserStrings) {
         String ppsString;
         int idxPpsStart = response.indexOf(parserStrings.divStart);
         if (idxPpsStart == -1) {
@@ -175,7 +175,7 @@ public class Parsers {
         return parseFloatOrNA(ppsString);
     }
 
-    private float parsePreviousClosePrice(@NonNull String response, @NonNull ParserStrings parserStrings) {
+    public float parsePreviousClosePrice(@NonNull String response, @NonNull ParserStrings parserStrings) {
         String ppsString;
         int idxPpsStart = response.indexOf(parserStrings.prevStart);
         if (idxPpsStart == -1) {
@@ -199,7 +199,7 @@ public class Parsers {
     }
 
     @NonNull
-    private String parseFullName(String symbol, @NonNull String response, @NonNull ParserStrings parserStrings ) {
+    public String parseFullName(String symbol, @NonNull String response, @NonNull ParserStrings parserStrings ) {
 
         String nameStart1 = parserStrings.nameStartA + symbol + parserStrings.nameMidA;
         String nameStart2 = parserStrings.nameStartB + symbol + parserStrings.nameMidB;
