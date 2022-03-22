@@ -29,7 +29,7 @@ public class Test_parseYAHOOResponse {
 
         p.parseYAHOOResponse2(pStrings, quote, response);
 
-        String expectedFullName = "American Electric Power Company";
+        String expectedFullName = "American Electric Power Company, Inc.";
         double expectedYrMin = 80.22f;
         double expectedYrMax = 98.15f;
         double expectedOpinion = 2.2f;
@@ -53,7 +53,7 @@ public class Test_parseYAHOOResponse {
         ParserStrings pStrings = getParserStrings();
         String response = getResponseString("Decoy_AEP_220316.txt");
 
-        String expected = "American Electric Power Company, Inc";
+        String expected = "American Electric Power Company, Inc.";
         String actual = p.parseFullName("AEP", response, pStrings);
 
         assertEquals("AEP FullName", expected, actual);
@@ -114,6 +114,19 @@ public class Test_parseYAHOOResponse {
     }
 
     @Test
+    public void Test_AEP_parseDiv()
+    {
+        Parsers p = Parsers.getInstance();
+        ParserStrings pStrings = getParserStrings();
+        String response = getResponseString("Decoy_AEP_220316.txt");
+
+        float expected = 3.12f;
+        float actual = p.parseDividend(response, pStrings);
+
+        assertEquals("AEP dividend", expected, actual, 0.005);
+    }
+
+    @Test
     public void Test_BCHYX_all_fields()
     {
         Parsers p = Parsers.getInstance();
@@ -147,9 +160,31 @@ public class Test_parseYAHOOResponse {
         assertEquals("BCHYX FullName", expected, actual);
     }
 
+    @Test
+    public void Test_BCHYX_parsePPS()
+    {
+        Parsers p = Parsers.getInstance();
+        ParserStrings pStrings = getParserStrings();
+        String response = getResponseString("Decoy_BCHYX_220317.txt");
 
+        float expected = 10.53f;
+        float actual = p.parseCurrentPrice(response, pStrings);
 
+        assertEquals("BCHYX current price", expected, actual, 0.005);
+    }
 
+    @Test
+    public void Test_BCHYX_parsePrevClose()
+    {
+        Parsers p = Parsers.getInstance();
+        ParserStrings pStrings = getParserStrings();
+        String response = getResponseString("Decoy_BCHYX_220317.txt");
+
+        float expected = 10.52f;
+        float actual = p.parsePreviousClosePrice(response, pStrings);
+
+        assertEquals("BCHYX previous close", expected, actual, 0.005);
+    }
 
     public ParserStrings getParserStrings()
     {
