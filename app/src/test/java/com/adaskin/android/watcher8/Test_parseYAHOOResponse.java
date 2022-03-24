@@ -190,22 +190,34 @@ public class Test_parseYAHOOResponse {
     {
         ParserStrings p = new ParserStrings();
         p.invalidSymbolMarker = "content=\"Symbol Lookup from Yahoo Finance\"";
-        p.nameStartA = "Lh(18px)\" data-reactid=\"7\">";
-        p.nameMidA = " - ";
-        p.nameEnd1 = "<";
-        p.nameStartB = "content=\"";
-        p.nameMidB =  ", ";
-        p.nameEnd2 =  ", ";
+        p.nameStart = "content=\"";
+        p.nameMid =  ", ";
+        p.nameOffset = 0;
+        p.nameStop =  ", ";
+
         p.ppsStart = "\"qsp-price\" data-field=\"regularMarketPrice\"";
-        p.midPattern =  "value=\"";
-        p.stopPattern = "\"";
-        p.divStart = "\"dividendRate\":{\"raw\":";
+        p.ppsMid =  "value=\"";
+        p.ppsOffset = 0;
+        p.ppsStop = "\"";
+
+        p.divStart = "DIVIDEND_AND_YIELD-value\">";
+        p.divMid = "";
+        p.divOffset = 0;
+        p.divStop = " (";
+
         p.yrStart = "FIFTY_TWO_WK_RANGE-value";
-        p.generalMid = ">";
+        p.yrMid = ">";
+        p.yrOffset = 0;
         p.yrStop =  "</td>";
+
         p.analStart = "\"recommendationMean\":{\"raw\":";
+        p.analMid = "";
+        p.analOffset = 0;
         p.analStop = ",\"fmt\"";
-        p.prevStart = "data-test=\"PREV_CLOSE-value\"";
+
+        p.prevStart = "data-test=\"PREV_CLOSE-value\">";
+        p.prevMid = "";
+        p.prevOffset = 0;
         p.prevStop = "</td>";
 
         return p;

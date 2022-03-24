@@ -3,7 +3,6 @@ package com.adaskin.android.watcher8.utilities;
 import android.content.Context;
 import android.os.Environment;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.adaskin.android.watcher8.models.StockQuote;
@@ -93,11 +92,11 @@ public class Parsers {
             yrString = "0 - 0";
         } else {
             yrString = response.substring(idxYrStart + parserStrings.yrStart.length());
-            int idxYrMid = yrString.indexOf(parserStrings.generalMid);
+            int idxYrMid = yrString.indexOf(parserStrings.yrMid);
             if (idxYrMid == -1) {
                 yrString = "0 - 0";
             } else {
-                yrString = yrString.substring(idxYrMid + parserStrings.generalMid.length());
+                yrString = yrString.substring(idxYrMid + parserStrings.yrMid.length());
                 int idxYrStop = yrString.indexOf(parserStrings.yrStop);
                 if (idxYrStop == -1) {
                     yrString = "0 - 0";
@@ -130,41 +129,46 @@ public class Parsers {
     }
 
     public float parseCurrentPrice(@NonNull String response, @NonNull ParserStrings parserStrings) {
-        String ppsString;
-        int idxPpsStart = response.indexOf(parserStrings.ppsStart);
-        if (idxPpsStart == -1) {
-            ppsString = "N/A";
+        String s;
+        int idxStart = response.indexOf(parserStrings.ppsStart);
+        if (idxStart == -1) {
+            s = "N/A";
         } else {
-            ppsString = response.substring(idxPpsStart + parserStrings.ppsStart.length());
-            int idxPpsMid = ppsString.indexOf(parserStrings.midPattern);
-            if (idxPpsMid == -1) {
-                ppsString = "N/A";
+            s = response.substring(idxStart + parserStrings.ppsStart.length());
+            int idxMid = s.indexOf(parserStrings.ppsMid);
+            if (idxMid == -1) {
+                s = "N/A";
             } else {
-                ppsString = ppsString.substring(idxPpsMid + parserStrings.midPattern.length());
-                int idxPpsStop = ppsString.indexOf(parserStrings.stopPattern);
-                if (idxPpsStop == -1) {
-                    ppsString = "N/A";
+                s = s.substring(idxMid + parserStrings.ppsMid.length());
+                int idxStop = s.indexOf(parserStrings.ppsStop);
+                if (idxStop == -1) {
+                    s = "N/A";
                 } else {
-                    ppsString = ppsString.substring(0, idxPpsStop);
+                    s = s.substring(0, idxStop);
                 }
             }
         }
-        return parseFloatOrNA(ppsString);
+        return parseFloatOrNA(s);
     }
 
     public float parseDividend(@NonNull String response, @NonNull ParserStrings parserStrings) {
+
+        String patStart = parserStrings.divStart;
+        String patMid = parserStrings.divMid;
+        String patStop = parserStrings.divStop;
+
         String ppsString;
-        int idxPpsStart = response.indexOf(parserStrings.divStart);
+        int idxPpsStart = response.indexOf(patStart);
         if (idxPpsStart == -1) {
             ppsString = "N/A";
         } else {
-            ppsString = response.substring(idxPpsStart + parserStrings.divStart.length());
-            int idxPpsMid = ppsString.indexOf(parserStrings.midPattern);
+            ppsString = response.substring(idxPpsStart + patStart.length());
+            int idxPpsMid = ppsString.indexOf(patMid);
             if (idxPpsMid == -1) {
                 ppsString = "N/A";
             } else {
-                ppsString = ppsString.substring(idxPpsMid + parserStrings.midPattern.length());
-                int idxPpsStop = ppsString.indexOf(parserStrings.stopPattern);
+                ppsString = ppsString.substring(idxPpsMid + patMid.length());
+                int idxPpsStop = ppsString.indexOf(patStop);
                 if (idxPpsStop == -1) {
                     ppsString = "N/A";
                 } else {
@@ -182,11 +186,11 @@ public class Parsers {
             ppsString = "N/A";
         } else {
             ppsString = response.substring(idxPpsStart + parserStrings.prevStart.length());
-            int idxPpsMid = ppsString.indexOf(parserStrings.generalMid);
+            int idxPpsMid = ppsString.indexOf(parserStrings.prevMid);
             if (idxPpsMid == -1) {
                 ppsString = "N/A";
             } else {
-                ppsString = ppsString.substring(idxPpsMid + parserStrings.generalMid.length());
+                ppsString = ppsString.substring(idxPpsMid + parserStrings.prevMid.length());
                 int idxPpsStop = ppsString.indexOf(parserStrings.prevStop);
                 if (idxPpsStop == -1) {
                     ppsString = "N/A";
@@ -201,38 +205,23 @@ public class Parsers {
     @NonNull
     public String parseFullName(String symbol, @NonNull String response, @NonNull ParserStrings parserStrings ) {
 
-        String nameStart1 = parserStrings.nameStartA + symbol + parserStrings.nameMidA;
-        String nameStart2 = parserStrings.nameStartB + symbol + parserStrings.nameMidB;
-
-        String nameString1 = "-";
+        String start = parserStrings.nameStart + symbol + parserStrings.nameMid;
         String nameString2 = "-";
-        int idxNameStart = response.indexOf(nameStart1);
+        int idxNameStart;
+
+        String end = parserStrings.nameStop + symbol;
+
+        idxNameStart = response.indexOf(start);
         if (idxNameStart != -1) {
-            nameString1 = response.substring(idxNameStart + nameStart1.length());
-            int idxNameStop = nameString1.indexOf(parserStrings.nameEnd1);
+            nameString2 = response.substring(idxNameStart + start.length());
+            int idxNameStop = nameString2.indexOf(end);
             if (idxNameStop != -1) {
-                nameString1 = nameString1.substring(0, idxNameStop).replaceFirst("&amp;", "&");
+                nameString2 = nameString2.substring(0, idxNameStop).replaceFirst("&amp;", "&");
             }
         }
 
-        if (nameString1.equals(nameString2)) {
-            idxNameStart = response.indexOf(nameStart2);
-            if (idxNameStart != -1) {
-                nameString2 = response.substring(idxNameStart + nameStart2.length());
-                int idxNameStop = nameString2.indexOf(parserStrings.nameEnd2);
-                if (idxNameStop != -1) {
-                    nameString2 = nameString2.substring(0, idxNameStop).replaceFirst("&amp;", "&");
-                }
-            }
-        }
-
-        String fullName = nameString1;
-        if (nameString2.length() > nameString1.length()) {
-            fullName = nameString2;
-        }else {
-            String msg = "Using string 1 for " + symbol;
-            Log.d("foo", msg);
-        }
+        String fullName;
+        fullName = nameString2;
         return fullName;
     }
 
