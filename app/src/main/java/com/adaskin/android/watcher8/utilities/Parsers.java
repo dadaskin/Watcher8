@@ -204,25 +204,20 @@ public class Parsers {
 
     @NonNull
     public String parseFullName(String symbol, @NonNull String response, @NonNull ParserStrings parserStrings ) {
-
         String start = parserStrings.nameStart + symbol + parserStrings.nameMid;
-        String nameString2 = "-";
+        String name = "-";
         int idxNameStart;
 
         String end = parserStrings.nameStop + symbol;
 
         idxNameStart = response.indexOf(start);
         if (idxNameStart != -1) {
-            nameString2 = response.substring(idxNameStart + start.length());
-            int idxNameStop = nameString2.indexOf(end);
-            if (idxNameStop != -1) {
-                nameString2 = nameString2.substring(0, idxNameStop).replaceFirst("&amp;", "&");
-            }
+            name = response.substring(idxNameStart + start.length());
+            int idxNameStop = name.indexOf(end);
+            if (idxNameStop != -1)
+                name = name.substring(0, idxNameStop).replaceFirst("&amp;", "&");
         }
-
-        String fullName;
-        fullName = nameString2;
-        return fullName;
+        return name;
     }
 
     private float parseFloatOrNA(@NonNull String field) {

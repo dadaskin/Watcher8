@@ -127,6 +127,19 @@ public class Test_parseYAHOOResponse {
     }
 
     @Test
+    public void Test_AEP_Opinion()
+    {
+        Parsers p = Parsers.getInstance();
+        ParserStrings pStrings = getParserStrings();
+        String response = getResponseString("Decoy_AEP_220316.txt");
+
+        float expected = 2.2f;
+        float actual = p.parseAnalystsOpinion(response, pStrings);
+
+        assertEquals("AEP analyst option", expected, actual, 0.05);
+    }
+
+    @Test
     public void Test_BCHYX_all_fields()
     {
         Parsers p = Parsers.getInstance();
@@ -185,6 +198,62 @@ public class Test_parseYAHOOResponse {
 
         assertEquals("BCHYX previous close", expected, actual, 0.005);
     }
+
+    @Test
+    public void Test_BCHYX_parseMinRange()
+    {
+        Parsers p = Parsers.getInstance();
+        ParserStrings pStrings = getParserStrings();
+        String response = getResponseString("Decoy_BCHYX_220317.txt");
+
+        float expected = 0.0f;
+        Parsers.PriceRange actualObject = p.parsePriceRange(response, pStrings);
+        float actual = actualObject.minimum;
+
+        assertEquals("BCHYX minimum range", expected, actual, 0.005);
+    }
+
+    @Test
+    public void Test_BCHYX_parseMaxRange()
+    {
+        Parsers p = Parsers.getInstance();
+        ParserStrings pStrings = getParserStrings();
+        String response = getResponseString("Decoy_BCHYX_220317.txt");
+
+        float expected = 0.0f;
+        Parsers.PriceRange actualObject = p.parsePriceRange(response, pStrings);
+        float actual = actualObject.maximum;
+
+        assertEquals("BCHYX maximum range", expected, actual, 0.005);
+    }
+
+    @Test
+    public void Test_BCHYX_parseDiv()
+    {
+        Parsers p = Parsers.getInstance();
+        ParserStrings pStrings = getParserStrings();
+        String response = getResponseString("Decoy_BCHYX_220317.txt");
+
+        float expected = 0.0f;
+        float actual = p.parseDividend(response, pStrings);
+
+        assertEquals("BCHYX dividend", expected, actual, 0.005);
+    }
+
+    @Test
+    public void Test_BCHYX_Opinion()
+    {
+        Parsers p = Parsers.getInstance();
+        ParserStrings pStrings = getParserStrings();
+        String response = getResponseString("Decoy_BCHYX_220317.txt");
+
+        float expected = 0.0f;
+        float actual = p.parseAnalystsOpinion(response, pStrings);
+
+        assertEquals("BCHYX analyst option", expected, actual, 0.05);
+    }
+
+
 
     public ParserStrings getParserStrings()
     {
