@@ -4,9 +4,9 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-import com.adaskin.android.watcher8.models.StockQuote;
 import com.adaskin.android.watcher8.utilities.ParserStrings;
 import com.adaskin.android.watcher8.utilities.Parsers;
+import com.android.volley.toolbox.Volley;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -18,37 +18,9 @@ import java.io.Reader;
 
 public class Test_parseYAHOOResponse {
     @Test
-    public void Test_AEP_all_fields()
-    {
-        Parsers p = Parsers.getInstance();
-
-        StockQuote quote = new StockQuote("AEP", 0.0f, 0.0f, 900.0f);
-
-        ParserStrings pStrings= getParserStrings();
-        String response = getResponseString("Decoy_AEP_220316.txt");
-
-        p.parseYAHOOResponse2(pStrings, quote, response);
-
-        String expectedFullName = "American Electric Power Company, Inc.";
-        double expectedYrMin = 80.22f;
-        double expectedYrMax = 98.15f;
-        double expectedOpinion = 2.2f;
-        double expectedPPS = 95.07f;
-        double expectedDailyChange = -1.1f;
-//        double expectedDiv = 3.12f;
-
-        assertEquals(expectedFullName, quote.mFullName);
-        assertEquals(expectedYrMin, quote.mYrMin, 0.001);
-        assertEquals(expectedYrMax, quote.mYrMax, 0.001);
-        assertEquals(expectedOpinion, quote.mAnalystsOpinion, 0.01);
-        assertEquals(expectedPPS, quote.mPPS, 0.001);
-        assertEquals(expectedDailyChange, quote.mPctChangeSinceLastClose, 0.05);
-    //    assertEquals(expectedDiv, quote.mDivPerShare, 0.0001);
-    }
-
-    @Test
     public void Test_AEP_parseFullName()
     {
+        Volley.newRequestQueue()
         Parsers p = Parsers.getInstance();
         ParserStrings pStrings = getParserStrings();
         String response = getResponseString("Decoy_AEP_220316.txt");
@@ -58,7 +30,18 @@ public class Test_parseYAHOOResponse {
 
         assertEquals("AEP FullName", expected, actual);
     }
+    @Test
+    public void Test_TWST_parseFullName()
+    {
+        Parsers p = Parsers.getInstance();
+        ParserStrings pStrings = getParserStrings();
+        String response = getResponseString("Decoy_TWST_220324.txt");
 
+        String expected = "Twist Bioscience Corporation";
+        String actual = p.parseFullName("TWST", response, pStrings);
+
+        assertEquals("TWST FullName", expected, actual);
+    }
     @Test
     public void Test_AEP_parsePPS()
     {
@@ -70,7 +53,20 @@ public class Test_parseYAHOOResponse {
        float actual = p.parseCurrentPrice(response, pStrings);
 
        assertEquals("AEP current price", expected, actual, 0.005);
-   }
+    }
+
+    @Test
+    public void Test_TWST_parsePPS()
+    {
+        Parsers p = Parsers.getInstance();
+        ParserStrings pStrings = getParserStrings();
+        String response = getResponseString("Decoy_TWST_220324.txt");
+
+        float expected = 47.52f;
+        float actual = p.parseCurrentPrice(response, pStrings);
+
+        assertEquals("TWST current price", expected, actual, 0.005);
+    }
 
     @Test
     public void Test_AEP_parsePrevClose()
@@ -83,7 +79,20 @@ public class Test_parseYAHOOResponse {
        float actual = p.parsePreviousClosePrice(response, pStrings);
 
        assertEquals("AEP previous close", expected, actual, 0.005);
-   }
+    }
+
+    @Test
+    public void Test_TWST_parsePrevClose()
+    {
+        Parsers p = Parsers.getInstance();
+        ParserStrings pStrings = getParserStrings();
+        String response = getResponseString("Decoy_TWST_220324.txt");
+
+        float expected = 46.98f;
+        float actual = p.parsePreviousClosePrice(response, pStrings);
+
+        assertEquals("TWST previous close", expected, actual, 0.005);
+    }
 
     @Test
     public void Test_AEP_parseMinRange()
@@ -97,6 +106,20 @@ public class Test_parseYAHOOResponse {
         float actual = actualObject.minimum;
 
         assertEquals("AEP minimum range", expected, actual, 0.005);
+    }
+
+    @Test
+    public void Test_TWST_parseMinRange()
+    {
+        Parsers p = Parsers.getInstance();
+        ParserStrings pStrings = getParserStrings();
+        String response = getResponseString("Decoy_TWST_220324.txt");
+
+        float expected = 38.08f;
+        Parsers.PriceRange actualObject = p.parsePriceRange(response, pStrings);
+        float actual = actualObject.minimum;
+
+        assertEquals("TWST minimum range", expected, actual, 0.005);
     }
 
     @Test
@@ -114,6 +137,20 @@ public class Test_parseYAHOOResponse {
     }
 
     @Test
+    public void Test_TWST_parseMaxRange()
+    {
+        Parsers p = Parsers.getInstance();
+        ParserStrings pStrings = getParserStrings();
+        String response = getResponseString("Decoy_TWST_220324.txt");
+
+        float expected = 150.25f;
+        Parsers.PriceRange actualObject = p.parsePriceRange(response, pStrings);
+        float actual = actualObject.maximum;
+
+        assertEquals("TWST maximum range", expected, actual, 0.005);
+    }
+
+    @Test
     public void Test_AEP_parseDiv()
     {
         Parsers p = Parsers.getInstance();
@@ -124,6 +161,19 @@ public class Test_parseYAHOOResponse {
         float actual = p.parseDividend(response, pStrings);
 
         assertEquals("AEP dividend", expected, actual, 0.005);
+    }
+
+    @Test
+    public void Test_TWST_parseDiv()
+    {
+        Parsers p = Parsers.getInstance();
+        ParserStrings pStrings = getParserStrings();
+        String response = getResponseString("Decoy_TWST_220324.txt");
+
+        float expected = 0.00f;
+        float actual = p.parseDividend(response, pStrings);
+
+        assertEquals("TWST dividend", expected, actual, 0.005);
     }
 
     @Test
@@ -140,24 +190,16 @@ public class Test_parseYAHOOResponse {
     }
 
     @Test
-    public void Test_BCHYX_all_fields()
+    public void Test_TWST_Opinion()
     {
         Parsers p = Parsers.getInstance();
+        ParserStrings pStrings = getParserStrings();
+        String response = getResponseString("Decoy_TWST_220324.txt");
 
-        StockQuote quote = new StockQuote("BCHYX", 0.0f, 0.0f, 900.0f);
+        float expected = 2.3f;
+        float actual = p.parseAnalystsOpinion(response, pStrings);
 
-        ParserStrings pStrings= getParserStrings();
-        String response = getResponseString("Decoy_BCHYX_220317.txt");
-
-        p.parseYAHOOResponse2(pStrings, quote, response);
-
-        String expectedFullName = "American Century California High Yield Municipal Fund Investor Class";
-        double expectedPPS = 10.53f;
-        double expectedDailyChange = 0.1f;
-
-        assertEquals(expectedFullName, quote.mFullName);
-        assertEquals(expectedPPS, quote.mPPS, 0.001);
-        assertEquals(expectedDailyChange, quote.mPctChangeSinceLastClose, 0.01);
+        assertEquals("TWST analyst option", expected, actual, 0.05);
     }
 
     @Test
