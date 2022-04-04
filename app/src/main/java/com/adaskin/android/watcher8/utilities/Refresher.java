@@ -124,6 +124,8 @@ public class Refresher {
 
         String msg = quote.mSymbol + " Response received.  " + mUnansweredRequests + " remaining.";
         Log.d("foo", msg);
+        msg = quote.mPPS + "   " + quote.mPrevClose + "   " + quote.mDivPerShare;
+        Log.d("foo", msg);
     }
 
     private void handleWebError(String symbol, VolleyError error) {

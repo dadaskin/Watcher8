@@ -79,7 +79,8 @@ public class Parsers {
         quote.mYrMax = yrRange.maximum;
 
         quote.mAnalystsOpinion = parseAnalystsOpinion(response, parserStrings);
-        quote.compute(parsePreviousClosePrice(response, parserStrings));
+        quote.mPrevClose = parsePreviousClosePrice(response, parserStrings);
+        quote.compute(quote.mPrevClose);
 
         return true;
     }
@@ -180,26 +181,26 @@ public class Parsers {
     }
 
     public float parsePreviousClosePrice(@NonNull String response, @NonNull ParserStrings parserStrings) {
-        String ppsString;
+        String prev;
         int idxPpsStart = response.indexOf(parserStrings.prevStart);
         if (idxPpsStart == -1) {
-            ppsString = "N/A";
+            prev = "N/A";
         } else {
-            ppsString = response.substring(idxPpsStart + parserStrings.prevStart.length());
-            int idxPpsMid = ppsString.indexOf(parserStrings.prevMid);
+            prev = response.substring(idxPpsStart + parserStrings.prevStart.length());
+            int idxPpsMid = prev.indexOf(parserStrings.prevMid);
             if (idxPpsMid == -1) {
-                ppsString = "N/A";
+                prev = "N/A";
             } else {
-                ppsString = ppsString.substring(idxPpsMid + parserStrings.prevMid.length());
-                int idxPpsStop = ppsString.indexOf(parserStrings.prevStop);
+                prev = prev.substring(idxPpsMid + parserStrings.prevMid.length());
+                int idxPpsStop = prev.indexOf(parserStrings.prevStop);
                 if (idxPpsStop == -1) {
-                    ppsString = "N/A";
+                    prev = "N/A";
                 } else {
-                    ppsString = ppsString.substring(0, idxPpsStop);
+                    prev = prev.substring(0, idxPpsStop);
                 }
             }
         }
-        return parseFloatOrNA(ppsString);
+        return parseFloatOrNA(prev);
     }
 
     @NonNull
