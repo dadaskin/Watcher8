@@ -17,7 +17,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class Refresher {
@@ -110,8 +112,18 @@ public class Refresher {
             public void onErrorResponse(VolleyError error) {
                 handleWebError(quote.mSymbol, error);
             }
-        });
-        Log.d("foo","Request: " + quote.mSymbol);
+        })
+        {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String>  params = new HashMap<>();
+                params.put("User-Agent", "Mozilla/5.0");
+                return params;
+            }
+        }
+        ;
+
+        Log.d("foo","Request: " + url);
         mRequestQueue.add(stringRequest);
     }
 
@@ -123,6 +135,8 @@ public class Refresher {
             mInvalidSymbols.add(quote.mSymbol);
 
         String msg = quote.mSymbol + " Response received.  " + mUnansweredRequests + " remaining.";
+        Log.d("foo", msg);
+        msg = quote.mPPS + "   " + quote.mPrevClose + "   " + quote.mDivPerShare;
         Log.d("foo", msg);
     }
 

@@ -2,7 +2,7 @@ package com.adaskin.android.watcher8.utilities;
 
 import android.content.Context;
 import android.os.Environment;
-import android.util.Log;
+import android.support.annotation.NonNull;
 import android.widget.Toast;
 
 import com.adaskin.android.watcher8.models.StockQuote;
@@ -63,128 +63,42 @@ public class Parsers {
 
     }
 
-    public boolean parseYAHOOResponse2(ParserStrings parserStrings, final StockQuote quote, String response){
-        String invalidSymbolMarker = parserStrings.invalidSymbolMarker;
-        String nameStartA = parserStrings.nameStartA;
-        String nameMidA = parserStrings.nameMidA;
-        String nameEnd1 = parserStrings.nameEnd1;
-        String nameStartB = parserStrings.nameStartB;
-        String nameMidB = parserStrings.nameMidB;
-        String nameEnd2 = parserStrings.nameEnd2;
-        String ppsStart = parserStrings.ppsStart;
-        String midPattern = parserStrings.midPattern;
-        String stopPattern = parserStrings.stopPattern;
-        String divStart = parserStrings.divStart;
-        String yrStart = parserStrings.yrStart;
-        String generalMid = parserStrings.generalMid;
-        String yrStop = parserStrings.yrStop;
-        String analStart = parserStrings.analStart;
-        String analStop = parserStrings.analStop;
-        String prevStart = parserStrings.prevStart;
-        String prevStop = parserStrings.prevStop;
-
-        String nameStart1 = nameStartA + quote.mSymbol + nameMidA;
-        String nameStart2 = nameStartB + quote.mSymbol + nameMidB;
-
+    public boolean parseYAHOOResponse2(@NonNull ParserStrings parserStrings, final StockQuote quote, @NonNull String response){
         // Make sure Invalid Symbol Marker isn't present
-        int idxInvalid = response.indexOf(invalidSymbolMarker);
+        int idxInvalid = response.indexOf(parserStrings.invalidSymbolMarker);
         if (idxInvalid != -1) {
             return false;
         }
 
-        // Parse out Full Name
-        String nameString1 = "-";
-        String nameString2 = "-";
-        int idxNameStart = response.indexOf(nameStart1);
-        if (idxNameStart == -1) {
-            quote.mFullName = "N/A";
-        }else {
-            nameString1 = response.substring(idxNameStart + nameStart1.length());
-            int idxNameStop = nameString1.indexOf(nameEnd1);
-            if (idxNameStop == -1) {
-                quote.mFullName = "N/A";
-            }
-            nameString1 = nameString1.substring(0, idxNameStop).replaceFirst("&amp;", "&");
-        }
+        quote.mFullName = parseFullName(quote.mSymbol, response, parserStrings);
+        quote.mPPS = parseCurrentPrice(response, parserStrings);
+        quote.mDivPerShare = parseDividend(response, parserStrings);
 
-        if (nameString1.equals(nameString2)) {
-            idxNameStart = response.indexOf(nameStart2);
-            if (idxNameStart == -1) {
-                quote.mFullName = "N/A";
-            } else {
-                nameString2 = response.substring(idxNameStart + nameStart2.length());
-                int idxNameStop = nameString2.indexOf(nameEnd2);
-                if (idxNameStop == -1) {
-                    quote.mFullName = "N/A";
-                }
-                nameString2 = nameString2.substring(0, idxNameStop).replaceFirst("&amp;", "&");
-            }
-        }
-        quote.mFullName = nameString1;
-        if (nameString2.length() > nameString1.length()) {
-            quote.mFullName = nameString2;
-        }else {
-            String msg = "Using string 1 for " + quote.mSymbol;
-            Log.d("foo", msg);
-        }
+        PriceRange yrRange = parsePriceRange(response, parserStrings);
+        quote.mYrMin = yrRange.minimum;
+        quote.mYrMax = yrRange.maximum;
 
-        // Parse out PPS string
-        String ppsString;
-        int idxPpsStart = response.indexOf(ppsStart);
-        if (idxPpsStart == -1) {
-            ppsString = "N/A";
-        } else {
-            ppsString = response.substring(idxPpsStart + ppsStart.length());
-            int idxPpsMid = ppsString.indexOf(midPattern);
-            if (idxPpsMid == -1) {
-                ppsString = "N/A";
-            } else {
-                ppsString = ppsString.substring(idxPpsMid + midPattern.length());
-                int idxPpsStop = ppsString.indexOf(stopPattern);
-                if (idxPpsStop == -1) {
-                    ppsString = "N/A";
-                } else {
-                    ppsString = ppsString.substring(0, idxPpsStop);
-                }
-            }
-        }
-        quote.mPPS = parseFloatOrNA(ppsString);
+        quote.mAnalystsOpinion = parseAnalystsOpinion(response, parserStrings);
+        quote.mPrevClose = parsePreviousClosePrice(response, parserStrings);
+        quote.compute(quote.mPrevClose);
 
-        // Parse out Dividend string
-        String divString;
-        int idxDivStart = response.indexOf(divStart);
-        if (idxDivStart == -1) {
-            divString = "N/A";
-        } else {
-            divString = response.substring(idxDivStart + divStart.length());
-            int idxDivMid = divString.indexOf(midPattern);
-            if (idxDivMid == -1) {
-                divString = "N/A";
-            } else {
-                divString = divString.substring(idxDivMid + midPattern.length());
-                int idxDivStop = divString.indexOf(stopPattern);
-                if (idxDivStop == -1) {
-                    divString = "N/A";
-                } else {
-                    divString = divString.substring(0, idxDivStop);
-                }
-            }
-        }
-        quote.mDivPerShare = parseFloatOrNA(divString);
+        return true;
+    }
 
-        // Parse out 52-week range
+    @NonNull
+    public PriceRange parsePriceRange(@NonNull String response, @NonNull ParserStrings parserStrings) {
         String yrString;
-        int idxYrStart = response.indexOf(yrStart);
+        int idxYrStart = response.indexOf(parserStrings.yrStart);
         if (idxYrStart == -1) {
             yrString = "0 - 0";
         } else {
-            yrString = response.substring(idxYrStart + yrStart.length());
-            int idxYrMid = yrString.indexOf(generalMid);
+            yrString = response.substring(idxYrStart + parserStrings.yrStart.length());
+            int idxYrMid = yrString.indexOf(parserStrings.yrMid);
             if (idxYrMid == -1) {
                 yrString = "0 - 0";
             } else {
-                yrString = yrString.substring(idxYrMid + generalMid.length());
-                int idxYrStop = yrString.indexOf(yrStop);
+                yrString = yrString.substring(idxYrMid + parserStrings.yrMid.length());
+                int idxYrStop = yrString.indexOf(parserStrings.yrStop);
                 if (idxYrStop == -1) {
                     yrString = "0 - 0";
                 } else {
@@ -194,56 +108,137 @@ public class Parsers {
         }
         String yrMinString = yrString.substring(0, yrString.indexOf(" -"));
         String yrMaxString = yrString.substring(yrString.indexOf("- ")+2);
-        quote.mYrMin = parseFloatOrNA(yrMinString);
-        quote.mYrMax = parseFloatOrNA(yrMaxString);
 
-        // Parse out Analysts opinion
+        return new PriceRange(parseFloatOrNA(yrMinString), parseFloatOrNA(yrMaxString));
+    }
+
+    public float parseAnalystsOpinion(@NonNull String response, @NonNull ParserStrings parserStrings) {
         String analString;
-        int idxAnalStart = response.indexOf(analStart);
+        int idxAnalStart = response.indexOf(parserStrings.analStart);
         if (idxAnalStart == -1) {
             analString = "N/A";
         } else {
-            analString = response.substring(idxAnalStart + analStart.length());
-            int idxAnalStop = analString.indexOf(analStop);
+            analString = response.substring(idxAnalStart + parserStrings.analStart.length());
+            int idxAnalStop = analString.indexOf(parserStrings.analStop);
             if (idxAnalStop == -1) {
                 analString = "N/A";
             } else {
                 analString = analString.substring(0, idxAnalStop);
             }
         }
-        quote.mAnalystsOpinion = parseFloatOrNA(analString);
+        return parseFloatOrNA(analString);
+    }
 
-        // Parse out previous close pps
-        String prevString;
-        int idxPrevStart = response.indexOf(prevStart);
-        if (idxPrevStart == -1) {
-            prevString = "N/A";
+    public float parseCurrentPrice(@NonNull String response, @NonNull ParserStrings parserStrings) {
+        String s;
+        int idxStart = response.indexOf(parserStrings.ppsStart);
+        if (idxStart == -1) {
+            s = "N/A";
         } else {
-            prevString = response.substring(idxPrevStart + prevStart.length());
-            int idxPrevMid = prevString.indexOf(generalMid);
-            if (idxPrevMid == -1) {
-                prevString = "N/A";
+            s = response.substring(idxStart + parserStrings.ppsStart.length());
+            int idxMid = s.indexOf(parserStrings.ppsMid);
+            if (idxMid == -1) {
+                s = "N/A";
             } else {
-                prevString = prevString.substring(idxPrevMid+ generalMid.length());
-                int idxPrevStop = prevString.indexOf(prevStop);
-                if (idxPrevStop == -1) {
-                    prevString = "N/A";
+                s = s.substring(idxMid + parserStrings.ppsMid.length());
+                int idxStop = s.indexOf(parserStrings.ppsStop);
+                if (idxStop == -1) {
+                    s = "N/A";
                 } else {
-                    prevString = prevString.substring(0, idxPrevStop);
+                    s = s.substring(0, idxStop);
                 }
             }
         }
-        quote.compute(parseFloatOrNA(prevString));
-
-        return true;
+        return parseFloatOrNA(s);
     }
 
+    public float parseDividend(@NonNull String response, @NonNull ParserStrings parserStrings) {
 
-    private float parseFloatOrNA(String field) {
+        String patStart = parserStrings.divStart;
+        String patMid = parserStrings.divMid;
+        String patStop = parserStrings.divStop;
+
+        String ppsString;
+        int idxPpsStart = response.indexOf(patStart);
+        if (idxPpsStart == -1) {
+            ppsString = "N/A";
+        } else {
+            ppsString = response.substring(idxPpsStart + patStart.length());
+            int idxPpsMid = ppsString.indexOf(patMid);
+            if (idxPpsMid == -1) {
+                ppsString = "N/A";
+            } else {
+                ppsString = ppsString.substring(idxPpsMid + patMid.length());
+                int idxPpsStop = ppsString.indexOf(patStop);
+                if (idxPpsStop == -1) {
+                    ppsString = "N/A";
+                } else {
+                    ppsString = ppsString.substring(0, idxPpsStop);
+                }
+            }
+        }
+        return parseFloatOrNA(ppsString);
+    }
+
+    public float parsePreviousClosePrice(@NonNull String response, @NonNull ParserStrings parserStrings) {
+        String prev;
+        int idxPpsStart = response.indexOf(parserStrings.prevStart);
+        if (idxPpsStart == -1) {
+            prev = "N/A";
+        } else {
+            prev = response.substring(idxPpsStart + parserStrings.prevStart.length());
+            int idxPpsMid = prev.indexOf(parserStrings.prevMid);
+            if (idxPpsMid == -1) {
+                prev = "N/A";
+            } else {
+                prev = prev.substring(idxPpsMid + parserStrings.prevMid.length());
+                int idxPpsStop = prev.indexOf(parserStrings.prevStop);
+                if (idxPpsStop == -1) {
+                    prev = "N/A";
+                } else {
+                    prev = prev.substring(0, idxPpsStop);
+                }
+            }
+        }
+        return parseFloatOrNA(prev);
+    }
+
+    @NonNull
+    public String parseFullName(String symbol, @NonNull String response, @NonNull ParserStrings parserStrings ) {
+        String start = parserStrings.nameStart + symbol + parserStrings.nameMid;
+        String name = "-";
+        int idxNameStart;
+
+        String end = parserStrings.nameStop + symbol;
+
+        idxNameStart = response.indexOf(start);
+        if (idxNameStart != -1) {
+            name = response.substring(idxNameStart + start.length());
+            int idxNameStop = name.indexOf(end);
+            if (idxNameStop != -1)
+                name = name.substring(0, idxNameStop).replaceFirst("&amp;", "&");
+        }
+        return name;
+    }
+
+    private float parseFloatOrNA(@NonNull String field) {
         float parsedFloat = 0.0f;
         if (!field.contains("N/A")) {
             parsedFloat = Float.parseFloat(field.replace(",",""));
         }
         return parsedFloat;
     }
+
+    public static class PriceRange
+    {
+        public float minimum;
+        public float maximum;
+
+        public PriceRange(float minimum, float maximum) {
+            this.minimum = minimum;
+            this.maximum = maximum;
+        }
+    }
+
+
 }

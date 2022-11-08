@@ -19,6 +19,7 @@ public class StockQuote implements Parcelable {
     public String mFullName;
     public QuoteStatus mStatus;
     public float mPPS;
+    public float mPrevClose;
     public List<BuyBlock> mBuyBlockList;
     public float mPctGainTarget;
     public float mYrMax;
