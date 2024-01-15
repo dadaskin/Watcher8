@@ -208,7 +208,52 @@ All I had to do was add "User-Agent", "Mozilla/5.0" and as headers and it all wo
 Incremented version to 1.3.0  with today's date.
 
 
+14-Jan-2024:
+------------
+My old phone (Samung GalaxyS8 SM-G950U GalaxyS8_API_28  Android 9) died on 27-Dec-2023.
+I managed to save Watcher8_231209... and Watcher8_Parser a few weeks before the crash, 
+so reloading the data shouldn't be too difficult.
 
+I got a new phone:
+   Model:           Samsung Galaxy S23 SM-S911U
+   One UI Version:  6.0 
+   Android Version: 14
+
+
+Everything is up to date in GitHub with the last change shown above.
+Now I'm ready to get Watcher 8 ready and deployed on the new version.
+
+√ Create a new branch: S23 from master.
+√ Start AndroidStudio and do any absolutely necessary updates.
+  - AS update manager tells me that the latest update is not compatible with the Kotlin plugin.
+    Don't do any updates at this point.
+	
+√ Try to get v1.3.0 working with the S8 emulator.
+  - Tools >> AVD Manager  Click green arrow in "Galaxy S8 API 28" to start emulator. 
+√ Figure out how to copy exported files to Emulator
+  √ See line 134 above.
+  
+√ Get AS to connect to new phone via USB-C.
+     On Phone: Settings  search for "Developer"  
+	      Takes me to "Accessability" with "Developer settings" entry >> Developer setings
+		  No settings that seem to be related to Connecting to AS.
+
+    https://developer.android.com/studio/debug/dev-options	  
+	Settings >> About Phone >> Build Number   tap "Build Number" 7 times to enter developer mode.
+	Now Settings has a "Developer options" entry.
+	"USB Debugging"  >> "Always allow from this computer"  
+	
+	And now the Phone's Device File Explorer shows up in AS!
+	  json files are already on the new device
+  
+√ Try to download this to the new phone as is.
+    x Figure out how to copy the Exported files to the new phone.
+	x Import the files on the new phone.
+	√ On AS: Run >> Run app..
+	  App appears on phone and will get updated PPS info 
+	  
+Now all I need to do is update the info in the App since 09-Dec-2023.
+	
 
 
 
