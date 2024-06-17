@@ -255,8 +255,123 @@ Now I'm ready to get Watcher 8 ready and deployed on the new version.
 Now all I need to do is update the info in the App since 09-Dec-2023.
 	
 
+15-Jun-2024:
+--------------
+Watcher hasn't been working properly since the middle of April.
+Maybe just a change of parser strings.
 
 
+
+Current Parser strings: (dated 12/27/2023)
+{
+    "invalidSymbolMarker" : "content=\"Symbol Lookup from Yahoo Finance\"",
+    "nameStart" : "content=\"",
+    "nameMid" : ", ",
+    "nameOffset" : 0,
+    "nameStop" :  ", ",
+    "ppsStart" : "\"qsp-price\" data-field=\"regularMarketPrice\"",
+    "ppsMid" :  "value=\"",
+    "ppsOffset" : 0,
+    "ppsStop" : "\"",
+    "divStart" : "DIVIDEND_AND_YIELD-value\">",
+    "divMid" : "",
+    "divOffset" : 0,
+    "divStop" : " (",
+    "yrStart" : "FIFTY_TWO_WK_RANGE-value",
+    "yrMid" : ">",
+    "yrOffset" : 0,
+    "yrStop" :  "</td>",
+    "analStart" : "ONE_YEAR_TARGET_PRICE-value\">",
+    "analMid" : "",
+    "analOffset" : 0,
+    "analStop" : "<",
+    "prevStart" : "data-test=\"PREV_CLOSE-value\">",
+    "prevMid" : "",
+    "prevOffset" : 0,
+    "prevStop" : "</td>"
+}	
+
+
+for Yesterday:
+                GOGL			PRWCX			QYLD				AEP					VZ
+Name:           Golden Ocean 	T. Rowe Price	Global X NASDAQ		American Electric   
+PPS (Close):	12.85			36.11			17.80				88.00				39.67
+Div: 			0.80			 n/a			 n/a				3.52
+Yr Range: 		6.89-15.77  	 n/a			16.25-18.16			69.38-93.44
+Opinion: 		2.4			 	 n/a			 n/a				2.7
+1 yr target: 	170.7 (?)	 	 n/a			 n/a				90.11
+                15.89
+Prev Close: 	13.41			36.12 			17.80 				87.90				39.78
+                 -4.2%           0.0%            0.0%                0.1%				-0.3%	
+
+I looks like the current parser strings will work, but the parser is expecting them to be in order.
+This appears to no longer be the case.  The same strings work but the "FIFTY_TWO_WK_RANGE-value" now appears
+before "DIVIDEND_AND_YIELD-value\" in the html.
+
+Thus I will need to change the actual code to examine the whole html for each piece of data, 
+instead of allowing it to progress through the html.
+
+Checking with PRWCX.   Name doesn't seem to work anymore (although the actual app on the phone gets this 
+information properly).
+
+Check with QYLD:  Name: OK, PPS: OK, Prev Close: OK  (all in order since we're not looking for the others)
+
+Check with AEP: All OK.
+
+Note: It seems that "nameStart" string in the parser strings file has the symbol appended to it in the Parser.
+
+
+I'll dig into the parser another day.
+
+
+16-Jun-2024:
+------------
+The Emulator shows that same symptoms as the deployed version.
+
+In app >> java >> com.adaskin.android.watcher8 >> utilities >> Parsers.java
+Method: parseDividend()
+put a break point on line 162.
+
+It looks like the parser already checks through the whole htmlResponse for each piece.
+How to "Step over" while debugging in AndroidStudio? f8
+
+Looks like the html that gets sent to cell phone is significantly different that what gets sent to a computer.
+Yesterday, I was looking at the computer version.
+
+To debug the parser strings I need to add code to the end of Parsers.LoadStrings().
+
+Things to check:
+1. DONE Make Div, Yr Range, Target, today % change work for all symbols. 
+     -     Move parser string changes from code to file. 
+	 -     Change version numbers and strings.
+     -     Check-in 
+     -     Deploy to phone.	 
+2.      Change "Analysts' Opinion:"  field name to:
+               "Analysts' Target:"
+3.      Change Target field display format to same as PPS format.
+4.      Increase width of Total Investment value field so O shows properly
+5.      Make Watch view scroll like Owned view.
+6.      Add "Current Value:" field to show PPS*(Sum(NumShares for each block))
+
+
+Changes:
+1. Change Parser strings as follows:
+        mParserStrings.divStart = "Forward Dividend &amp; Yield</span> <span";
+        mParserStrings.divMid = "\">";
+
+        mParserStrings.yrStart = "52 Week Range</span> <span";
+        mParserStrings.yrMid = "data-value=\"";
+        mParserStrings.yrStop = "\" ";
+
+        mParserStrings.analStart = "1y Target Est</span> <span";
+        mParserStrings.analMid = "data-value=\"";
+        mParserStrings.analStop = "\" ";
+
+        mParserStrings.prevStart = "Previous Close</span> <span";
+        mParserStrings.prevMid = "data-value=\"";
+        mParserStrings.prevStop = "\" ";		
+	
+2.  Change Parser.parseAnalysisOpinion() to use analMid parser string.
 
 
 	 
