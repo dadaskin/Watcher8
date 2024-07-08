@@ -292,7 +292,7 @@ Current Parser strings: (dated 12/27/2023)
 }	
 
 
-for Yesterday:
+for 14-Jun-2024:
                 GOGL			PRWCX			QYLD				AEP					VZ
 Name:           Golden Ocean 	T. Rowe Price	Global X NASDAQ		American Electric   
 PPS (Close):	12.85			36.11			17.80				88.00				39.67
@@ -304,7 +304,7 @@ Opinion: 		2.4			 	 n/a			 n/a				2.7
 Prev Close: 	13.41			36.12 			17.80 				87.90				39.78
                  -4.2%           0.0%            0.0%                0.1%				-0.3%	
 
-I looks like the current parser strings will work, but the parser is expecting them to be in order.
+It looks like the current parser strings will work, but the parser is expecting them to be in order.
 This appears to no longer be the case.  The same strings work but the "FIFTY_TWO_WK_RANGE-value" now appears
 before "DIVIDEND_AND_YIELD-value\" in the html.
 
@@ -374,7 +374,35 @@ Changes:
 2.  Change Parser.parseAnalysisOpinion() to use analMid parser string.
 
 
-	 
+07-Jul-2024:
+------------
+I got to step 1 above	(line 348) and it didn't work.
+
+I've got to drop back to the current version code in Git and start from scratch.
+
+DONE Install Emulator for a Galaxy S23 phone.  I don't think that the emulator for the old s8 (pre-Dec'23) is
+accurately reflecting what's going on.
+
+I downloaded the skins for Galaxy_S23 from Samsung's website.
+The installation/use instructions didn't match my current version of AndroidStudio, so I did the best I could:
+
+AS MainMenu >> Tools >> AVD Manager, "+ Create Virtual Device"
+I looked up the screen size (6.3") and resolution (1080 x 2340, xxhdpi)
+ (Note: this is less than the resolution I had for the S8 AVD: 1440x2960, xxxhdpi)
+ 
+Copied the downloaded skins to  C:\Users\david\AppData\Local\Android\Sdk\skins\Galaxy_23\
+Choose this folder name from the AVD >> edit >> "Show Advanced Settings" >> "Custom skin definition" dropdown.
+
+This appears to work.  The AVD runs and produces something that looks like my phone's display.
+
+Where do we put the Parser string file and the saved JSON file?
+  The app won't work properly without them and doesn't error out properly.
+  
+Where in the AS display of the Emulator file system, is the RINGTONES folder?
+
+
+
+
 	 
    
 
