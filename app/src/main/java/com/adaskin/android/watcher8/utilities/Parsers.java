@@ -119,11 +119,17 @@ public class Parsers {
             analString = "N/A";
         } else {
             analString = response.substring(idxAnalStart + parserStrings.analStart.length());
-            int idxAnalStop = analString.indexOf(parserStrings.analStop);
-            if (idxAnalStop == -1) {
+            int idxAnalMid = analString.indexOf(parserStrings.analMid);
+            if (idxAnalMid == -1) {
                 analString = "N/A";
             } else {
-                analString = analString.substring(0, idxAnalStop);
+                analString = analString.substring(idxAnalMid + parserStrings.analMid.length());
+                int idxAnalStop = analString.indexOf(parserStrings.analStop);
+                if (idxAnalStop == -1) {
+                    analString = "N/A";
+                } else {
+                    analString = analString.substring(0, idxAnalStop);
+                }
             }
         }
         return parseFloatOrNA(analString);

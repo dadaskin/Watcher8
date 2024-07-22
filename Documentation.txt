@@ -398,11 +398,90 @@ This appears to work.  The AVD runs and produces something that looks like my ph
 Where do we put the Parser string file and the saved JSON file?
   The app won't work properly without them and doesn't error out properly.
   
-Where in the AS display of the Emulator file system, is the RINGTONES folder?
+Where, in the AS display of the Emulator file system, is the RINGTONES folder?
+     storage >> emulated >> 0 >> Ringtones 
+	 
+	 
+21-Jul-2024	 
+-----------
+I put Watcher8_Parser in storage >> emulated >> 0 >> Ringtones in the AS "Device File Explorer",
+but I can't see this file from the emulator.
+
+I put something in storage >> emulated >> 0 >> Downloads and I could see that in the emulators "Files" app.
+
+I found it on the emulator by going through:
+settings >> Storage >> Internal shared storage >> Files >> Ringtones.
+
+When I try to run Watcher8 and I go to symbol details and click refresh, 
+Null Pointer exception at Parsers.java line 68
+I set a breakpoint here and re-debug the app and hit the breakpoint.
+   The parserStrings object coming into the parseYahooResponse2() method is null.
+   
+The ParserStrings should be set in LoadStrings().
+I finally got to the breakpoint.  The call to gson.fromJson() fails.
+   Line 15 of the target file had an un-escaped double quote.
+   Line 16 also had an extra double quote at the end.
+Now we are reading the ParserStrings correctly.   
+
+Now the parser barfs in parseAnalysisOpinion() in the call parseFloatOrNA().
+   the analString as currently parsed is looking at the wrong bit of the response.
+   ParserStrings.analStart is: 1y Target Est</span> <span
+   ParserStrings.analMid is:   data-value="
+   ParserStrings.analStop is:  "   <-   Space character after double quote. 
+   
+Parser isn't checking for analMid.
+Added that and things proceed properly.
+Although the "Yearly Range" isn't being displayed. 
+   It turns out line 15 last quote shouldn't have been there at all.
+   
+Now things run properly for AAPL, QYLD, and PRWCX.
+
+Next step: Can we get it onto the phone.
+
+AS shows message "Device is pending authentication: please accept debugging session on the device".
+
+On the phone pull down the notifications bar.
+Choose "USB Settings"   in a few seconds a dialog appears on the device to allow access.
+
+Now I can run from AS and get the App on the device.
+
+When the App starts on the device I get "Unsafe app blocked".
+Click "More details" >> "Install anyway"
+
+Then another dialog about the same thing,
+Click "OK"
 
 
+Initially there are no entries.
+When I import JSON from June, I get 86 symbols.  I try to update all of them and the app stops.
 
+Uninstall from the phone and reinstall.
+Enter only AAPL with some default values.
 
+Copy in latest Parser strings. 
+Synchronize in "Device File Emulator"
+On phone hamburger >> Update Parser
+Now AAPL updates correctly.
+
+Uninstall to get empty list again.
+
+Now import the JSON from 15-Jun
+Select AAPL and update this individually: OK
+Update all symbols
+
+After the 12th symbol (HPQ) There is an exception at Parsers.java line 233  parseFloatOrNA() it's not "N/A"
+so whatever the field is isn't parsable to a float.
+So something after HPQ isn't happy.
+
+Let's debug this with the Emulator.
+Copy the JSON symbol file over to my desktop and then onto the emulator.
+
+Now I can get the whole list (as of 15-Jun) into the Emulator.
+
+Pick this up later.
+Check-in what I've got so far.  (Not tracking any of the data files in Git)
+   
+   
 	 
    
 
