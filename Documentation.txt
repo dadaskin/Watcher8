@@ -480,8 +480,35 @@ Now I can get the whole list (as of 15-Jun) into the Emulator.
 
 Pick this up later.
 Check-in what I've got so far.  (Not tracking any of the data files in Git)
-   
-   
-	 
+
+
+23-Jul-2024:
+------------
+Whenever I try to refresh DUOL individually, it crashes pointing to Parsers.java line 75  parseDividend()
+    For this symbol the parsing algorithm was returning something odd.  When parseFloatOrNA() was called is couldn't handle it 
+	and threw an exception that I wasn't catching.
+	
+	So caught it.  If the input field is weird just return 0.0.
+	
+But it still won't get the whole list, and it says that there are a bunch of Invalid symbols that it kicks out.
+
+Change Parsers.parseFloatOrNA to catch when parseFloat() gets a non-numeric string.
+
+Bump version to 1.3.1.  Deploy to phone.
+	
+
+27-Jul-2024:
+------------
+When I get the InvalidDataMarker in a response, change Refresher to NOT call removeInvalidSymbolsFromDb().
+And change the messages in the error dialog to say just that we got no data for the symbols in mInvalidSymbol.
+
+Add overload of handleInvalidSymbols() that takes just a single StockQuote object (instead of a List of them).
+In Refresher.refreshingSingle() add a call to this new handleInvalidSymbols().
+
+Bump version to 1.3.2 with today's date. Deploy to phone.
+
+DONE Check-in this version.
+- Restore current stock list on phone and export.
+- Copy JSON to computer and upload to emulator.  
    
 

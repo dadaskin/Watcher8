@@ -230,7 +230,11 @@ public class Parsers {
     private float parseFloatOrNA(@NonNull String field) {
         float parsedFloat = 0.0f;
         if (!field.contains("N/A")) {
-            parsedFloat = Float.parseFloat(field.replace(",",""));
+            try {
+                parsedFloat = Float.parseFloat(field.replace(",", ""));
+            } catch (Exception e) {
+                return parsedFloat;
+            }
         }
         return parsedFloat;
     }

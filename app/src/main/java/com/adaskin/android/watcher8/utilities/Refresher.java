@@ -1,5 +1,7 @@
 package com.adaskin.android.watcher8.utilities;
 
+import static java.lang.Thread.sleep;
+
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
 import android.support.v7.app.AlertDialog;
@@ -61,7 +63,7 @@ public class Refresher {
             @Override
             public void onRequestFinished(Request<StringRequest> request) {
                 if (mUnansweredRequests <= 0) {
-                    handleInvalidSymbols(quoteList);
+                   handleInvalidSymbols(quoteList);
                    updateDb(quoteList);
                    updateFragments();
                    mRefreshedObject.fillData();
@@ -72,6 +74,11 @@ public class Refresher {
 
         for (StockQuote quote : quoteList) {
             doSingleWebRequest(quote);
+//            try {
+//                sleep(1000);
+//            } catch (InterruptedException e) {
+//
+//            }
         }
     }
 
@@ -81,7 +88,7 @@ public class Refresher {
         String logMsg = "Start Refresher.refreshSingle() for " + quote.mSymbol;
         Log.d("foo", logMsg);
 
-        mDrawable.start();
+        mDrawable.start();  // Spin the double arrows while sending requests
 
         mInvalidSymbols.clear();
         mUnansweredRequests = 1;
@@ -89,9 +96,10 @@ public class Refresher {
             @Override
             public void onRequestFinished(Request<StringRequest> request) {
                 if (mUnansweredRequests == 0) {
+                    handleInvalidSymbols(quote);
                     updateDb(quote);
                     mRefreshedObject.fillData();
-                    mDrawable.stop();
+                    mDrawable.stop();  // Stop spinning the dobule arrows.
                 }
             }
         });
@@ -131,12 +139,14 @@ public class Refresher {
         Parsers parser = Parsers.getInstance();
         boolean isValidSymbol = parser.parseYAHOOResponse(mContext, quote, response);
         mUnansweredRequests--;
-        if (!isValidSymbol)
+        String s = "o ";
+        if (!isValidSymbol) {
             mInvalidSymbols.add(quote.mSymbol);
+            s = "X ";
+        }
+        String msg = quote.mSymbol + " Response received. " + s + mUnansweredRequests + " left. ";
 
-        String msg = quote.mSymbol + " Response received.  " + mUnansweredRequests + " remaining.";
-        Log.d("foo", msg);
-        msg = quote.mPPS + "   " + quote.mPrevClose + "   " + quote.mDivPerShare;
+        msg = msg + (quote.mPPS + "   " + quote.mPrevClose + "   " + quote.mDivPerShare);
         Log.d("foo", msg);
     }
 
@@ -172,16 +182,18 @@ public class Refresher {
         if (symbolList.size() == 1)	 {
             msg.append("The symbol: ");
             msg.append(symbolList.get(0));
-            msg.append(" is invalid.\nDeleting.");
+            msg.append(".");
+          //  msg.append(" is invalid.\nDeleting.");
         } else {
             msg.append("The symbols: ");
             for (String s : symbolList) {
                 msg.append(s);
                 if (!s.equals(lastSymbol)) {
-                    msg.append(",");
+                    msg.append(", ");
                 }
             }
-            msg.append(" are invalid.\n Deleting.");
+            msg.append(".");
+         //   msg.append(" are invalid.\n Deleting.");
         }
 
         return msg.toString();
@@ -199,18 +211,41 @@ public class Refresher {
         dbAdapter.close();
     }
 
-    private void handleInvalidSymbols(List<StockQuote> quoteList) {
+    private void handleInvalidSymbols(StockQuote quote) {
         int length = mInvalidSymbols.size();
         if (length == 0)
             return;
-
         String msg = createInvalidSymbolMessage(mInvalidSymbols);
-        removeInvalidSymbolsFromDb(mInvalidSymbols, quoteList);
+        mInvalidSymbols.clear();
 
         // Build and display dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         builder.setIcon(android.R.drawable.ic_dialog_alert)
-                .setTitle("Invalid Symbol(s)")
+                .setTitle(length + " Symbols had no data:")
+                .setMessage(msg)
+                .setPositiveButton("OK",null)
+                .setCancelable(false)
+                .show();
+    }
+
+
+    private void handleInvalidSymbols(List<StockQuote> quoteList) {
+        int length = mInvalidSymbols.size();
+
+        String msg1 = length + " Invalid out of " + quoteList.size();
+        Log.d("foo", msg1);
+
+        if (length == 0)
+            return;
+
+        String msg = createInvalidSymbolMessage(mInvalidSymbols);
+        //removeInvalidSymbolsFromDb(mInvalidSymbols, quoteList);
+        mInvalidSymbols.clear();
+
+        // Build and display dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        builder.setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle(length + " Symbols had no data:")
                 .setMessage(msg)
                 .setPositiveButton("OK",null)
                 .setCancelable(false)
