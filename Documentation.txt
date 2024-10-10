@@ -511,4 +511,14 @@ DONE Check-in this version.
 - Restore current stock list on phone and export.
 - Copy JSON to computer and upload to emulator.  
    
+   
+10-Aug-2024:
+------------
+Since I deployed v1.3.2 to my phone the group refresh has been working properly.
+I updated the list of symbols and significantly pared down the Watch lists so currently the group refresh
+asks for 65 symbols. 
+
+What's the limit?
+
+
 
