@@ -521,4 +521,35 @@ asks for 65 symbols.
 What's the limit?
 
 
+15-Nov-2024:
+------------
+Here we go again.  The group update button hasn't worked since 29-Oct.
+I can update many symbols individually, but some won't update.
+
+XRX is one of them.
+
+
+19-Nov-2024:
+------------
+It seems to be working again.  
+Even the group update is working.
+
+
+13-Jan-2025:
+------------
+The PPS parsing stopped working on 10-Jan-2025.
+I was able to tweak the Watcher_Parser file and make it work again.
+
+    "ppsStart" : "<span class=\"base    yf-ipw1h0\" data-testid=\"qsp-price\">",
+    "ppsMid" :  "",
+    "ppsOffset" : 0,
+    "ppsStop" : " <",
+	
+Didn't change any code, so I didn't bump the build_string.
+
+
+	
+
+
+
 
